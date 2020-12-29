@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Friends;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class FriendsController extends Controller
@@ -26,10 +27,15 @@ class FriendsController extends Controller
 
     public function getFriendRequest($id)
     {
-        $user = User::find($id)->friends->where('approved', 0);
+        //$user = User::find($id)->friends->where('approved', 0);
         //dd($user);
-
-        return $user;
+        $friend = Friends::where('user_id_1', $id)->orWhere('user_id_2', $id)->where('approved', 0)->get();
+        //dd($friend->user2);
+        $reqArr = [];
+        foreach ($friend as $key => $value) {
+            array_push($reqArr, ['sender' => $value->user->username]);
+        }
+        return response()->json($reqArr, 200);
     }
 
     public function accept()
@@ -90,10 +96,14 @@ class FriendsController extends Controller
     public function show($id)
     {
         //$user = User::find($id);
-        $friends = DB::select('select * from friends where approved = 1 and (user_id_1 = ? or user_id_2 = ?) ', [$id, $id]);
-
-
-        return $friends;
+        // $friends = DB::select('select * from friends where approved = 1 and (user_id_1 = ? or user_id_2 = ?) limit 1', [$id, $id]);
+        $friend = Friends::where('user_id_1', $id)->orWhere('user_id_2', $id)->where('approved', 1)->get();
+        // dd($friend->user->username, $friend->user2->username);
+        $friendsArr = [];
+        foreach ($friend as $key => $value) {
+            array_push($friendsArr, ['sender' => $value->user->username, 'reciever' => $value->user2->username]);
+        }
+        return response()->json($friendsArr, 200);
     }
 
     public function remove(Request $request)
