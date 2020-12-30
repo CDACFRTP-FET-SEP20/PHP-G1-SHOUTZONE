@@ -41,12 +41,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function friends()
+    public function sender() //friends
     {
-        return $this->hasMany('App\Models\Friends', 'user_id_1');
+        return $this->hasMany('App\Models\Friends', 'sender'); //user_id_1
     }
-    public function friends1()
+    public function reciever() //friends1
     {
-        return $this->hasMany('App\Models\Friends', 'user_id_2');
+        return $this->hasMany('App\Models\Friends', 'reciever'); //user_id_2
     }
 }

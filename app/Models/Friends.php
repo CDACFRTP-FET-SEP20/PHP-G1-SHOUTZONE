@@ -9,12 +9,12 @@ class Friends extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function user() //user
     {
-        return $this->belongsTo('App\Models\User', 'user_id_1');
+        return $this->belongsTo('App\Models\User', 'sender'); //user_id_1
     }
-    public function user2()
+    public function user2() //user2
     {
-        return $this->belongsTo('App\Models\User', 'user_id_2');
+        return $this->belongsTo('App\Models\User', 'reciever'); //user_id_2
     }
 }

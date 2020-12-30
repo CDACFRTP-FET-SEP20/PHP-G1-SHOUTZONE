@@ -24,3 +24,4 @@ Route::get('friends/{id}', [FriendsController::class, 'show']);
 Route::post('sendRequest', [FriendsController::class, 'request']);
 Route::post('request', [FriendsController::class, 'acceptRequest']);
 Route::post('remove', [FriendsController::class, 'remove']);
+Route::post('deleteRequest', [FriendsController::class, 'deleteRequest']);

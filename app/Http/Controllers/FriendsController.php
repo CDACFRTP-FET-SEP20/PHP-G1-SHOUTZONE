@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Friends;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class FriendsController extends Controller
@@ -27,15 +26,10 @@ class FriendsController extends Controller
 
     public function getFriendRequest($id)
     {
-        //$user = User::find($id)->friends->where('approved', 0);
+        $user = User::find($id)->reciever->where('approved', 0);
         //dd($user);
-        $friend = Friends::where('user_id_1', $id)->orWhere('user_id_2', $id)->where('approved', 0)->get();
-        //dd($friend->user2);
-        $reqArr = [];
-        foreach ($friend as $key => $value) {
-            array_push($reqArr, ['sender' => $value->user->username]);
-        }
-        return response()->json($reqArr, 200);
+
+        return $user;
     }
 
     public function accept()
@@ -46,12 +40,12 @@ class FriendsController extends Controller
     public function request(Request $request)
     {
         $friend = new Friends;
-        $friend->user_id_1 = $request->user_id_1; //Id of friend to send request
-        $friend->user_id_2 = 2;  //User logged in Id
+        $friend->sender = 2; //Id of friend to send request
+        $friend->reciever = $request->reciever; //User logged in Id
         $friend->save();
 
         return [
-            'friend_id' => $request->user_id_1
+            'friend_id' => $request->reciever
         ];
     }
 
@@ -59,11 +53,12 @@ class FriendsController extends Controller
     {
 
 
-        $friend = User::find(1)->friends->where('approved', 0)->where('user_id_2', $request->user_id_2)->first();
+        $friend = User::find(2)->reciever->where('approved', 0)->where('sender', $request->sender)->first();
         // dd($friend);
         // $friend->user_id_2 = $request->user_id_2;
         $friend->approved = 1;
         $friend->save();
+        return [$request->sender];
     }
 
     /**
@@ -97,21 +92,40 @@ class FriendsController extends Controller
     {
         //$user = User::find($id);
         // $friends = DB::select('select * from friends where approved = 1 and (user_id_1 = ? or user_id_2 = ?) limit 1', [$id, $id]);
-        $friend = Friends::where('user_id_1', $id)->orWhere('user_id_2', $id)->where('approved', 1)->get();
-        // dd($friend->user->username, $friend->user2->username);
+        $friend = Friends::where('sender', $id)->orWhere('reciever', $id)->where('approved', 1)->get();
+        //  $friend = User::find($id)->reciever->where('approved', 1);
+        // $friend = [...$friend, User::find($id)->sender->where('approved', 1)];
+        // dd($friend[]);
         $friendsArr = [];
         foreach ($friend as $key => $value) {
+            // print_r($value->user->username);
             array_push($friendsArr, ['sender' => $value->user->username, 'reciever' => $value->user2->username]);
         }
-        return response()->json($friendsArr, 200);
+        return response()->json($friendsArr);
     }
 
     public function remove(Request $request)
     {
-        $friend =  User::find(1)->friends->where('approved', 1)->where('user_id_2', $request->user_id_2)->first();
-        //dd($friend);
+        $friend = Friends::where('sender', 1)
+            ->where('reciever', $request->id)
+            ->orWhere('sender', $request->id)
+            ->where('reciever', 1)
+            ->where('approved', 1)
+            ->first();
+        // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
+        //  dd($friend);
         $friend->delete();
-        return [$friend->user_id_2];
+        return [$request->id];
+    }
+    public function deleteRequest(Request $request)
+    {
+        $friend = Friends::where('sender', $request->id)
+            ->where('reciever', 6)
+            ->first();
+        // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
+        // dd($friend);
+        $friend->delete();
+        return [$request->id];
     }
 
     /**
