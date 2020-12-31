@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FriendsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::post("comment", [CommentController::class, 'store']);
+Route::post("editComment/{id}", [CommentController::class, 'update']);
+Route::get("comment/{id}", [CommentController::class, 'show']);
+Route::get("commentRemove/{id}", [CommentController::class, 'destroy']);
 
-
-    });
-
-Route::post( "userLogin", [AuthController::class, 'userLogin']);
-Route::post("register", [UserController::class, 'register']);
-Route::put("update", [UserController::class, 'update']);
-Route::delete("delete/{id}", [UserController::class, 'delete']);
+Route::get("friendRequest/{id}", [FriendsController::class, 'getFriendRequest']);
+Route::get('friends/{id}', [FriendsController::class, 'show']);
+Route::post('sendRequest', [FriendsController::class, 'request']);
+Route::post('request', [FriendsController::class, 'acceptRequest']);
+Route::post('remove', [FriendsController::class, 'remove']);
+Route::post('deleteRequest', [FriendsController::class, 'deleteRequest']);
