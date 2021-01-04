@@ -32,6 +32,9 @@ Route::post('/report/shout', [ReportShoutController::class, 'store']);
 
 Route::get('/report', [ReportShoutController::class, 'list']);
 
-Route::get('/report/shout/{id}', [ReportShoutController::class, 'show']);
+Route::get('/report/shouts/{id}', [ReportShoutController::class, 'show']);
 
 Route::delete('/report/{id}', [ReportShoutController::class, 'destroy']);
+
+Route::post('/shouts/likes', [ShoutLikeController::class, 'store']);
+Route::delete('/shouts/likes', [ShoutLikeController::class, 'destroy']);
