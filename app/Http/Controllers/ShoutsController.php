@@ -11,7 +11,7 @@ class ShoutsController extends Controller
     {
 
         $this->validate($req, [
-            'shoutMedia' => 'required|mimes:jpeg,png,jpg,gif,mp3,mp4,3gp,svg|max:20489',
+            'shoutMedia' => 'mimes:jpeg,png,jpg,gif,mp3,mp4,3gp,svg|max:20489',
           
         ]);
         $shoutsUpload = new Shout($req->input()) ;

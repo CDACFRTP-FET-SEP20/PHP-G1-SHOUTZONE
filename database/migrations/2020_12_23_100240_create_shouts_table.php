@@ -15,8 +15,8 @@ class CreateShoutsTable extends Migration
     {
         Schema::create('shouts', function (Blueprint $table) {
             $table->id();
-            $table->string('shoutText');
-            $table->string('shoutMedia');
+            $table->string('shoutText')->nullable();
+            $table->string('shoutMedia')->nullable();
            $table->string('shoutType');
            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
