@@ -20,16 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
-
-
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put("update", [UserController::class, 'update']);
     Route::delete("delete/{id}", [UserController::class, 'delete']);
+});
 
-
-    });
-
-Route::post( "userLogin", [AuthController::class, 'userLogin']);
+Route::post("userLogin", [AuthController::class, 'userLogin']);
 Route::post("register", [UserController::class, 'register']);
 // Route::put("update", [UserController::class, 'update']);
 // Route::delete("delete/{id}", [UserController::class, 'delete']);
