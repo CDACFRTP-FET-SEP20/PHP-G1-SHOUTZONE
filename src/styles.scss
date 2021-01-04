@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("assets/background.png") no-repeat center center fixed;
+  background-size: cover;
+  font-family: monospace;
+  color: wheat;
+}
