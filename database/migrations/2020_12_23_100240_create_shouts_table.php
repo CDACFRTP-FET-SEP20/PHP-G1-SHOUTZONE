@@ -15,9 +15,9 @@ class CreateShoutsTable extends Migration
     {
         Schema::create('shouts', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('Description');
-           $table->string('media');
+            $table->string('shoutText');
+            $table->string('shoutMedia');
+           $table->string('shoutType');
            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->reference('id')->on('users')->onDelete('cascade');
