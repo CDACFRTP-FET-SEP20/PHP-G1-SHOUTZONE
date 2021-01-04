@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoutsTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateShoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shouts', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('shoutText')->nullable();
-            $table->string('shoutMedia')->nullable();
-            $table->string('shoutType');
+            $table->string('description');
+            $table->foreignId('user_id')->constrained()->onDelete('no action');
+            $table->foreignId('shout_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateShoutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shouts');
+        Schema::dropIfExists('reports');
     }
 }

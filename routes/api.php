@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportShoutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\http\controllers\ShoutsController;
@@ -21,9 +22,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post("add", [ShoutsController::class, 'uploadmedia']);
 Route::get("list", [ShoutsController::class, 'list']);
 
-Route::get('/show/{id}',[ShoutsController::class, 'show']);
+Route::get('/show/{id}', [ShoutsController::class, 'show']);
 
- Route::post('/update/{id}',[ShoutsController::class, 'update']);
+Route::post('/update/{id}', [ShoutsController::class, 'update']);
 
+Route::get('/destroy/{id}', [ShoutsController::class, 'destroy']);
 
- Route::get('/destroy/{id}',[ShoutsController::class, 'destroy']);
+Route::post('/report/shout', [ReportShoutController::class, 'store']);
+
+Route::get('/report', [ReportShoutController::class, 'list']);
+
+Route::get('/report/shout/{id}', [ReportShoutController::class, 'show']);
+
+Route::delete('/report/{id}', [ReportShoutController::class, 'destroy']);
