@@ -18,9 +18,8 @@ class CreateShoutsTable extends Migration
             $table->string('shoutText')->nullable();
             $table->string('shoutMedia')->nullable();
            $table->string('shoutType');
-           $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('user_id')->reference('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

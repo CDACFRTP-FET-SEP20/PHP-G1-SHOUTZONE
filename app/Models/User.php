@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
     public function shout()
     {
-        return $this->hasOne('App\Models\Bio');
+        return $this->hasMany('App\Models\Shout');
     }
 }

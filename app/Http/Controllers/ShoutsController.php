@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shout;
+use App\Models\User;
 
 class ShoutsController extends Controller
 {
     public function uploadmedia(Request $req)
     {
 
-        $this->validate($req, [
-            'shoutMedia' => 'mimes:jpeg,png,jpg,gif,mp3,mp4,3gp,svg|max:20489',
-          
-        ]);
+        
         $shoutsUpload = new Shout($req->input()) ;
         
    
@@ -33,6 +31,13 @@ class ShoutsController extends Controller
     {      
  return Shout::all();
     }
+    public function show($id)
+    {
+        $user = User::find($id);
+        $shoutsUpload=$user->shout->where('user_id',$id);
+        return $shoutsUpload;
+     
+    }
 
     public function destroy($id)
     {
@@ -40,6 +45,7 @@ class ShoutsController extends Controller
         $shoutsUpload->delete();
      
     }
+
     public function update(Request $request, $id)
     {
         $shoutsUpload = Shout::find($id);

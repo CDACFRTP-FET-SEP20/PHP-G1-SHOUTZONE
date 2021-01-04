@@ -10,8 +10,8 @@ class Shout extends Model
     use HasFactory;
     public $timestap=false;
     protected $fillable = [
-        'Description',
-        'media',
+        // 'Description',
+        // 'media',
         
     ];
     protected $table="shouts";
