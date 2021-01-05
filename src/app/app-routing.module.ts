@@ -5,6 +5,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { FriendsListComponent } from './friends-list/friends-list.component';
+import { FriendRequestComponent } from './friend-request/friend-request.component';
+import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 
 const routes: Routes = [
   {
@@ -27,7 +30,13 @@ const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
-    children: [{ path: 'profile', component: ProfileComponent }],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'feed' },
+      { path: 'feed', component: ShoutFeedComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'friends', component: FriendsListComponent },
+      { path: 'request', component: FriendRequestComponent },
+    ],
   },
 ];
 

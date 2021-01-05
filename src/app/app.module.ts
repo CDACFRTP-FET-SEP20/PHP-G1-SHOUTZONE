@@ -9,6 +9,13 @@ import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AsideComponent } from './aside/aside.component';
+import { FriendsListComponent } from './friends-list/friends-list.component';
+import { FriendRequestComponent } from './friend-request/friend-request.component';
+import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
+import { CreateShoutComponent } from './create-shout/create-shout.component';
+import { ShoutComponent } from './shout/shout.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +25,13 @@ import { ProfileComponent } from './profile/profile.component';
     SignupComponent,
     LayoutComponent,
     ProfileComponent,
+    NavbarComponent,
+    AsideComponent,
+    FriendsListComponent,
+    FriendRequestComponent,
+    ShoutFeedComponent,
+    CreateShoutComponent,
+    ShoutComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
