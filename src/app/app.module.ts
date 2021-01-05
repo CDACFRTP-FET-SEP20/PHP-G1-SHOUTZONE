@@ -16,6 +16,7 @@ import { FriendRequestComponent } from './friend-request/friend-request.componen
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { ShoutComponent } from './shout/shout.component';
+import { AddFriendComponent } from './add-friend/add-friend.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ShoutComponent } from './shout/shout.component';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
+    AddFriendComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
