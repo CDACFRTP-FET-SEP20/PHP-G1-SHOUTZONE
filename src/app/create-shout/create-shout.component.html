@@ -1,4 +1,4 @@
-<form class="glass">
+<section class="glass">
   <div>
     <textarea
       name=""
@@ -9,21 +9,39 @@
     ></textarea>
   </div>
   <div>
-    <input
-      hidden
-      type="file"
-      accept="image/*"
-      #uploader
-      (change)="uploadFile($event)"
-    />
-    <button (click)="uploader.click()">
-      <fa-icon [icon]="faImages"></fa-icon>Images
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faImages"></fa-icon> Images
     </button>
-    <input type="file" name="" id="" accept="audio/*" />
-    <input type="file" name="" id="" accept="video/*" />
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faVideo"></fa-icon> Videos
+    </button>
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faMusic"></fa-icon> Audio
+    </button>
   </div>
+  <input
+    hidden
+    type="file"
+    accept="image/*"
+    #uploader1
+    (change)="uploadFile($event)"
+  />
+  <input
+    hidden
+    type="file"
+    accept="video/*"
+    #uploader2
+    (change)="uploadFile($event)"
+  />
+  <input
+    hidden
+    type="file"
+    accept="audio/*"
+    #uploader3
+    (change)="uploadFile($event)"
+  />
   <hr />
   <div>
-    <button type="submit">Shout</button>
+    <button type="submit" class="btn1">Shout</button>
   </div>
-</form>
+</section>

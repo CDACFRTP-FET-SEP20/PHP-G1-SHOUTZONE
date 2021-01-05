@@ -1,21 +1,48 @@
-form {
+section {
   display: flex;
   flex-direction: column;
   margin: 10px;
   padding: 15px;
-  textarea {
-    font-size: 18px;
-    color: whitesmoke;
-    background: none;
-    border-radius: 10px;
-    padding: 10px;
-    outline: none;
-    &:focus {
-      border: 1px solid white;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+
+    button {
+      appearance: none;
+      font-size: 20px;
+      padding: 15px;
+      border-radius: 999px;
+      color: white;
+      background-color: rgba(211, 211, 211, 0.178);
+      border: none;
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
     }
-  }
-  input {
-    color: white;
-    appearance: none;
+
+    textarea {
+      font-size: 18px;
+      color: whitesmoke;
+      background: none;
+      border-radius: 10px;
+      padding: 10px;
+      outline: none;
+      &:focus {
+        border: 1px solid white;
+      }
+      &::placeholder {
+        color: white;
+        opacity: 0.7;
+      }
+    }
+    input {
+      color: white;
+      appearance: none;
+    }
   }
 }

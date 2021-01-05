@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faImages } from '@fortawesome/free-solid-svg-icons';
+import { faImages, faVideo, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-shout',
@@ -8,6 +8,8 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 })
 export class CreateShoutComponent implements OnInit {
   faImages = faImages;
+  faVideo = faVideo;
+  faMusic = faMusic;
   constructor() {}
 
   ngOnInit(): void {}
