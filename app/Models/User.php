@@ -42,9 +42,9 @@ class User extends Authenticatable
     ];
 
 
-    public function posts()
+    public function shouts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Shout');
     }
 
     public function comments()
