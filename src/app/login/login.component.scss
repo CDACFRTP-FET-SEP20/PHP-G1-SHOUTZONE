@@ -9,16 +9,14 @@ section {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
+
   position: absolute;
   margin: auto;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  border-radius: 8px;
-  box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.2);
+
   h3 {
     font-size: 35px;
     font-family: monospace;
@@ -56,25 +54,7 @@ section {
       }
     }
   }
-  button {
-    font-size: 18px;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin: 0 0 10px 0;
-    color: wheat;
-    border: 1px solid transparent;
-    background: linear-gradient(
-      -45deg,
-      rgba(248, 0, 0, 0.548),
-      rgba(255, 115, 0, 0.555)
-    );
-    border-radius: 999px;
-    &:hover {
-      background: none;
-      border: 1px solid white;
-      cursor: pointer;
-    }
-  }
+
   div {
     margin-bottom: 40px;
     p {
