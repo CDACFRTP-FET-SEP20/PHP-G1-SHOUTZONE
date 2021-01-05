@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 15px;
+  textarea {
+    font-size: 18px;
+    color: whitesmoke;
+    background: none;
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    &:focus {
+      border: 1px solid white;
+    }
+  }
+  input {
+    color: white;
+    appearance: none;
+  }
+}

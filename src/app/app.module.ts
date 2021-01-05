@@ -17,6 +17,7 @@ import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { ShoutComponent } from './shout/shout.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,12 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
     ShoutComponent,
     AddFriendComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
