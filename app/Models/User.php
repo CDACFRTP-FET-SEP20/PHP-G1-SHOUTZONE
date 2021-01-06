@@ -52,6 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Shout');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public function sender() //friends
     {
         return $this->hasMany('App\Models\Friends', 'sender'); //user_id_1

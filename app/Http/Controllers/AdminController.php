@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminController extends Controller
     public function index()
     {
 
-       return view('adminLogin');
+        return view('adminLogin');
     }
 
     /**
@@ -28,28 +29,22 @@ class AdminController extends Controller
     public function adminApproval(Request $request, $id)
     {
         $user = User::find($id);
-        if($user->is_approved == false){
-            $user->is_approved =true;
+        if ($user->is_approved == false) {
+            $user->is_approved = true;
             $user->save();
             $message = 'User  ' . $user->bio->name . ' has been approved.';
             return Redirect::to('/userlist')->with(['success' => $message]);;
-
-        }
-         else{
-             $user->is_approved = false;
+        } else {
+            $user->is_approved = false;
             $user->save();
             $message = 'User  ' . $user->bio->name . ' has been disapproved.';
             return Redirect::to('/userlist')->with(['success' => $message]);;
-
-         }
-
-   }
+        }
+    }
     public function userList()
-    {    $users = User::all()->where('role', 'user');
-        return view('home',['users' => $users]);
-
-
-
+    {
+        $users = User::all()->where('role', 'user');
+        return view('home', ['users' => $users]);
     }
 
 
@@ -111,7 +106,6 @@ class AdminController extends Controller
 
         $user->delete();
         return Redirect::to('/userlist')->with(['success' => $message]);;
-
     }
 
     public function logout(Request $request)

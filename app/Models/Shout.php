@@ -8,18 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Shout extends Model
 {
     use HasFactory;
-    public $timestap=false;
+    public $timestap = false;
     protected $fillable = [
         // 'Description',
         // 'media',
-        
+
     ];
-    protected $table="shouts";
+    protected $table = "shouts";
 
 
 
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 }
