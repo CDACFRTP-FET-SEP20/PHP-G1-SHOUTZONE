@@ -16,6 +16,11 @@ import { FriendRequestComponent } from './friend-request/friend-request.componen
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { ShoutComponent } from './shout/shout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -32,8 +37,9 @@ import { ShoutComponent } from './shout/shout.component';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
+
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [BrowserModule,BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

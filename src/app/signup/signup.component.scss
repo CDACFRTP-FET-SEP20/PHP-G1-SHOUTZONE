@@ -1,3 +1,17 @@
+.radio{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .radio-btn{
+    width: 18px;
+    height: 18px;
+    // margin-right: 5px;
+  }
+  span{
+    padding: 5px;
+    margin-right: 5px;
+  }
+}
 section {
   color: aliceblue;
   height: fit-content;
@@ -55,6 +69,7 @@ section {
         opacity: 0.6;
       }
     }
+  
   }
   button {
     font-size: 18px;
@@ -91,3 +106,4 @@ section {
     }
   }
 }
+

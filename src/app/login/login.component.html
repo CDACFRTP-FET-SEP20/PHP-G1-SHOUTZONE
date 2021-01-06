@@ -1,12 +1,31 @@
 <section>
   <h3>Login</h3>
-  <form action="">
-    <input type="text" placeholder="Username" />
-    <input type="password" placeholder="Password" />
-    <button>Login</button>
+  <form  [formGroup]="loginForm" (ngSubmit)= "userLogin()">
+
+  <div class="text-danger mb-0" *ngIf="loginForm.controls.username?.invalid  && loginForm.controls.username?.touched">
+       Please enter valid username
+  </div>
+  <input type="text" placeholder="Username" name="username"
+    [(ngModel)]="user.username" required formControlName="username" />
+
+
+
+  <div class="text-danger mb-0" *ngIf="loginForm.controls.password?.invalid  && loginForm.controls.password?.touched">
+      Please enter valid password
+  </div>
+  <input type="password" placeholder="Password"  name="password"
+     [(ngModel)]="user.password" required formControlName="password" />
+
+  <button type ="submit" [disabled]="!loginForm.valid">Login</button>
+
   </form>
+  
   <div>
     <p>Don't have a account?</p>
     <p><a routerLink="/signup">Click here</a> to Register</p>
   </div>
+
+
 </section>
+
+
