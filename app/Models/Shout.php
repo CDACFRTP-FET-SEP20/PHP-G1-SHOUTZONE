@@ -16,8 +16,6 @@ class Shout extends Model
     ];
     protected $table = "shouts";
 
-
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -26,5 +24,15 @@ class Shout extends Model
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
+    }
+
+    public function report()
+    {
+        return $this->hasMany('App\Models\Report');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like');
     }
 }

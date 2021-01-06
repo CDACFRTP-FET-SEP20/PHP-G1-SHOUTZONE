@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportShoutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -39,7 +40,6 @@ Route::get('shouts/show/{id}', [ShoutsController::class, 'show']);
 Route::post('shouts/update/{id}', [ShoutsController::class, 'update']);
 Route::get('shouts/destroy/{id}', [ShoutsController::class, 'destroy']);
 
-
 Route::post("comment", [CommentController::class, 'store']);
 Route::post("editComment/{id}", [CommentController::class, 'update']);
 Route::get("comment/{id}", [CommentController::class, 'show']);
@@ -52,3 +52,12 @@ Route::post('sendRequest', [FriendsController::class, 'request']);
 Route::post('request', [FriendsController::class, 'acceptRequest']);
 Route::post('remove', [FriendsController::class, 'remove']);
 Route::post('deleteRequest', [FriendsController::class, 'deleteRequest']);
+Route::get('/show/{id}', [ShoutsController::class, 'show']);
+
+Route::post('/report/shout', [ReportShoutController::class, 'store']);
+Route::get('/report', [ReportShoutController::class, 'list']);
+Route::get('/report/shouts/{id}', [ReportShoutController::class, 'show']);
+Route::delete('/report/{id}', [ReportShoutController::class, 'destroy']);
+
+Route::post('/shouts/likes', [ShoutLikeController::class, 'store']);
+Route::delete('/shouts/likes', [ShoutLikeController::class, 'destroy']);
