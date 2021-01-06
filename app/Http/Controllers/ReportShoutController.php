@@ -54,7 +54,7 @@ class ReportShout extends Controller
     public function show($id)
     {
         $shout = Shout::find($id);
-        return $shout->report();
+        return $shout->report;
     }
 
     /**
