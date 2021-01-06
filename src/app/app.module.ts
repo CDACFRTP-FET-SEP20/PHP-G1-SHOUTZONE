@@ -21,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+import { AddFriendComponent } from './add-friend/add-friend.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ShoutComponent,
 
   ],
-  imports: [BrowserModule,BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })

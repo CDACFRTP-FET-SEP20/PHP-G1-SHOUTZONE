@@ -1,4 +1,4 @@
-<section>
+<section class="glass">
   <h3>Register</h3>
   <form [formGroup]="registerForm" (ngSubmit)= "userRegister()">
 
@@ -36,7 +36,7 @@
            <div *ngIf="f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
 
         </div> -->
-     
+
       <div class="radio">
         <span>Gender: </span>
         <input type="radio" class="radio-btn m-0" name="gender" formControlName="gender" value="male" [(ngModel)]="user.gender" ><span>Male</span>

@@ -1,1 +1,47 @@
-<p>create-shout works!</p>
+<section class="glass">
+  <div>
+    <textarea
+      name=""
+      id=""
+      cols="50"
+      rows="3"
+      placeholder="Whats on your mind"
+    ></textarea>
+  </div>
+  <div>
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faImages"></fa-icon> Images
+    </button>
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faVideo"></fa-icon> Videos
+    </button>
+    <button (click)="uploader1.click()">
+      <fa-icon [icon]="faMusic"></fa-icon> Audio
+    </button>
+  </div>
+  <input
+    hidden
+    type="file"
+    accept="image/*"
+    #uploader1
+    (change)="uploadFile($event)"
+  />
+  <input
+    hidden
+    type="file"
+    accept="video/*"
+    #uploader2
+    (change)="uploadFile($event)"
+  />
+  <input
+    hidden
+    type="file"
+    accept="audio/*"
+    #uploader3
+    (change)="uploadFile($event)"
+  />
+  <hr />
+  <div>
+    <button type="submit" class="shout btn1">Shout</button>
+  </div>
+</section>

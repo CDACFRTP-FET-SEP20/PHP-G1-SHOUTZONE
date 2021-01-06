@@ -1,4 +1,4 @@
-<section>
+<section class="glass">
   <h3>Login</h3>
   <form  [formGroup]="loginForm" (ngSubmit)= "userLogin()">
 
@@ -19,7 +19,7 @@
   <button type ="submit" [disabled]="!loginForm.valid">Login</button>
 
   </form>
-  
+
   <div>
     <p>Don't have a account?</p>
     <p><a routerLink="/signup">Click here</a> to Register</p>
