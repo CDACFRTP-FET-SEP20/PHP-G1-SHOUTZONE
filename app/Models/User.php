@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'role',
         'password',
+        'is_approved'
     ];
 
     /**
@@ -44,13 +46,18 @@ class User extends Authenticatable
 
     public function bio()
     {
-
         return $this->hasOne('App\Models\Bio');
     }
-
-
     public function shout()
     {
         return $this->hasMany('App\Models\Shout');
+    }
+    public function sender() //friends
+    {
+        return $this->hasMany('App\Models\Friends', 'sender'); //user_id_1
+    }
+    public function reciever() //friends1
+    {
+        return $this->hasMany('App\Models\Friends', 'reciever'); //user_id_2
     }
 }

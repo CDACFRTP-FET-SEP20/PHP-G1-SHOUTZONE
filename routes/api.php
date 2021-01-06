@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\http\controllers\ShoutsController;
+use App\Http\Controllers\FriendsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,9 @@ Route::post('shouts/update/{id}', [ShoutsController::class, 'update']);
 
 
 Route::get('shouts/destroy/{id}', [ShoutsController::class, 'destroy']);
+Route::get("friendRequest/{id}", [FriendsController::class, 'getFriendRequest']);
+Route::get('friends/{id}', [FriendsController::class, 'show']);
+Route::post('sendRequest', [FriendsController::class, 'request']);
+Route::post('request', [FriendsController::class, 'acceptRequest']);
+Route::post('remove', [FriendsController::class, 'remove']);
+Route::post('deleteRequest', [FriendsController::class, 'deleteRequest']);
