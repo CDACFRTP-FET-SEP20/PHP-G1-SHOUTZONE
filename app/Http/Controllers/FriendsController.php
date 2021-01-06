@@ -35,7 +35,9 @@ class FriendsController extends Controller
     public function getUserList($id)
     {
         $users = User::all();
+        $userList = $users->except($id);
         $friends = Friends::where('sender', $id)->orWhere('reciever', $id)->get();
+        //dd($friends);
         $friendsArr = [];
         foreach ($friends as $key => $value) {
             if (($value->user->id) != $id) {
@@ -51,7 +53,7 @@ class FriendsController extends Controller
         $flatten = array_merge(...$friendsArr);
         // dd($flatten);
         // dd($friends);
-        $people = $users->except($flatten);
+        $people = $userList->except($flatten);
         return $people;
     }
 
@@ -61,7 +63,7 @@ class FriendsController extends Controller
     public function request(Request $request)
     {
         $friend = new Friends;
-        $friend->sender = 2; //Id of friend to send request
+        $friend->sender = 4; //Id of friend to send request
         $friend->reciever = $request->reciever; //User logged in Id
         $friend->save();
 
@@ -74,7 +76,7 @@ class FriendsController extends Controller
     {
 
 
-        $friend = User::find(2)->reciever
+        $friend = User::find(6)->reciever
             ->where('approved', 0)
             ->where('sender', $request->sender)
             ->first();
@@ -116,7 +118,10 @@ class FriendsController extends Controller
     {
         //$user = User::find($id);
         // $friends = DB::select('select * from friends where approved = 1 and (user_id_1 = ? or user_id_2 = ?) limit 1', [$id, $id]);
-        $friend = Friends::where('sender', $id)->orWhere('reciever', $id)->where('approved', 1)->get();
+        $friend = Friends::where('sender', $id)
+            ->where('approved', 1)
+            ->orWhere('reciever', $id)
+            ->where('approved', 1)->get();
         //  $friend = User::find($id)->reciever->where('approved', 1);
         // $friend = [...$friend, User::find($id)->sender->where('approved', 1)];
         // dd($friend[]);

@@ -9,9 +9,10 @@ class Bio extends Model
 {
     use HasFactory;
 
-    protected $table ="bios";
+    protected $table = "bios";
 
-    public function user(){
-      return $this->belongsTo('App\Models\User');
-  }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
