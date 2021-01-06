@@ -10,56 +10,42 @@ class ShoutsController extends Controller
 {
     public function uploadmedia(Request $req)
     {
-
-        
         $shoutsUpload = new Shout($req->input()) ;
-        
-   
+
+        $shoutsUpload->user_id = $req->user_id;
+
         $shoutsUpload->shoutType = $req->shoutType;
+
         $shoutsUpload->shoutText= $req->shoutText;
          if($file = $req->hasFile('shoutMedia')) {
             $file = $req->file('shoutMedia') ;
-            $fileName = $file->getClientOriginalName() ;
+            $fileName = $file->getClientOriginalName() ;//file is save with original name
             $destinationPath = public_path().'/Shouts/' ;
-            $file->move($destinationPath,$fileName);
+            $file->move($destinationPath,$fileName);//move to shouts folder
             $shoutsUpload->shoutMedia = '/Shouts/'.$fileName ;
         }
         $shoutsUpload->save() ;
        return response()->json(['message' => 'media Uploaded Successfully']);
     }
     public function list()
-    {      
- return Shout::all();
+    {
+ $allShouts= Shout::all();
+ return view('see-all-shouts')->with('list',$allShouts);
     }
     public function show($id)
     {
         $user = User::find($id);
-        $shoutsUpload=$user->shout->where('user_id',$id);
+        $shoutsUpload=$user->shout;
         return $shoutsUpload;
-     
+
     }
 
     public function destroy($id)
     {
         $shoutsUpload = Shout::find($id);
         $shoutsUpload->delete();
-     
-    }
-
-    public function update(Request $request, $id)
-    {
-        $shoutsUpload = Shout::find($id);
-        $shoutsUpload->shoutType = $request->input('shoutType');
-        $shoutsUpload->shoutText = $request->input('shoutText');
-        if($file = $request->hasFile('shoutMedia')) {
-            $file = $request->file('shoutMedia') ;
-            $fileName = $file->getClientOriginalName() ;
-            $destinationPath = public_path().'/Shouts/' ;
-            $file->move($destinationPath,$fileName);
-            $shoutsUpload->shoutMedia = '/Shouts/'.$fileName ;
-        }
-        $shoutsUpload->save();
-  
 
     }
+
+
 }

@@ -25,5 +25,4 @@ Route::get('/show/{id}',[ShoutsController::class, 'show']);
 
  Route::post('/update/{id}',[ShoutsController::class, 'update']);
 
-
  Route::get('/destroy/{id}',[ShoutsController::class, 'destroy']);
