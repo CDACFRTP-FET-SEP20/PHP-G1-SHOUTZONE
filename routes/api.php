@@ -26,6 +26,7 @@ Route::get("comment/{id}", [CommentController::class, 'show']);
 Route::get("commentRemove/{id}", [CommentController::class, 'destroy']);
 
 Route::get("friendRequest/{id}", [FriendsController::class, 'getFriendRequest']);
+Route::get("getUsers/{id}", [FriendsController::class, 'getUserList']);
 Route::get('friends/{id}', [FriendsController::class, 'show']);
 Route::post('sendRequest', [FriendsController::class, 'request']);
 Route::post('request', [FriendsController::class, 'acceptRequest']);
