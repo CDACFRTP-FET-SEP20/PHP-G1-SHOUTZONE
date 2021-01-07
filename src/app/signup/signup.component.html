@@ -1,34 +1,84 @@
-<section class="glass">
-  <h3>Register</h3>
-  <form [formGroup]="registerForm" (ngSubmit)= "userRegister()">
+<mat-card>
+  <mat-icon>supervised_user_circle</mat-icon>
+  <h3 class="mat-typography">Register</h3>
+  <div
+    class="d-flex flex-column"
+    [formGroup]="registerForm"
+    (ngSubmit)="userRegister()"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your name</mat-label>
+      <input matInput placeholder="John Doe" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your username</mat-label>
+      <input matInput placeholder="johnyd" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput type="password" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" required />
+    </mat-form-field>
+    <!-- <input
+      type="text"
+      placeholder="Name"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      formControlName="name"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+    />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div> -->
 
-
-
-      <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name" required  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-      <div *ngIf="submitted && f.name.errors " class="invalid-feedback mb-0">
-          <div *ngIf="f.name.errors.required"> Name is required</div>
-      </div>
-
-
-
-     <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username" required formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
-     <div *ngIf="submitted && f.username.errors" class="invalid-feedback mb-0">
-        <div *ngIf="f.username.errors.required"> UserName is required</div>
-     </div>
-
-
-     <input type="email" placeholder="abc@eaxmple.com" name="email" [(ngModel)]="user.email" required formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-     <div *ngIf="submitted && f.email.errors" class="invalid-feedback mb-0">
-          <div *ngIf="f.email.errors.required">Email is required</div>
-           <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-     </div>
-
-
-    <input type="password" placeholder="Password min 7 letters " name="password" [(ngModel)]="user.password" required formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-     <div *ngIf="submitted && f.password.errors" class="invalid-feedback mb-0">
-          <div *ngIf="f.password.errors.required">Password is required</div>
-    <div *ngIf="f.password.errors.minlength">Password must be at least 7 characters</div>
+    <!-- <input
+      type="text"
+      placeholder="Username"
+      name="username"
+      [(ngModel)]="user.username"
+      required
+      formControlName="username"
+      [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+    />
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.username.errors.required">UserName is required</div>
     </div>
+
+    <input
+      type="email"
+      placeholder="abc@eaxmple.com"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+      formControlName="email"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+    />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.email">
+        Email must be a valid email address
+      </div>
+    </div>
+
+    <input
+      type="password"
+      placeholder="Password min 7 letters "
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      formControlName="password"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+    />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">
+        Password must be at least 7 characters
+      </div>
+    </div> -->
 
     <!-- <input type="password" placeholder="Confirm Password" name="confirm_password" required formControlName="confirm_password" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
      <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback mb-0">
@@ -37,27 +87,43 @@
 
         </div> -->
 
-      <div class="radio">
-        <span>Gender: </span>
-        <input type="radio" class="radio-btn m-0" name="gender" formControlName="gender" value="male" [(ngModel)]="user.gender" ><span>Male</span>
-        <input type="radio"class="radio-btn m-0" name="gender" formControlName="gender" value="female" [(ngModel)]="user.gender"><span>Female</span>
-      </div>
-      <div *ngIf="submitted && f.gender.errors " class="invalid-feedback mb-0">
-          <div *ngIf="f.gender.errors.required">Plaese Select Gender</div>
-      </div>
-
-
-    <input type="date" placeholder="Date Of Birth" name="dob" [(ngModel)]="user.dob" required [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
-      formControlName="dob" />
-    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback mb-0">
-          <div *ngIf="f.dob.errors.required"> Date of Birth is required</div>
+    <div class="d-flex align-items-start">
+      <span>Gender: </span>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Male</mat-radio-button>
+        <mat-radio-button value="2">Female</mat-radio-button>
+      </mat-radio-group>
     </div>
+    <!-- <div *ngIf="submitted && f.gender.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.gender.errors.required">Plaese Select Gender</div>
+    </div> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="dp3" disabled />
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <!-- <input
+      type="date"
+      placeholder="Date Of Birth"
+      name="dob"
+      [(ngModel)]="user.dob"
+      required
+      [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
+      formControlName="dob"
+    />
+    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback mb-0">
+      <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+    </div> -->
 
     <!-- <button type="submit" [disabled]="!registerForm.valid">Register</button> -->
-     <button type="submit">Register</button>
-  </form>
+    <!-- <button type="submit">Register</button> -->
+    <button class="w-100" mat-raised-button color="primary">Register</button>
+  </div>
   <div>
     <p>Already have a account?</p>
     <p><a routerLink="/login">Click here</a> to Login</p>
   </div>
-</section>
+</mat-card>

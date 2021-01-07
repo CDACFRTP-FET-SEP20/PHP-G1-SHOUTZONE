@@ -1,22 +1,17 @@
-<section class="glass">
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>Whats on your mind..?</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
   <div>
-    <textarea
-      name=""
-      id=""
-      cols="50"
-      rows="3"
-      placeholder="Whats on your mind"
-    ></textarea>
-  </div>
-  <div>
-    <button (click)="uploader1.click()">
-      <fa-icon [icon]="faImages"></fa-icon> Images
+    <button mat-fab color="primary" (click)="uploader1.click()">
+      <mat-icon>image</mat-icon>
     </button>
-    <button (click)="uploader1.click()">
-      <fa-icon [icon]="faVideo"></fa-icon> Videos
+    <button mat-fab color="accent" (click)="uploader2.click()">
+      <mat-icon>videocam</mat-icon>
     </button>
-    <button (click)="uploader1.click()">
-      <fa-icon [icon]="faMusic"></fa-icon> Audio
+    <button mat-fab color="warn" (click)="uploader3.click()">
+      <mat-icon>music_note</mat-icon>
     </button>
   </div>
   <input
@@ -42,6 +37,8 @@
   />
   <hr />
   <div>
-    <button type="submit" class="shout btn1">Shout</button>
+    <button mat-raised-button color="warn" type="submit" class="shout btn1">
+      Shout
+    </button>
   </div>
-</section>
+</mat-card>

@@ -16,12 +16,22 @@ import { FriendRequestComponent } from './friend-request/friend-request.componen
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { ShoutComponent } from './shout/shout.component';
+import { AddFriendComponent } from './add-friend/add-friend.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AddFriendComponent } from './add-friend/add-friend.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -35,13 +45,31 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     AsideComponent,
     FriendsListComponent,
+    AddFriendComponent,
     FriendRequestComponent,
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
-
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

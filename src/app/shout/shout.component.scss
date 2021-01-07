@@ -5,15 +5,13 @@
   color: black;
 }
 
-.heading {
-  height: 30px;
-
-  .ava {
-    height: 100%;
-    margin-right: 10px;
-  }
+mat-card {
+  border-radius: 15px;
 }
-
+img {
+  height: 20px;
+  flex: -1;
+}
 .content {
   font-size: 15px;
 }

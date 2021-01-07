@@ -1,31 +1,57 @@
-<section class="glass">
-  <h3>Login</h3>
-  <form  [formGroup]="loginForm" (ngSubmit)= "userLogin()">
+<mat-card>
+  <mat-icon>account_circle</mat-icon>
+  <h3 class="mat-typography">Login</h3>
+  <div [formGroup]="loginForm" (ngSubmit)="userLogin()">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput type="password" required />
+    </mat-form-field>
+    <!-- <div
+      class="text-danger mb-0"
+      *ngIf="
+        loginForm.controls.username?.invalid &&
+        loginForm.controls.username?.touched
+      "
+    >
+      Please enter valid username
+    </div>
+    <input
+      type="text"
+      placeholder="Username"
+      name="username"
+      [(ngModel)]="user.username"
+      required
+      formControlName="username"
+    />
 
-  <div class="text-danger mb-0" *ngIf="loginForm.controls.username?.invalid  && loginForm.controls.username?.touched">
-       Please enter valid username
-  </div>
-  <input type="text" placeholder="Username" name="username"
-    [(ngModel)]="user.username" required formControlName="username" />
-
-
-
-  <div class="text-danger mb-0" *ngIf="loginForm.controls.password?.invalid  && loginForm.controls.password?.touched">
+    <div
+      class="text-danger mb-0"
+      *ngIf="
+        loginForm.controls.password?.invalid &&
+        loginForm.controls.password?.touched
+      "
+    >
       Please enter valid password
+    </div>
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      formControlName="password"
+    /> -->
+    <button class="w-100" mat-raised-button color="primary">Register</button>
+
+    <!-- <button type="submit" [disabled]="!loginForm.valid">Login</button> -->
   </div>
-  <input type="password" placeholder="Password"  name="password"
-     [(ngModel)]="user.password" required formControlName="password" />
-
-  <button type ="submit" [disabled]="!loginForm.valid">Login</button>
-
-  </form>
 
   <div>
     <p>Don't have a account?</p>
     <p><a routerLink="/signup">Click here</a> to Register</p>
   </div>
-
-
-</section>
-
-
+</mat-card>

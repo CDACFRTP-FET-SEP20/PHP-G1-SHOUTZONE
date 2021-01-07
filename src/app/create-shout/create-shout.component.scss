@@ -1,55 +1,57 @@
-$color: #fff;
+$color: #000;
 
 .glass {
   background-color: rgba(255, 255, 255, 0.726);
   color: black;
 }
 
-section {
+mat-card {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 5px;
   padding: 15px;
+  border-radius: 15px;
+  // background-color: #f5f5f5;
   div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 
-    button {
-      appearance: none;
-      font-size: 20px;
-      padding: 15px;
-      border-radius: 999px;
-      color: $color;
-      background-color: rgba(211, 211, 211, 0.671);
-      border: none;
-      opacity: 0.9;
-      color: black;
-      &:hover {
-        opacity: 1;
-        cursor: pointer;
-        background-color: rgba(211, 211, 211, 0.678);
-      }
-    }
+    // button {
+    //   appearance: none;
+    //   font-size: 20px;
+    //   padding: 15px;
+    //   border-radius: 999px;
+    //   color: $color;
+    //   background-color: rgba(211, 211, 211, 0.671);
+    //   border: none;
+    //   opacity: 0.9;
+    //   color: black;
+    //   &:hover {
+    //     opacity: 1;
+    //     cursor: pointer;
+    //     background-color: rgba(211, 211, 211, 0.678);
+    //   }
+    // }
 
-    textarea {
-      font-size: 18px;
-      color: $color;
-      background: none;
-      border-radius: 10px;
-      width: 90%;
-      padding: 10px;
-      outline: none;
-      &:focus {
-        border: 1px solid white;
-      }
-      &::placeholder {
-        color: $color;
-        opacity: 0.7;
-      }
-    }
+    // textarea {
+    //   font-size: 18px;
+    //   color: $color;
+    //   background: none;
+    //   border-radius: 10px;
+    //   width: 100%;
+    //   padding: 10px;
+    //   outline: none;
+    //   &:focus {
+    //     border: 1px solid white;
+    //   }
+    //   &::placeholder {
+    //     color: $color;
+    //     opacity: 0.7;
+    //   }
+    // }
     input {
       color: $color;
       appearance: none;

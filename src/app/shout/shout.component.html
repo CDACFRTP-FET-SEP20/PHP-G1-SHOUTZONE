@@ -1,9 +1,10 @@
-<div class="glass">
-  <div class="d-flex align-items-center justify-content-start heading">
+<mat-card class="mb-4">
+  <mat-card-header>
     <img class="ava" src="../../assets/avatar.png" alt="" />
-    <h5>Amey Khaire</h5>
-  </div>
-  <hr />
+    <mat-card-title>Amey Khaire</mat-card-title>
+    <mat-card-subtitle>10/20/2020</mat-card-subtitle>
+  </mat-card-header>
+
   <p class="content">
     <ng-content select=".content"></ng-content>
   </p>
@@ -11,4 +12,4 @@
   <hr />
 
   <button class="btn1"><fa-icon [icon]="faLike"></fa-icon></button>
-</div>
+</mat-card>
