@@ -16,6 +16,7 @@ export class AuthService {
   }
 
   public registerUserFromRemote(user: User): Observable<any> {
+    console.log('This is register service');
 
     return this.http.post("http://127.0.0.1:8000/api/register", user)
   }

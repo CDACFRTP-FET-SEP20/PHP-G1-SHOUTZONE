@@ -19,8 +19,6 @@ import { ShoutComponent } from './shout/shout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -39,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
+    AddFriendComponent
 
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule],
