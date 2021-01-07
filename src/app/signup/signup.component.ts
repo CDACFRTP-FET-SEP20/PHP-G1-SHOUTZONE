@@ -44,22 +44,21 @@ export class SignupComponent implements OnInit {
 
 
   userRegister(event) {
-     
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      console.log('in invalid')
-      return;
-    }
-    else{
+     this.submitted = true;
     this.service.registerUserFromRemote(this.user).subscribe(
-
-      (data) => { this.user = data },
+       (data) => {  
+         if (data.status_code === 200) {
+           alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
+         this.router.navigateByUrl('/welcome');
+        }
+      },
       (err) => { console.log('error in processing request', err) },
-      () => { console.log(this.user) }
+      () => {}
     )
-      console.log(this.user)
-   }
+      
+   
 }
+
 
 // ConfirmedValidator(controlName: string, matchingControlName: string){
 //     return (formGroup: FormGroup) => {

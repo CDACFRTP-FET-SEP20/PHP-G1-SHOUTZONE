@@ -12,7 +12,7 @@ export class AuthGuardService {
     const currentUser = sessionStorage.getItem("username");
     if (currentUser!=null) {
         // logged in so return true
-        console.log("current user ----"+currentUser);
+       // console.log("current user ----"+currentUser);
         return true;
     }
     alert("else part"+currentUser);

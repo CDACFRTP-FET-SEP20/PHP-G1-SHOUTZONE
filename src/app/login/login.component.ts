@@ -33,39 +33,36 @@ export class LoginComponent implements OnInit {
 
 }
 
-//   userLogin() {
-
-
-//     this.service.loginUserFromRemote(this.user).subscribe(
-//       (data) => { this.user = data;},
-//       (err) => { alert(err) },
-//       () => { console.log(this.user) }
-//     )
-
-// }
-
   userLogin() {
 
 
     this.service.loginUserFromRemote(this.user).subscribe(
-      (data) => {  //console.log("daskjdg");
+      (data) => {
 
-        console.log(data);
+        //console.log(data);
+          data.status_code!= Number
 
-        if (data.status_code === 500){
-          alert("please fill valid credentials");
-          return;
-        }
-
-        if (data.user.is_approved) {
-          sessionStorage.setItem('username', data.user.username);
-          // sessionStorage.setItem('token', data.token);
-          // sessionStorage.setItem('userid', data.user.id);
+        switch (data.status_code) {
+          case 500:
+            alert("please fill valid credentials");
+            break;
+          case 400:
+            alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
+            break;
+          case 300:
+            alert("please fill valid credentials for Users");
+            break;
+          default:
+            sessionStorage.setItem('username', data.user.username);
+            sessionStorage.setItem('user', data.user);
+           // sessionStorage.setItem('token', data.token);
+           // sessionStorage.setItem('userid', data.user.id);
           this.router.navigateByUrl('/home');
+            break;
         }
        },
       (err) => { alert(err) },
-      () => { console.log(this.user) }
+      () => { }
     )
 
   }
