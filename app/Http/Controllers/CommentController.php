@@ -39,7 +39,7 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->comment = $request->comment;
         $comment->user_id = 3;
-        $comment->post_id = $request->post_id;
+        $comment->shout_id = $request->shout_id;
         $comment->save();
 
         return [$comment];
@@ -53,7 +53,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $post = Comment::where('post_id', $id)->get();
+        $post = Comment::where('shout_id', $id)->get();
         //print_r($post);
         $friendsArr = [];
         foreach ($post as $key => $value) {
@@ -82,9 +82,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $post = Comment::where('id', $id)->update(["comment" => $request->comment]);
+        $post = Comment::where('id', $request->id)->update(["comment" => $request->comment]);
         // $post->comment = $request->comment;
         // print_r($post);
         // $post->update(['comment' => $request->comment]);
