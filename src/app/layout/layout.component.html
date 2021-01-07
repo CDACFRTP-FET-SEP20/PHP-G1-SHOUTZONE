@@ -6,17 +6,11 @@
   <app-aside class="col-3 m-0 p-0"></app-aside>
 </div> -->
 
-<mat-toolbar>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-    (click)="drawer.toggle()"
-  >
+<mat-toolbar class="shadow">
+  <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Shout Box</span>
-  <span class="example-spacer"></span>
 </mat-toolbar>
 <mat-drawer-container [hasBackdrop]="true">
   <mat-drawer #drawer [mode]="'side'"><app-navbar></app-navbar></mat-drawer>

@@ -31,8 +31,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

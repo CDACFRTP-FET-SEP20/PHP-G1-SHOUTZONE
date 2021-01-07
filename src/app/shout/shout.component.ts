@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-shout',
@@ -7,8 +7,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./shout.component.scss'],
 })
 export class ShoutComponent implements OnInit {
-  faLike = faThumbsUp;
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 }
