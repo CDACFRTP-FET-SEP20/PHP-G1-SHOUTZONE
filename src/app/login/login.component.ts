@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.service.loginUserFromRemote(this.user).subscribe(
       (data) => {
 
-        //console.log(data);
+        // console.log(data.status_code);
           data.status_code!= Number
 
         switch (data.status_code) {
@@ -53,12 +53,14 @@ export class LoginComponent implements OnInit {
           case 300:
             alert("please fill valid credentials for Users");
             break;
-          default:
+         case 200:
             sessionStorage.setItem('username', data.user.username);
             sessionStorage.setItem('user', data.user);
            // sessionStorage.setItem('token', data.token);
            // sessionStorage.setItem('userid', data.user.id);
           this.router.navigateByUrl('/home');
+            break;
+            default:
             break;
         }
        },
