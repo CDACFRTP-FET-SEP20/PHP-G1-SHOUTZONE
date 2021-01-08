@@ -6,7 +6,7 @@ use App\Models\Report;
 use App\Models\Shout;
 use Illuminate\Http\Request;
 
-class ReportShout extends Controller
+class ReportShoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,6 +41,7 @@ class ReportShout extends Controller
         $report->description = $request->description;
         $report->user_id = $request->user_id;
         $report->shout_id = $request->shout_id;
+        // dd($report);
         $report->save();
         return ['success' => true, 'data' => 'Shout Reported'];
     }

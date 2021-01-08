@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-
-
+use App\http\controllers\ShoutsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +22,5 @@ Route::get('/userlist', [AdminController::class, 'userlist']);
 Route::get('/adminApproval/{id}', [AdminController::class, 'adminApproval'])->name('adminApproval');
 Route::get("delete/{id}", [AdminController::class, 'delete'])->name("deleteuser");
 Route::get("logout", [AdminController::class, 'logout'])->name("logout");
+Route::get("list", [ShoutsController::class, 'allShouts']);
+Route::get('/destroy/{id}',[ShoutsController::class, 'deleteshout'])->name("deleteshout");
