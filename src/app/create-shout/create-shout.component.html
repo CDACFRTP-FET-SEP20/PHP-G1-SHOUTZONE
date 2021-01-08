@@ -1,12 +1,17 @@
 <section class="glass">
+  <form  #form="ngForm">
   <div>
     <textarea
-      name=""
+      name="description"
       id=""
       cols="50"
       rows="3"
+      #description="ngModel" [(ngModel)]='shout.shoutText'
       placeholder="Whats on your mind"
     ></textarea>
+  </div>
+  <div *ngIf='shout.shoutMedia?.name'>
+    Selected File: {{shout.shoutMedia.name}}
   </div>
   <div>
     <button (click)="uploader1.click()">
@@ -22,26 +27,30 @@
   <input
     hidden
     type="file"
+    name="shoutmedia"  #shoutmedia=ngModel [(ngModel)]="postedShout"
     accept="image/*"
     #uploader1
-    (change)="uploadFile($event)"
+    (change)='uploadShout($event)'
   />
   <input
     hidden
     type="file"
+    name="shoutmedia"  #shoutmedia=ngModel [(ngModel)]="postedShout"
     accept="video/*"
     #uploader2
-    (change)="uploadFile($event)"
+    (change)='uploadShout($event)'
   />
   <input
     hidden
     type="file"
+    name="shoutmedia" #shoutmedia=ngModel [(ngModel)]="postedShout"
     accept="audio/*"
     #uploader3
-    (change)="uploadFile($event)"
+    (change)='uploadShout($event)'
   />
   <hr />
   <div>
-    <button type="submit" class="shout btn1">Shout</button>
+    <button type="submit"  [disabled]='!flag' type="submit" value="Add Shout"  (click)="formSubmit(form)"class="shout btn1">Shout</button>
   </div>
+</form>
 </section>

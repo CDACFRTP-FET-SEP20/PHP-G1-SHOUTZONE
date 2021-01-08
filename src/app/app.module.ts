@@ -18,7 +18,8 @@ import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { ShoutComponent } from './shout/shout.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
+    FormsModule,
+     HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
