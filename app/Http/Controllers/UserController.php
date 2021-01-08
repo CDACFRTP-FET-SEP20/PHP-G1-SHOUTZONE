@@ -37,11 +37,12 @@ class UserController extends Controller
             $bio->profile_photo = $request->profile_photo;
             $user->bio()->save($bio);
 
-            $tokenResult = $user->createToken('authToken')->plainTextToken;
+           // $tokenResult = $user->createToken('authToken')->plainTextToken;
             return response()->json([
                 'status_code' => 200,
-                'access_token' => $tokenResult,
-                'token_type' => 'Bearer',
+                'result' => 'register',
+               // 'access_token' => $tokenResult,
+                //'token_type' => 'Bearer',
             ]);
         } catch (Exception $error) {
             return response()->json([
