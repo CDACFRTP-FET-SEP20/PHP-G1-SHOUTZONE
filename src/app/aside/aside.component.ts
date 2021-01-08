@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FriendsService } from '../services/friends.service';
 
 @Component({
   selector: 'app-aside',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aside.component.scss'],
 })
 export class AsideComponent implements OnInit {
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+  }
 }

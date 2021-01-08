@@ -1,1 +1,14 @@
-<p>shout works!</p>
+<div class="glass">
+  <div class="d-flex align-items-center justify-content-start heading">
+    <img class="ava" src="../../assets/avatar.png" alt="" />
+    <h5>Amey Khaire</h5>
+  </div>
+  <hr />
+  <p class="content">
+    <ng-content select=".content"></ng-content>
+  </p>
+  <ng-content select=".media"></ng-content>
+  <hr />
+
+  <!-- <button class="btn1"><fa-icon [icon]="faLike"></fa-icon></button> -->
+</div>
