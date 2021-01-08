@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         switch (data.status_code) {
           case 500:
             alert("please fill valid credentials");
+
             break;
           case 405:
             alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
