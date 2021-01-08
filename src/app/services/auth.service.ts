@@ -14,9 +14,12 @@ export class AuthService {
   }
 
   public storeUserData(user: User): Observable<any> {
+    console.log("in storedata");
+
     sessionStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('user', JSON.stringify(user));
-    return;
+    sessionStorage.setItem('username', JSON.stringify(user.username));
+    return null;
   }
 
   public getUserDetails(): any {

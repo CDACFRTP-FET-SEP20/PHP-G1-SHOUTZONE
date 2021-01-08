@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
             console.log(data.user)
             this.service.storeUserData(data.user);
             this.router.navigateByUrl('/home');
+           // this.router.navigate(['/home'])
+
             break;
 
             default:
