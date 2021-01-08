@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-shout',
@@ -10,4 +11,9 @@ export class ShoutComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CommentsComponent, {
+      data: { postId: 2 },
+    });
+  }
 }

@@ -9,7 +9,7 @@
             <audio src="{{ shout.media }}" controls></audio>
           </ng-container>
           <ng-container *ngSwitchCase="'video'">
-            <video src="{{ shout.media }}" controls></video>
+            <video class="video" src="{{ shout.media }}" controls></video>
           </ng-container>
           <ng-container *ngSwitchCase="'image'">
             <img class="image" src="{{ shout.media }}" />

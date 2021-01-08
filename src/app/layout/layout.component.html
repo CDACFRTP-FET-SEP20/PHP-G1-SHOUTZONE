@@ -14,8 +14,10 @@
 </mat-toolbar>
 <mat-drawer-container [hasBackdrop]="true">
   <mat-drawer #drawer [mode]="'side'"><app-navbar></app-navbar></mat-drawer>
-  <mat-drawer-content>
-    <router-outlet></router-outlet>
-    <app-aside class="d-none"></app-aside>
+  <mat-drawer-content class="d-flex pt-3">
+    <div class="col-md-8 col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+    <app-aside class="col-4 d-none d-md-block fixed-top"></app-aside>
   </mat-drawer-content>
 </mat-drawer-container>

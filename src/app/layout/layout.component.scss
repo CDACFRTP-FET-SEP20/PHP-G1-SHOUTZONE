@@ -1,5 +1,5 @@
 mat-drawer-content {
-  height: 100vh;
+  height: calc(100vh - 70px);
   width: 100vw;
   // padding: 15px;
   // overflow-x: auto;
@@ -7,7 +7,13 @@ mat-drawer-content {
 }
 
 mat-toolbar {
+  height: 70px;
   background-color: #4679b3;
   color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+app-aside {
+  margin-left: auto;
+  margin-top: 85px;
 }
