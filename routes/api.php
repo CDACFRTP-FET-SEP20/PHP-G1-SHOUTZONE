@@ -36,12 +36,10 @@ Route::post("register", [UserController::class, 'register']);
 // Route::put("update", [UserController::class, 'update']);
 // Route::delete("delete/{id}", [UserController::class, 'delete']);
 
-Route::post("add", [ShoutsController::class, 'uploadmedia']);
-Route::get("list", [ShoutsController::class, 'list']);
-Route::get('shouts/show/{id}', [ShoutsController::class, 'show']);
-Route::post('shouts/update/{id}', [ShoutsController::class, 'update']);
-Route::get('shouts/destroy/{id}', [ShoutsController::class, 'destroy']);
-Route::get('shoutlist/{id}', [ShoutsController::class, 'friendShout']);
+Route::post("shouts/add", [ShoutsController::class, 'uploadmedia']);
+Route::get("/shouts/allshouts", [ShoutsController::class, 'list']);
+Route::get('/shouts/show/{id}',[ShoutsController::class, 'shoutById']);
+ Route::get('/shouts/destroy/{id}',[ShoutsController::class, 'deleteshout']);
 
 
 Route::post("comment", [CommentController::class, 'store']);
