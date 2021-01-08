@@ -7,20 +7,18 @@
            Name is required
         </div>
       <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name" required  formControlName="name" />
-        
-
 
     <div class="text-danger mb-0" *ngIf="registerForm.controls.username?.invalid  && registerForm.controls.username?.touched">
         UserName is required
       </div>
      <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username" required formControlName="username" />
-      
+
 
     <div class="text-danger mb-0" *ngIf="registerForm.controls.email?.invalid  && registerForm.controls.email?.touched">
       Please Enter a valid Email Address
     </div>
      <input type="email" placeholder="abc@eaxmple.com" name="email" [(ngModel)]="user.email" required formControlName="email"  />
-         
+
 
 
     <div class="text-danger mb-0"
@@ -29,24 +27,21 @@
     </div>
     <input type="password" placeholder="Password min 7 letters " name="password" [(ngModel)]="user.password" required formControlName="password"  />
 
-
-    <!-- <input type="password" placeholder="Confirm Password" name="cpassword"  required formControlName="cpassword" [ngClass]="{ 'is-invalid': submitted && f.cpassword.errors }" /> -->
-     <!-- <div *ngIf="submitted && f.cpassword.errors" class="invalid-feedback mb-0">
-          <div *ngIf="f.cpassword.errors.required">Password is required</div>
-    </div>
-     <div class="text-danger mb-0"
+    <div class="text-danger mb-0"
       *ngIf="registerForm.controls.cpassword?.invalid  && registerForm.controls.cpassword?.touched">
-     Please Confirm Password
-    </div> -->
-      <!-- <div *ngIf="f.cpassword.touched && f.cpassword.invalid">
-                <div *ngIf="f.cpassword.errors.required">Password is required.</div>
-                <div *ngIf="f.cpassword.errors.confirmedValidator">Password and Confirm Password must be match.</div>
-            </div> -->
+      PLease Confirm Password With Min 7 Characters
+    </div>
+    <input type="password" placeholder="Confirm Password" name="cpassword" formControlName="cpassword" />
 
-            <div class="text-danger mb-0"
-              *ngIf="registerForm.controls.gender?.invalid  && registerForm.controls.gender?.touched">
-              Please Select Gender
-            </div>
+       <p *ngIf="registerForm.errors && registerForm.controls.cpassword?.touched">
+        Password does not match
+        </p>
+
+
+    <div class="text-danger mb-0"
+      *ngIf="registerForm.controls.gender?.invalid  && registerForm.controls.gender?.touched">
+        Please Select Gender
+     </div>
       <div class="radio">
         <span>Gender: </span>
         <input type="radio" class="radio-btn m-0" name="gender" formControlName="gender" value="male" [(ngModel)]="user.gender" ><span>Male</span>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private service: AuthService, private router: Router,private fb:FormBuilder) { }
 
+
   ngOnInit(): void {
 
 
@@ -28,25 +30,29 @@ export class SignupComponent implements OnInit {
        username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required,Validators.email]),
       password: new FormControl('', [Validators.required,Validators.minLength(7)]),
-      //cpassword :new FormControl('',[Validators.required]),
+      cpassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
       gender: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
-    }
-   
+    },
+
+  {
+    validators: this.password.bind(this)
+  }
+
     );
-    
+
 
 
   }
 
-  
+
 
 
 
   userRegister(event) {
      this.submitted = true;
     this.service.registerUserFromRemote(this.user).subscribe(
-       (data) => {  
+       (data) => {
          if (data.status_code === 200) {
            alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
          this.router.navigateByUrl('/welcome');
@@ -55,25 +61,16 @@ export class SignupComponent implements OnInit {
       (err) => { console.log('error in processing request', err) },
       () => {}
     )
-      
-   
+
+
 }
 
+  password(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: cpassword } = formGroup.get('cpassword');
+   return password === cpassword ? null : { message: true};
 
-// ConfirmedValidator(controlName: string, matchingControlName: string){
-//     return (formGroup: FormGroup) => {
-//         const control = formGroup.controls[controlName];
-//         const matchingControl = formGroup.controls[matchingControlName];
-//         if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
-//             return;
-//         }
-//         if (control.value !== matchingControl.value) {
-//             matchingControl.setErrors({ confirmedValidator: true });
-//         } else {
-//             matchingControl.setErrors(null);
-//         }
-//     }
-//}
+  }
 
 
 }

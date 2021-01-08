@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           case 500:
             alert('please fill valid credentials');
             break;
-          case 400:
+          case 405:
             alert(
               'You are Successfully Registerd...You Will be Verified within 24 Hours!!'
             );
