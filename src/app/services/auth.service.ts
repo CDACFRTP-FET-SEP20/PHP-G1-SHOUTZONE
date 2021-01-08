@@ -4,21 +4,40 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-   constructor(private http: HttpClient) {}
+  public loginUserFromRemote(user: User): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/userLogin', user);
+  }
 
-   public loginUserFromRemote(user: User): Observable<any> {
+  public storeUserData(user: any): void {
+    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
-    return this.http.post("http://127.0.0.1:8000/api/userLogin", user)
+  public getUserDetails(): any {
+    if (sessionStorage.user && localStorage.user) {
+      return JSON.parse(sessionStorage.user);
+    }
+    return null;
+  }
+
+  public logoutUser(): boolean {
+    if (
+      sessionStorage.clear() === undefined &&
+      localStorage.clear() === undefined
+    ) {
+      return true;
+    }
+    return false;
   }
 
   public registerUserFromRemote(user: User): Observable<any> {
     console.log('This is register service');
 
-    return this.http.post("http://127.0.0.1:8000/api/register", user)
+    return this.http.post('http://127.0.0.1:8000/api/register', user);
   }
 }
-

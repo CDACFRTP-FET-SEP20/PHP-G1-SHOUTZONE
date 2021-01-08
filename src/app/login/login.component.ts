@@ -1,47 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
- import { User } from '../model/user';
+import { User } from '../model/user';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-
-
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   user = new User();
   loginForm: FormGroup;
 
-
-  submitted =false;
+  submitted = false;
 
   constructor(private service: AuthService, private router: Router) { }
 
-
-
-  ngOnInit() :void {
-
+  ngOnInit(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required,Validators.minLength(7)]),
-    })
-
-
-}
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(7),
+      ]),
+    });
+  }
 
   userLogin() {
-
-
     this.service.loginUserFromRemote(this.user).subscribe(
       (data) => {
 
         // console.log(data.status_code);
-          data.status_code!= Number
+        data.status_code != Number
 
         switch (data.status_code) {
           case 500:
@@ -49,31 +40,25 @@ export class LoginComponent implements OnInit {
 
             break;
           case 405:
-            alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
+            alert(
+              'You are Successfully Registerd...You Will be Verified within 24 Hours!!'
+            );
             break;
           case 300:
-            alert("please fill valid credentials for Users");
+            alert('please fill valid credentials for Users');
             break;
-         case 200:
-            sessionStorage.setItem('username', data.user.username);
-            sessionStorage.setItem('user', data.user);
-           // sessionStorage.setItem('token', data.token);
-           // sessionStorage.setItem('userid', data.user.id);
-          this.router.navigateByUrl('/home');
+          case 200:
+            this.service.storeUserData(data.user);
+            this.router.navigateByUrl('/home');
             break;
-            default:
+          default:
             break;
         }
-       },
-      (err) => { alert(err) },
+      },
+      (err) => {
+        alert(err);
+      },
       () => { }
-    )
-
+    );
   }
-
-
-
 }
-
-
-
