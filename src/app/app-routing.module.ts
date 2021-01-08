@@ -33,14 +33,22 @@ const routes: Routes = [
     component: AddFriendComponent,
   },
   {
+    path: 'friends',
+    component: FriendsListComponent
+  },
+  { path: 'request',
+    component: FriendRequestComponent
+  },
+
+  {
     path: 'home',
     component: LayoutComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'feed' },
       { path: 'feed', component: ShoutFeedComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'friends', component: FriendsListComponent },
-      { path: 'request', component: FriendRequestComponent },
+    //  { path: 'friends', component: FriendsListComponent },
+      //{ path: 'request', component: FriendRequestComponent },
     ],
   },
 ];

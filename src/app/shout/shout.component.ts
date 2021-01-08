@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'app-shout',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoutComponent implements OnInit {
 
+  faLike = faThumbsUp
   constructor() { }
 
   ngOnInit(): void {

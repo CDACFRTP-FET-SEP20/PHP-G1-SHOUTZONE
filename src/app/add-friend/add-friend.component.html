@@ -1,7 +1,18 @@
-<div class="glass">
+<!-- <div class="glass">
   <img src="../../assets/avatar.png" alt="" />
   <div class="d-flex flex-column">
     <h2>Amey Khaire</h2>
     <button>Add Friend</button>
   </div>
-</div>
+</div> -->
+
+<div class="glass" *ngFor="let p of people">
+    <img src="../../assets/avatar.png" alt="" />
+    <div class="d-flex flex-column">
+      <h2>{{p.username}}</h2>
+      <button *ngIf="p.found" (click)="addFriend(p.id)">Add Friend</button>
+      <button *ngIf="!p.found">Requested</button>
+
+    </div>
+  </div>
+
