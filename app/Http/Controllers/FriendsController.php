@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Friends;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
 
 class FriendsController extends Controller
@@ -69,8 +71,10 @@ class FriendsController extends Controller
 
     public function request(Request $request)
     {
+        // dd(Auth::user());
+
         $friend = new Friends;
-        $friend->sender = auth()->user()->id; //User logged in Id
+        $friend->sender = $request->user_id; //User logged in Id
         $friend->reciever = $request->reciever; //user to send request
         $friend->save();
 
@@ -82,8 +86,7 @@ class FriendsController extends Controller
     public function acceptRequest(Request $request)
     {
 
-
-        $friend = User::find(auth()->user()->id)->reciever
+        $friend = User::find($request->user_id)->reciever
             ->where('approved', 0)
             ->where('sender', $request->sender)
             ->first();
@@ -158,10 +161,10 @@ class FriendsController extends Controller
 
     public function remove(Request $request)
     {
-        $friend = Friends::where('sender', auth()->user()->id)
+        $friend = Friends::where('sender', $request->user_id)
             ->where('reciever', $request->id)
             ->orWhere('sender', $request->id)
-            ->where('reciever', auth()->user()->id)
+            ->where('reciever', $request->user_id)
             ->where('approved', 1)
             ->first();
         // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
@@ -172,7 +175,7 @@ class FriendsController extends Controller
     public function deleteRequest(Request $request)
     {
         $friend = Friends::where('sender', $request->id)
-            ->where('reciever', auth()->user()->id)
+            ->where('reciever', $request->user_id)
             ->first();
         // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
         // dd($friend);
