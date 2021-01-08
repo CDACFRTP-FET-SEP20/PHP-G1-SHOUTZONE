@@ -34,14 +34,22 @@ const routes: Routes = [
     component: AddFriendComponent, canActivate: [AuthGuardService]
   },
   {
+    path: 'friends',
+    component: FriendsListComponent
+  },
+  { path: 'request',
+    component: FriendRequestComponent
+  },
+
+  {
     path: 'home',
     component: LayoutComponent, canActivate: [AuthGuardService],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'feed' },
       { path: 'feed', component: ShoutFeedComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'friends', component: FriendsListComponent },
-      { path: 'request', component: FriendRequestComponent },
+    //  { path: 'friends', component: FriendsListComponent },
+      //{ path: 'request', component: FriendRequestComponent },
     ],
   },
 ];
