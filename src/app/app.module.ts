@@ -37,7 +37,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
-
     AddFriendComponent,
   ],
   imports: [
@@ -46,8 +45,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-     HttpClientModule,
-    AddFriendComponent
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
