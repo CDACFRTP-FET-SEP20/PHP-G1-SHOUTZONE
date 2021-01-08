@@ -1,6 +1,7 @@
 <app-create-shout></app-create-shout>
+<h1>hii</h1>
 <div class="feed">
-  <ng-container *ngFor="let a of userShout | async">
+  <ng-container *ngFor="let a of data | async">
     <app-shout>
       <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
       <span class="media">

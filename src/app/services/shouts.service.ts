@@ -10,7 +10,7 @@ import {Shout} from '../create-shout/Shout';
 export class ShoutsService {
   constructor(private httpClient: HttpClient) {}
   getData():Observable<any> {
-    let url = 'http://127.0.0.1:8000/api/list';
+    let url = 'http://127.0.0.1:8000/api/shouts/allshouts';
     return this.httpClient.get(url);
   }
 
@@ -28,13 +28,13 @@ export class ShoutsService {
     return this.httpClient.post('http://127.0.0.1:8000/api/shouts/add', formData);
 
   }
-  getShoutsById(user_id:number):Observable<any>
-  {
-   let url = 'http://127.0.0.1:8000/api/show/'+user_id;
-   return this.httpClient.get(url);
- }
- deleteOwnShout(id:number):Observable<any>{
-   return this.httpClient.get('http://127.0.0.1:8000/api/destroy/'+id);
- }
+//  getShoutsById(user_id:number):Observable<any>
+//  {
+//   let url = 'http://127.0.0.1:8000/api/show/'+user_id;
+//   return this.httpClient.get(url);
+// }
+deleteOwnShout(id:number):Observable<any>{
+  return this.httpClient.get('http://127.0.0.1:8000/api/destroy/'+id);
+}
 
 }

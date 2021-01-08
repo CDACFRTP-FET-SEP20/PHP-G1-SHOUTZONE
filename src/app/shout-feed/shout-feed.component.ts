@@ -24,8 +24,6 @@ userShout:any;
  data: Observable<any>;
   constructor(private post: ShoutsService,private activer:ActivatedRoute,private r:Router) {
    this.data = this.post.getData();
-  // this.session=sessionStorage.getItem('user_id');
-  // this.userShout=this.post.getShoutsById(this.session);
 
   }
 
@@ -35,7 +33,7 @@ userShout:any;
 
     this.session=sessionStorage.getItem('user_id');
     console.log(this.session);
-    this.userShout=this.post.getShoutsById(this.session);
+   // this.userShout=this.post.getShoutsById(this.session);
     // console.log(this.userShout);
 
 

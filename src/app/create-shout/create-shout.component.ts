@@ -17,7 +17,7 @@ export class CreateShoutComponent implements OnInit {
   faMusic = faMusic;
   constructor(private postservice: ShoutsService) {}
   ngOnInit(): void {
-   sessionStorage.setItem('user_id','1');
+    sessionStorage.getItem('user_id');
   }
   uploadShout(event:any) {
     this.flag = false;
