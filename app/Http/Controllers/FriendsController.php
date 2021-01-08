@@ -27,9 +27,16 @@ class FriendsController extends Controller
     public function getFriendRequest($id)
     {
         $user = User::find($id)->reciever->where('approved', 0);
-        //dd($user);
+        $reqArr = [];
 
-        return $user;
+        foreach ($user as $key => $value) {
+            // print_r($value->user->username);
+            array_push($reqArr, [$value->user]);
+        }
+        $flatten = array_merge(...$reqArr);
+
+
+        return $flatten;
     }
 
     public function getUserList($id)
@@ -63,8 +70,8 @@ class FriendsController extends Controller
     public function request(Request $request)
     {
         $friend = new Friends;
-        $friend->sender = 4; //Id of friend to send request
-        $friend->reciever = $request->reciever; //User logged in Id
+        $friend->sender = 2; //User logged in Id
+        $friend->reciever = $request->reciever; //user to send request
         $friend->save();
 
         return [
@@ -76,7 +83,7 @@ class FriendsController extends Controller
     {
 
 
-        $friend = User::find(6)->reciever
+        $friend = User::find(1)->reciever
             ->where('approved', 0)
             ->where('sender', $request->sender)
             ->first();
@@ -84,7 +91,7 @@ class FriendsController extends Controller
         // $friend->user_id_2 = $request->user_id_2;
         $friend->approved = 1;
         $friend->save();
-        return [$request->sender];
+        return ['friend_id' => $request->sender];
     }
 
     /**
@@ -125,12 +132,28 @@ class FriendsController extends Controller
         //  $friend = User::find($id)->reciever->where('approved', 1);
         // $friend = [...$friend, User::find($id)->sender->where('approved', 1)];
         // dd($friend[]);
+
+        // $friendsArr = [];
+        // foreach ($friend as $key => $value) {
+        //     // print_r($value->user->username);
+        //     array_push($friendsArr, ['sender' => $value->user, 'reciever' => $value->user2]);
+        // }
+        // return response()->json($friendsArr);
+
         $friendsArr = [];
         foreach ($friend as $key => $value) {
-            // print_r($value->user->username);
-            array_push($friendsArr, ['sender' => $value->user->username, 'reciever' => $value->user2->username]);
+            if (($value->user->id) != $id) {
+                // print_r($value->user->username);
+                array_push($friendsArr, [$value->user]);
+            } elseif (($value->user2->id) != $id) {
+                // print_r($value->user->username);
+                array_push($friendsArr, [$value->user2]);
+            } else {
+                array_push($friendsArr);
+            }
         }
-        return response()->json($friendsArr);
+        $flatten = array_merge(...$friendsArr);
+        return $flatten;
     }
 
     public function remove(Request $request)
@@ -149,7 +172,7 @@ class FriendsController extends Controller
     public function deleteRequest(Request $request)
     {
         $friend = Friends::where('sender', $request->id)
-            ->where('reciever', 6)
+            ->where('reciever', 1)
             ->first();
         // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
         // dd($friend);
