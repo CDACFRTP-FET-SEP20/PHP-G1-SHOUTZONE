@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
  import { User } from '../model/user';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required,Validators.maxLength(6)]),
+      password: new FormControl('', [Validators.required,Validators.minLength(7)]),
     })
 
 
@@ -37,11 +37,35 @@ export class LoginComponent implements OnInit {
 
 
     this.service.loginUserFromRemote(this.user).subscribe(
-      (data) => { this.user = data},
-      (err) => { console.log('error in processing request', err) },
-      () => { console.log(this.user) }
+      (data) => {
+
+        //console.log(data);
+          data.status_code!= Number
+
+        switch (data.status_code) {
+          case 500:
+            alert("please fill valid credentials");
+            break;
+          case 400:
+            alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
+            break;
+          case 300:
+            alert("please fill valid credentials for Users");
+            break;
+          default:
+            sessionStorage.setItem('username', data.user.username);
+            sessionStorage.setItem('user', data.user);
+           // sessionStorage.setItem('token', data.token);
+           // sessionStorage.setItem('userid', data.user.id);
+          this.router.navigateByUrl('/home');
+            break;
+        }
+       },
+      (err) => { alert(err) },
+      () => { }
     )
-}
+
+  }
 
 
 
