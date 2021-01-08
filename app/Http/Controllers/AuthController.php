@@ -34,11 +34,29 @@ class AuthController extends Controller
     }
            $approval= auth()->user()->is_approved;
             if (!$approval) {
-                return 'Wait for Approval';
-            }
+                // return 'Wait for Approval';
+                return response()->json([
+                    'status_code' => 405,
+                    'message' => 'Unauthorized'
+                ]);
+             }
+
+            $role = auth()->user()->role;
+            if ($role !== "user") {
+                //return ' Please check your credentials';
+                return response()->json([
+                    'status_code' => 300,
+                    'message' => 'Unauthorized'
+                ]);
+                }
+            $user =auth()->user();
+            $bio =auth()->user()->bio;
 
     $tokenResult = $user->createToken('authToken')->plainTextToken;
+
     return response()->json([
+          "user" =>$user,
+          //"bio" =>$bio,
       'status_code' => 200,
       'access_token' => $tokenResult,
       'token_type' => 'Bearer',
@@ -88,14 +106,5 @@ class AuthController extends Controller
 
         }
     }
-
-
-
-
-
-
-
-
-
 
 }
