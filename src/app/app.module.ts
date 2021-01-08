@@ -21,8 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     ShoutFeedComponent,
     CreateShoutComponent,
     ShoutComponent,
-<<<<<<< HEAD
+
     AddFriendComponent,
   ],
   imports: [
@@ -47,13 +46,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-     HttpClientModule
-=======
+     HttpClientModule,
     AddFriendComponent
-
->>>>>>> f31f87c7a6342392fd393b1dc675ab9ac6d482ed
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -9,11 +9,9 @@ import { FriendsListComponent } from './friends-list/friends-list.component';
 import { FriendRequestComponent } from './friend-request/friend-request.component';
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
-<<<<<<< HEAD
 import { CreateShoutComponent } from './create-shout/create-shout.component';
-=======
 import { AuthGuardService } from './services/authgaurd.service';
->>>>>>> f31f87c7a6342392fd393b1dc675ab9ac6d482ed
+
 
 const routes: Routes = [
   {
@@ -40,7 +38,18 @@ const routes: Routes = [
   {
     path: 'friend',
     component: AddFriendComponent, canActivate: [AuthGuardService]
+<<<<<<< HEAD
   },
+  {
+    path: 'friends',
+    component: FriendsListComponent
+  },
+  { path: 'request',
+    component: FriendRequestComponent
+=======
+>>>>>>> f31f87c7a6342392fd393b1dc675ab9ac6d482ed
+  },
+
   {
     path: 'friends',
     component: FriendsListComponent
