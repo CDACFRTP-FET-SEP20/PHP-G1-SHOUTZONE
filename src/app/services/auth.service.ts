@@ -14,15 +14,17 @@ export class AuthService {
   }
 
   public storeUserData(user: User): Observable<any> {
-    console.log("in storedata");
+    console.log('in storedata');
 
     sessionStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('user', JSON.stringify(user));
     sessionStorage.setItem('username', JSON.stringify(user.username));
+    sessionStorage.setItem('User_ID', JSON.stringify(user.id));
+
     return null;
   }
 
-  public getUserDetails(): any {
+  public getUserDetails(): User | any {
     if (sessionStorage.user && localStorage.user) {
       return JSON.parse(sessionStorage.user);
     }
