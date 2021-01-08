@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private service: AuthService, private router: Router) { }
+  constructor(private service: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       (data) => {
 
         // console.log(data.status_code);
-        data.status_code != Number
+          data.status_code!= Number
 
         switch (data.status_code) {
           case 500:
@@ -47,18 +47,20 @@ export class LoginComponent implements OnInit {
           case 300:
             alert('please fill valid credentials for Users');
             break;
-          case 200:
+         case 200:
+            console.log(data.user)
             this.service.storeUserData(data.user);
             this.router.navigateByUrl('/home');
             break;
-          default:
+
+            default:
             break;
         }
       },
       (err) => {
         alert(err);
       },
-      () => { }
+      () => {}
     );
   }
 }

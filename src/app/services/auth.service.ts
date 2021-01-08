@@ -13,9 +13,10 @@ export class AuthService {
     return this.http.post('http://127.0.0.1:8000/api/userLogin', user);
   }
 
-  public storeUserData(user: any): void {
+  public storeUserData(user: User): Observable<any> {
     sessionStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('user', JSON.stringify(user));
+    return;
   }
 
   public getUserDetails(): any {
