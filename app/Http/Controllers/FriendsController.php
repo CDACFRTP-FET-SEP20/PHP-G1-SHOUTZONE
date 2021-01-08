@@ -70,7 +70,7 @@ class FriendsController extends Controller
     public function request(Request $request)
     {
         $friend = new Friends;
-        $friend->sender = 2; //User logged in Id
+        $friend->sender = auth()->user()->id; //User logged in Id
         $friend->reciever = $request->reciever; //user to send request
         $friend->save();
 
@@ -83,7 +83,7 @@ class FriendsController extends Controller
     {
 
 
-        $friend = User::find(1)->reciever
+        $friend = User::find(auth()->user()->id)->reciever
             ->where('approved', 0)
             ->where('sender', $request->sender)
             ->first();
@@ -158,10 +158,10 @@ class FriendsController extends Controller
 
     public function remove(Request $request)
     {
-        $friend = Friends::where('sender', 1)
+        $friend = Friends::where('sender', auth()->user()->id)
             ->where('reciever', $request->id)
             ->orWhere('sender', $request->id)
-            ->where('reciever', 1)
+            ->where('reciever', auth()->user()->id)
             ->where('approved', 1)
             ->first();
         // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
@@ -172,7 +172,7 @@ class FriendsController extends Controller
     public function deleteRequest(Request $request)
     {
         $friend = Friends::where('sender', $request->id)
-            ->where('reciever', 1)
+            ->where('reciever', auth()->user()->id)
             ->first();
         // $friend =  User::find(2)->sender->where('approved', 1)->where('reciever', $request->reciever)->first();
         // dd($friend);
