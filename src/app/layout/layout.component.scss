@@ -8,12 +8,23 @@ mat-drawer-content {
 
 mat-toolbar {
   height: 70px;
-  background-color: #4679b3;
+  background-color: #27aae1;
   color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  img {
+    height: 55px;
+  }
 }
 
 app-aside {
   margin-left: auto;
   margin-top: 85px;
+}
+
+.create-shout {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
 }

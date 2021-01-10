@@ -1,23 +1,24 @@
-<!-- <div class="row m-0 p-0">
-  <app-navbar class="col-2 m-0 p-0"></app-navbar>
-  <div class="col m-0 p-0">
-    <router-outlet></router-outlet>
-  </div>
-  <app-aside class="col-3 m-0 p-0"></app-aside>
-</div> -->
-
 <mat-toolbar class="shadow">
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Shout Box</span>
+  <a routerLink="/home">
+    <img
+      src="../../assets/ShoutBox_Logo-removebg-preview.png"
+      class="mr-3"
+      alt=""
+    />
+  </a>
 </mat-toolbar>
-<mat-drawer-container [hasBackdrop]="true">
-  <mat-drawer #drawer [mode]="'side'"><app-navbar></app-navbar></mat-drawer>
+<mat-drawer-container hasBackdrop>
+  <mat-drawer #drawer mode="side"><app-navbar></app-navbar></mat-drawer>
   <mat-drawer-content class="d-flex pt-3">
     <div class="col-md-8 col-sm-12">
       <router-outlet></router-outlet>
     </div>
     <app-aside class="col-4 d-none d-md-block fixed-top"></app-aside>
+    <button (click)="openDialog()" class="bg create-shout" mat-fab>
+      <mat-icon>edit</mat-icon>
+    </button>
   </mat-drawer-content>
 </mat-drawer-container>
