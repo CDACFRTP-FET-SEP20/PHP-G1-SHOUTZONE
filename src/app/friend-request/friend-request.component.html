@@ -1,1 +1,28 @@
-<p>friend-request works!</p>
+<mat-card class="mb-3">
+  <mat-card-content>
+    <form class="row">
+      <mat-form-field class="col-9">
+        <mat-label>Search Friend...</mat-label>
+        <input matInput placeholder="Enter friends name" type="search" />
+      </mat-form-field>
+      <div class="col-3">
+        <button mat-fab type="submit">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngFor="let friend of friends">
+  <mat-card class="mb-3">
+    <mat-card-header>
+      <img mat-card-avatar src="../../assets/avatar.png" alt="" />
+      <mat-card-title>
+        {{ friend.name }}
+      </mat-card-title>
+      <button class="ml-auto" color="primary" mat-raised-button>Accept</button>
+      <button class="ml-2" color="warn" mat-raised-button>Reject</button>
+    </mat-card-header>
+  </mat-card>
+</ng-container>

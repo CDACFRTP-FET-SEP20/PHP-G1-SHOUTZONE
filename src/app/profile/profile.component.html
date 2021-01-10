@@ -1,1 +1,71 @@
-<p>profile works!</p>
+<mat-card class="d-flex row m-1">
+  <div class="col-md-4 col-sm-12 align-self-start text-center">
+    <img class="img" src="../../assets/avatar.png" alt="" />
+  </div>
+  <div class="col-md-8 col-sm-12">
+    <mat-card-content class="text-center">
+      <h1>{{ user.username | titlecase }}</h1>
+    </mat-card-content>
+    <mat-card-content class="text-center">
+      <p class="h5">{{ user.shouts }} Shouts | {{ user.friends }} Friends</p>
+    </mat-card-content>
+    <mat-card-content>
+      This will be user bio details Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Vel ipsum fuga quasi, expedita iure debitis quod quidem
+      veritatis quae fugit iusto. Fuga culpa accusantium molestiae dolores
+      quasi, praesentium sit quibusdam.
+    </mat-card-content>
+  </div>
+</mat-card>
+
+<mat-tab-group color="accent" mat-align-tabs="center">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>message</mat-icon>
+    </ng-template>
+    <div class="mt-4" *ngFor="let shout of data">
+      <app-shout *ngIf="!shout.media">
+        <span class="content">{{ shout.content }}</span>
+      </app-shout>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>image</mat-icon>
+    </ng-template>
+    <div class="mt-4" *ngFor="let shout of data">
+      <app-shout *ngIf="shout.type === 'image'">
+        <span class="content">{{ shout.content }}</span>
+        <span class="media">
+          <img class="image" src="{{ shout.media }}" />
+        </span>
+      </app-shout>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>music_note</mat-icon>
+    </ng-template>
+    <div class="mt-4" *ngFor="let shout of data">
+      <app-shout *ngIf="shout.type === 'audio'">
+        <span class="content">{{ shout.content }}</span>
+        <span class="media">
+          <audio class="audio" src="{{ shout.media }}" controls></audio>
+        </span>
+      </app-shout>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>videocam</mat-icon>
+    </ng-template>
+    <div class="mt-4" *ngFor="let shout of data">
+      <app-shout *ngIf="shout.type === 'video'">
+        <span class="content">{{ shout.content }}</span>
+        <span class="media">
+          <video class="video" src="{{ shout.media }}" controls></video>
+        </span>
+      </app-shout>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,18 @@
+mat-card {
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #4679b3;
+  border-radius: 50%;
+}
+
+.image,
+.video {
+  width: 100%;
+  margin-bottom: 10px;
+}
