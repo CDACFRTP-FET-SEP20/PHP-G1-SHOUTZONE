@@ -13,9 +13,6 @@ export class ShoutsService {
     return this.httpClient.get(url);
   }
 
-
-
-
   addShout(shout:Shout, id: any){
     const formData = new FormData();
     formData.append('shoutMedia',shout.shoutMedia);
@@ -38,7 +35,8 @@ export class ShoutsService {
   return this.httpClient.get(url);
 }
 deleteOwnShout(id:number):Observable<any>{
-  return this.httpClient.get('http://127.0.0.1:8000/api/destroy/'+id);
+  return this.httpClient.get('http://127.0.0.1:8000/api/shouts/destroy/'+id);
+  
 }
 
 }

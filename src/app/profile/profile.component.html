@@ -25,7 +25,9 @@
     </ng-template>
     <div class="mt-4"*ngFor="let a of userShout | async">
       <app-shout >
-        <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
+        <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}
+          <button  (click)='deleteOwnShout(a.id)'>Delete</button>
+        </span>
       </app-shout>
     </div>
   </mat-tab>
@@ -38,8 +40,10 @@
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
           <img class="image"  src="{{ mediaPath }}{{ a.shoutMedia }}" />
+          <button  (click)='deleteOwnShout(a.id)'>Delete</button>
         </span>
       </app-shout>
+
     </div>
   </mat-tab>
   <mat-tab>
@@ -51,6 +55,7 @@
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
           <audio class="audio"   src="{{ mediaPath }}{{ a.shoutMedia }}" controls></audio>
+          
         </span>
       </app-shout>
     </div>
