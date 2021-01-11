@@ -14,15 +14,37 @@
   </mat-card-content>
 </mat-card>
 
-<ng-container *ngFor="let friend of friends">
-  <mat-card class="mb-3">
-    <mat-card-header>
-      <img mat-card-avatar src="../../assets/avatar.png" alt="" />
-      <mat-card-title>
-        {{ friend.name }}
-      </mat-card-title>
-      <button class="ml-auto" color="primary" mat-raised-button>Accept</button>
-      <button class="ml-2" color="warn" mat-raised-button>Reject</button>
-    </mat-card-header>
-  </mat-card>
+<ng-container *ngIf="requestList[0]?.id; else noRequests">
+  <ng-container *ngFor="let f of requestList">
+    <mat-card class="mb-3">
+      <mat-card-header>
+        <img mat-card-avatar src="../../assets/avatar.png" alt="" />
+        <mat-card-title>
+          {{ f.username }}
+        </mat-card-title>
+        <button
+          class="ml-auto"
+          color="primary"
+          (click)="acceptRequest(f.id)"
+          mat-raised-button
+        >
+          Accept
+        </button>
+        <button
+          class="ml-2"
+          color="warn"
+          (click)="deleteRequest(f.id)"
+          mat-raised-button
+        >
+          Reject
+        </button>
+      </mat-card-header>
+    </mat-card>
+  </ng-container>
 </ng-container>
+
+<ng-template #noRequests>
+  <mat-card class="mb-3">
+    <mat-card-content> No Pending Requests </mat-card-content>
+  </mat-card>
+</ng-template>

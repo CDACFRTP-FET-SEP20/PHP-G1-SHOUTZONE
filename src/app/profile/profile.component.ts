@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { Shout } from '../create-shout/Shout';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ShoutsService } from '../services/shouts.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-profile',
@@ -6,72 +13,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user = {
-    username: 'amey khaire',
-    friends: 89,
-    shouts: 78,
-  };
+  user: User;
+  user_id: any;
+  value: any;
 
-  data = [
-    {
-      id: 1,
-      type: 'text',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla dolorum earum eaque delectus maxime quae ex eius eum deserunt alias, rerum quidem eos aliquam voluptatum, quibusdam facere esse commodi.',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'text',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla dolorum earum eaque delectus maxime quae ex eius eum deserunt alias, rerum quidem eos aliquam voluptatum, quibusdam facere esse commodi.',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'audio',
-      content: 'This is audio',
-      media: '../../assets/audio.mp3',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'video',
-      content: 'This is video',
-      media: '../../assets/video.mp4',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'image',
-      content: 'This is image',
-      media: '../../assets/image.jpg',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'audio',
-      content: 'This is audio',
-      media: '../../assets/audio.mp3',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'video',
-      content: 'This is video',
-      media: '../../assets/video.mp4',
-      createdAt: '2021-1-6',
-    },
-    {
-      id: 1,
-      type: 'image',
-      content: 'This is image',
-      media: '../../assets/image.jpg',
-      createdAt: '2021-1-6',
-    },
-  ];
 
-  constructor() {}
+  session: any;
+  mediaPath: any = 'http://127.0.0.1:8000';
 
-  ngOnInit(): void {}
+  userShout: any;
+
+  constructor(
+    private post: ShoutsService,
+    private auth: AuthService,
+    private activer: ActivatedRoute,
+    private r: Router
+  ) {}
+
+  ngOnInit(): void {
+    //sessionStorage.setItem('user_id', '12');
+    //this.session = sessionStorage.getItem('user_id');
+    this.user = this.auth.getUserDetails();
+    this.userShout = this.post.getShoutsById(this.user.id);
+    this.post.getShoutsById(this.user.id).subscribe(
+      (data) => {
+        console.log(data);
+        this.userShout = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  deleteOwnShout(id: number) {
+    this.post.deleteOwnShout(id).subscribe((data) => {
+      console.log('data' + data);
+      window.alert('Deleted Successfully');
+      this.ngOnInit();
+    });
+  }
 }

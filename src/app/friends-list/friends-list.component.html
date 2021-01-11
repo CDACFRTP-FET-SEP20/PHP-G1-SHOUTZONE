@@ -14,15 +14,18 @@
   </mat-card-content>
 </mat-card>
 
-<ng-container *ngIf="friends; else noFriends">
-  <ng-container *ngFor="let friend of friends">
+
+<ng-container *ngIf="friendlist[0]?.id; else noFriends">
+  <ng-container *ngFor="let f of friendlist">
     <mat-card class="mb-3">
       <mat-card-header>
         <img mat-card-avatar src="../../assets/avatar.png" alt="" />
         <mat-card-title>
-          {{ friend.name }}
+          {{ f.username }}
         </mat-card-title>
-        <button class="ml-auto" mat-flat-button>Remove</button>
+        <button class="ml-auto" (click)="removeFriend(f.id)" mat-flat-button>
+          Remove
+        </button>
       </mat-card-header>
     </mat-card>
   </ng-container>
@@ -30,6 +33,6 @@
 
 <ng-template #noFriends>
   <mat-card class="mb-3">
-    <mat-card-content> No firends </mat-card-content>
+    <mat-card-content> Nothing to Show </mat-card-content>
   </mat-card>
 </ng-template>

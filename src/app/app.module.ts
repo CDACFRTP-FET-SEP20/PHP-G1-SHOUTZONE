@@ -39,6 +39,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
 import { ReportComponent } from './report/report.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import { ReportComponent } from './report/report.component';
     MatSelectModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
