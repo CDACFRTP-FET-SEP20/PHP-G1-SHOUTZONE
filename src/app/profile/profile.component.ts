@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import {Shout} from '../create-shout/Shout';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import{ShoutsService} from '../services/shouts.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,59 +16,42 @@ export class ProfileComponent implements OnInit {
     friends: 89,
     shouts: 78,
   };
+  user_id:any;
+  value:any;
 
-  data = [
-    {
-      type: 'text',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla dolorum earum eaque delectus maxime quae ex eius eum deserunt alias, rerum quidem eos aliquam voluptatum, quibusdam facere esse commodi.',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'text',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla dolorum earum eaque delectus maxime quae ex eius eum deserunt alias, rerum quidem eos aliquam voluptatum, quibusdam facere esse commodi.',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'audio',
-      content: 'This is audio',
-      media: '../../assets/audio.mp3',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'video',
-      content: 'This is video',
-      media: '../../assets/video.mp4',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'image',
-      content: 'This is image',
-      media: '../../assets/image.jpg',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'audio',
-      content: 'This is audio',
-      media: '../../assets/audio.mp3',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'video',
-      content: 'This is video',
-      media: '../../assets/video.mp4',
-      createdAt: '2021-1-6',
-    },
-    {
-      type: 'image',
-      content: 'This is image',
-      media: '../../assets/image.jpg',
-      createdAt: '2021-1-6',
-    },
-  ];
+session:any;
+  mediaPath:any='http://127.0.0.1:8000';
 
-  constructor() {}
+userShout:any;
 
-  ngOnInit(): void {}
+
+  constructor(private post: ShoutsService,private activer:ActivatedRoute,private r:Router) {
+
+
+  }
+
+
+  ngOnInit(): void {
+
+
+    this.session=sessionStorage.getItem('user_id');
+    console.log(this.session);
+   this.userShout=this.post.getShoutsById(this.session);
+    console.log(this.userShout);
+
+
+  }
+  deleteOwnShout(id:number)
+  {
+
+      this.post.deleteOwnShout(id).subscribe(data=>{
+      console.log("data"+data);
+      window.alert('Deleted Successfully');
+       this.ngOnInit();
+    });
+  }
+
 }
+
+
+
