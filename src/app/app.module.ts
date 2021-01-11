@@ -75,6 +75,7 @@ import { CommentsComponent } from './comments/comments.component';
     MatToolbarModule,
     MatDialogModule,
     MatTabsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
