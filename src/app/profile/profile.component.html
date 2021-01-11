@@ -34,10 +34,10 @@
       <mat-icon>image</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout | async">
-      <app-shout *ngIf="shout.type === 'image'">
-        <span class="content">{{ shout.content }}</span>
+      <app-shout *ngIf="a.shoutType == 'image'">
+        <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
-          <img class="image" src="{{ shout.media }}" />
+          <img class="image"   src="{{ mediaPath }}{{ a.shoutMedia }}" />
         </span>
       </app-shout>
     </div>
