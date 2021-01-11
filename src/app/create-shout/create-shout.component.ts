@@ -22,19 +22,27 @@ export class CreateShoutComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.setItem('user_id','2');
   }
+  inputChange(event:any){
+    if(event.target.value !== ""){
+      this.flag = null;
+    }
+
+  }
   uploadShout(event:any) {
-    this.flag = false;
+    console.log(this.flag);
+    this.flag = null;
+    console.log(this.flag);
     this.shout.shoutMedia = event.target.files[0];
     var shoutType = this.shout.shoutMedia.type;
     console.log(shoutType);
     if (shoutType.includes("image")) {
-      this.flag = true;
+      // this.flag = true;
       this.shout.shoutType = "image";
     } else if (shoutType.includes("video")) {
-      this.flag = true;
+      // this.flag = true;
       this.shout.shoutType = "video";
     } else if (shoutType.includes("audio")) {
-      this.flag = true;
+      // this.flag = true;
       this.shout.shoutType = "audio";
     }
      else this.shout.shoutType = null;
