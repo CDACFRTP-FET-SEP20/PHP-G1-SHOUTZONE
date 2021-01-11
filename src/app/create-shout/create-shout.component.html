@@ -1,64 +1,77 @@
 <h1 mat-dialog-title>Post Shout</h1>
 <mat-card mat-dialog-content>
-<form  #form="ngForm">
+  <form #form="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Whats on your mind..?</mat-label>
 
-
-  <mat-form-field appearance="fill">
-    <mat-label>Whats on your mind..?</mat-label>
-
-    <textarea matInput
-    name="description"
-    id=""
-    cols="50"
-    rows="3"
-    #description="ngModel" [(ngModel)]='shout.shoutText'
-    (change)="inputChange($event)"
-    placeholder="Whats on your mind"
-  ></textarea>
-</mat-form-field>
-    <div *ngIf='shout.shoutMedia?.name'>
-      Selected File: {{shout.shoutMedia.name}}
+      <textarea
+        matInput
+        name="description"
+        id=""
+        cols="50"
+        rows="3"
+        #description="ngModel"
+        [(ngModel)]="shout.shoutText"
+        (change)="inputChange($event)"
+        placeholder="Whats on your mind"
+      ></textarea>
+    </mat-form-field>
+    <div *ngIf="shout.shoutMedia?.name">
+      Selected File: {{ shout.shoutMedia.name }}
     </div>
-  <div>
-    <button mat-fab color="primary" (click)="uploader1.click()">
-      <mat-icon>image</mat-icon>
-    </button>
-    <button mat-fab color="accent" (click)="uploader2.click()">
-      <mat-icon>videocam</mat-icon>
-    </button>
-    <button mat-fab color="warn" (click)="uploader3.click()">
-      <mat-icon>music_note</mat-icon>
-    </button>
-  </div>
-  <input
-  hidden
-  type="file"
-  name="shoutmedia"  #shoutmedia=ngModel [(ngModel)]="postedShout"
-  accept="image/*"
-  #uploader1
-  (change)='uploadShout($event)'
-/>
-<input
-  hidden
-  type="file"
-  name="shoutmedia"  #shoutmedia=ngModel [(ngModel)]="postedShout"
-  accept="video/*"
-  #uploader2
-  (change)='uploadShout($event)'
-/>
-<input
-  hidden
-  type="file"
-  name="shoutmedia" #shoutmedia=ngModel [(ngModel)]="postedShout"
-  accept="audio/*"
-  #uploader3
-  (change)='uploadShout($event)'
-/>
-<hr />
-<div>
-    <button mat-raised-button color="warn" [disabled]="flag" (click)="formSubmit(form)" type="submit" class="shout btn1">
-      Shout
-    </button>
-  </div>
+    <div>
+      <button mat-fab color="primary" (click)="uploader1.click()">
+        <mat-icon>image</mat-icon>
+      </button>
+      <button mat-fab color="accent" (click)="uploader2.click()">
+        <mat-icon>videocam</mat-icon>
+      </button>
+      <button mat-fab color="warn" (click)="uploader3.click()">
+        <mat-icon>music_note</mat-icon>
+      </button>
+    </div>
+    <input
+      hidden
+      type="file"
+      name="shoutmedia"
+      #shoutmedia="ngModel"
+      [(ngModel)]="postedShout"
+      accept="image/*"
+      #uploader1
+      (change)="uploadShout($event)"
+    />
+    <input
+      hidden
+      type="file"
+      name="shoutmedia"
+      #shoutmedia="ngModel"
+      [(ngModel)]="postedShout"
+      accept="video/*"
+      #uploader2
+      (change)="uploadShout($event)"
+    />
+    <input
+      hidden
+      type="file"
+      name="shoutmedia"
+      #shoutmedia="ngModel"
+      [(ngModel)]="postedShout"
+      accept="audio/*"
+      #uploader3
+      (change)="uploadShout($event)"
+    />
+    <hr />
+    <div>
+      <button
+        mat-raised-button
+        color="warn"
+        [disabled]="flag"
+        (click)="formSubmit(form)"
+        type="submit"
+        class="shout btn1"
+      >
+        Shout
+      </button>
+    </div>
+  </form>
 </mat-card>
-</form>
