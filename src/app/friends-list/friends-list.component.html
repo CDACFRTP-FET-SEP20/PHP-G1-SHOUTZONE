@@ -25,3 +25,13 @@
     </mat-card-header>
   </mat-card>
 </ng-container>
+
+
+<div class="glass" *ngFor="let f of friendlist">
+  <img src="../../assets/avatar.png" alt="" />
+  <div class="d-flex flex-column">
+    <h2>{{f.username}}</h2>
+    <button  (click)="removeFriend(f.id)">Remove</button>
+
+  </div>
+</div>

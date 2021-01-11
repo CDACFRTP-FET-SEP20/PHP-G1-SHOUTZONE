@@ -6,17 +6,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./friends-list.component.scss'],
 })
 export class FriendsListComponent implements OnInit {
-  friends = [
-    { name: 'amey' },
-    { name: 'adsfasdf' },
-    { name: 'adsfasdf' },
-    { name: 'adsfasdf' },
-    { name: 'adsfasdf' },
-    { name: 'adsfasdf' },
-    { name: 'adsfasdf' },
-  ];
+  friendlist: Observable<any>;
+  user_id: number;
+  data: any;
+  user: User;
+  constructor(private friends: FriendsService, private auth: AuthService) {}
 
-  constructor() {}
+  removeFriend(id) {
+    this.user = this.auth.getUserDetails(); //current logged in user
+    console.log('inside Remove', id);
+    this.data = {
+      user_id: this.user.id, //current logged in user
+      id: id,
+    };
+    this.friends.removeFriend(this.data).subscribe(
+      () => {
+        console.log('Friend Removed');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('inside FriendList');
+    this.user = this.auth.getUserDetails(); //current logged in user
+    this.friends.friendList(this.user.id).subscribe((data) => {
+      this.friendlist = data;
+      console.log(this.friendlist);
+    });
+  }
 }

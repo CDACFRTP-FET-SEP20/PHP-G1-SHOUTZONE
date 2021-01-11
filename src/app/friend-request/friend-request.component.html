@@ -26,3 +26,16 @@
     </mat-card-header>
   </mat-card>
 </ng-container>
+
+
+<div class="glass" *ngFor="let f of requestList">
+  <img src="../../assets/avatar.png" alt="" />
+  <div class="d-flex flex-column">
+    <h2>{{f.username}}</h2>
+    <button  (click)="acceptRequest(f.id)">Accept</button>
+    <br>
+    <button  (click)="deleteRequest(f.id)">Reject</button>
+  </div>
+</div>
+
+

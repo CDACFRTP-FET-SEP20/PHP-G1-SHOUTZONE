@@ -5,3 +5,17 @@
     <button mat-raised-button color="primary">Add Friend</button>
   </mat-card-header>
 </mat-card>
+
+
+
+
+
+<div class="glass" *ngFor="let p of people">
+  <img src="../../assets/avatar.png" alt="" />
+  <div class="d-flex flex-column">
+    <h2>{{p.username}}</h2>
+    <button *ngIf="p.found" (click)="addFriend(p.id)">Add Friend</button>
+    <button *ngIf="!p.found">Requested</button>
+
+  </div>
+</div>
