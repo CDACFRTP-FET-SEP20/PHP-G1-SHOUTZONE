@@ -78,6 +78,7 @@ import { DatePipe } from '@angular/common';
     MatDialogModule,
     MatTabsModule,
     MatSnackBarModule,
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
