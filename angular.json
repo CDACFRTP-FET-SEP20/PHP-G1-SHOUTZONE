@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "shoutbox"
+  "defaultProject": "shoutbox",
+  "cli": {
+    "analytics": false
+  }
 }

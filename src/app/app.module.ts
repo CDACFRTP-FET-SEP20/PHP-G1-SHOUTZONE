@@ -36,6 +36,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { CommentsComponent } from './comments/comments.component';
     MatDialogModule,
     MatTabsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
