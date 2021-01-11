@@ -47,10 +47,10 @@
       <mat-icon>music_note</mat-icon>
     </ng-template>
     <div class="mt-4"*ngFor="let a of userShout | async">
-      <app-shout *ngIf="shout.type === 'audio'">
+      <app-shout *ngIf="a.shoutType == 'audio'" controls>
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
-          <audio class="audio" src="{{ shout.media }}" controls></audio>
+          <audio class="audio"   src="{{ mediaPath }}{{ a.shoutMedia }}" controls></audio>
         </span>
       </app-shout>
     </div>
