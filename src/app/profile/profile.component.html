@@ -48,7 +48,7 @@
     </ng-template>
     <div class="mt-4"*ngFor="let a of userShout | async">
       <app-shout *ngIf="shout.type === 'audio'">
-        <span class="content">{{ shout.content }}</span>
+        <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
           <audio class="audio" src="{{ shout.media }}" controls></audio>
         </span>
@@ -59,11 +59,11 @@
     <ng-template mat-tab-label>
       <mat-icon>videocam</mat-icon>
     </ng-template>
-    <div class="mt-4" *ngFor="let shout of data">
-      <app-shout *ngIf="shout.type === 'video'">
-        <span class="content">{{ shout.content }}</span>
+    <div class="mt-4" *ngFor="let a of userShout | async">
+      <app-shout *ngIf="a.shoutType == 'video'" >
+        <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
-          <video class="video" src="{{ shout.media }}" controls></video>
+          <video class="video"  src="{{ mediaPath }}{{ a.shoutMedia }}" controls></video>
         </span>
       </app-shout>
     </div>
