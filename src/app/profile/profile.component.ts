@@ -33,7 +33,7 @@ userShout:any;
 
   ngOnInit(): void {
 
-
+    sessionStorage.setItem('user_id','2');
     this.session=sessionStorage.getItem('user_id');
     console.log(this.session);
    this.userShout=this.post.getShoutsById(this.session);
