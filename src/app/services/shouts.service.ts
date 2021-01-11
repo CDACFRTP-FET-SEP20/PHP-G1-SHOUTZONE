@@ -21,19 +21,17 @@ export class ShoutsService {
     formData.append('shoutMedia',shout.shoutMedia);
     formData.append('shoutText',shout.shoutText);
     formData.append('shoutType',shout.shoutType);
-    formData.append('user_id', id);
+   formData.append('user_id', id);
 
     console.log(formData);
 
 
-
-	 if(shout.shoutMedia != null)
-     return this.httpClient.post('http://127.0.0.1:8000/api/shouts/add', formData);
+  if(shout.shoutMedia != null)
+    return this.httpClient.post('http://127.0.0.1:8000/api/shouts/add', formData);
 
      if(shout.shoutText != null)
-    return this.httpClient.post('http://127.0.0.1:8000/api/shouts/add', formData);
+     return this.httpClient.post('http://127.0.0.1:8000/api/shouts/add', formData);
   }
-
 //  getShoutsById(user_id:number):Observable<any>
 //  {
 //   let url = 'http://127.0.0.1:8000/api/show/'+user_id;
