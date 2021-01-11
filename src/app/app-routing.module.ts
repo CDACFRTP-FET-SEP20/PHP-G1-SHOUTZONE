@@ -9,6 +9,7 @@ import { FriendsListComponent } from './friends-list/friends-list.component';
 import { FriendRequestComponent } from './friend-request/friend-request.component';
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
+import { CreateShoutComponent } from './create-shout/create-shout.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'createshout',
+    component: CreateShoutComponent,
   },
   {
     path: 'signup',
