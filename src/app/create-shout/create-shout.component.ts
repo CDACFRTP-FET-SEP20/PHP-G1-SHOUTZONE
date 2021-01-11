@@ -10,16 +10,17 @@ import{ShoutsService} from '../services/shouts.service';
   styleUrls: ['./create-shout.component.scss'],
 })
 export class CreateShoutComponent implements OnInit {
-  faImages = faImages;
-  faVideo = faVideo;
-  faMusic = faMusic;
   shout=new Shout();
   postedShout: any;
   flag: boolean = true;
+  faImages = faImages;
+  faVideo = faVideo;
+  faMusic = faMusic;
+
 
   constructor(private postservice: ShoutsService) {}
   ngOnInit(): void {
-    sessionStorage.getItem('user_id');
+    sessionStorage.setItem('user_id','2');
   }
   uploadShout(event:any) {
     this.flag = false;
@@ -50,6 +51,8 @@ export class CreateShoutComponent implements OnInit {
 
 
     });
+    form.reset();
+    alert("Shout updated successfully!!!");
 }
 
 }
