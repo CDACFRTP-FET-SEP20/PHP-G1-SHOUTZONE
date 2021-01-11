@@ -1,7 +1,7 @@
 <!-- <app-create-shout></app-create-shout> -->
 <div class="feed">
   <ng-container *ngFor="let shout of data">
-    <app-shout>
+    <app-shout postId="{{ shout.id }}">
       <span class="content">{{ shout.content }}</span>
       <span class="media">
         <ng-container [ngSwitch]="shout.type">

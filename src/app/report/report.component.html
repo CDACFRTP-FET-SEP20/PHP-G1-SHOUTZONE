@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Hi {{ data.name }}</h1>
+<div mat-dialog-content>
+  <p>Type of report?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select matFormField>
+      <ng-container *ngFor="let option of reportType">
+        <mat-option matFormField value="{{ option }}">{{ option }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No Thanks</button>
+  <button mat-button mat-dialog-close (click)="onClickAction()">Report</button>
+</div>

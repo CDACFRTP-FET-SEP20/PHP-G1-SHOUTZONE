@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CommentsComponent } from '../comments/comments.component';
+import { ReportComponent } from '../report/report.component';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CommentsComponent, {
+    const dialogRef = this.dialog.open(ReportComponent, {
       data: { type: 'create-shout' },
     });
   }
