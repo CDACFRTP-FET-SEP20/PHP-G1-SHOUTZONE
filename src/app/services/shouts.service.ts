@@ -34,7 +34,7 @@ export class ShoutsService {
   }
  getShoutsById(user_id:number):Observable<any>
  {
-  let url = 'http://127.0.0.1:8000/api/show/'+user_id;
+  let url = 'http://127.0.0.1:8000/api/shouts/show/'+user_id;
   return this.httpClient.get(url);
 }
 deleteOwnShout(id:number):Observable<any>{
