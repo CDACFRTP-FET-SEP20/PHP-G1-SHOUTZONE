@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { FriendsService } from '../services/friends.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-friend',
@@ -14,7 +15,11 @@ export class AddFriendComponent implements OnInit {
   p: any;
   data: any;
 
-  constructor(private friends: FriendsService, private auth: AuthService) {}
+  constructor(
+    private friends: FriendsService,
+    private auth: AuthService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   addFriend(id) {
     console.log('inside Add', id);
@@ -30,6 +35,15 @@ export class AddFriendComponent implements OnInit {
     this.friends.sendFriendRequest(this.data).subscribe(
       () => {
         console.log('sent Request');
+        this._snackBar.open(
+          `Friend Request has been sent to ${this.people[index].username} `,
+          'Dismiss',
+          {
+            duration: 2000,
+          }
+        );
+
+        this.userList();
       },
       (error) => {
         console.log(error);
@@ -37,7 +51,7 @@ export class AddFriendComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
+  userList() {
     this.user = this.auth.getUserDetails(); //current logged in user
 
     console.log(this.user.id);
@@ -51,5 +65,9 @@ export class AddFriendComponent implements OnInit {
       );
       console.log(this.people);
     });
+  }
+
+  ngOnInit(): void {
+    this.userList();
   }
 }
