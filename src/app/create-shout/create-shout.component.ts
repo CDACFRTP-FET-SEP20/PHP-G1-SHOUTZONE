@@ -21,6 +21,7 @@ export class CreateShoutComponent implements OnInit {
   constructor(private postservice: ShoutsService) {}
   ngOnInit(): void {
     sessionStorage.setItem('user_id','2');
+ 
   }
   inputChange(event:any){
     if(event.target.value !== ""){
