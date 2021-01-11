@@ -20,6 +20,27 @@
 
 <mat-tab-group color="accent" mat-align-tabs="center">
   <mat-tab>
+    <ng-template mat-tab-label> All </ng-template>
+    <div class="mt-4" *ngFor="let shout of data">
+      <app-shout postId="{{ shout.id }}">
+        <span class="content">{{ shout.content }}</span>
+        <span class="media">
+          <ng-container [ngSwitch]="shout.type">
+            <ng-container *ngSwitchCase="'audio'">
+              <audio src="{{ shout.media }}" controls></audio>
+            </ng-container>
+            <ng-container *ngSwitchCase="'video'">
+              <video class="video" src="{{ shout.media }}" controls></video>
+            </ng-container>
+            <ng-container *ngSwitchCase="'image'">
+              <img class="image" src="{{ shout.media }}" />
+            </ng-container>
+          </ng-container>
+        </span>
+      </app-shout>
+    </div>
+  </mat-tab>
+  <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>message</mat-icon>
     </ng-template>
@@ -105,5 +126,11 @@
         </span>
       </app-shout>
     </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>info</mat-icon>
+    </ng-template>
+    This is the profile
   </mat-tab>
 </mat-tab-group>

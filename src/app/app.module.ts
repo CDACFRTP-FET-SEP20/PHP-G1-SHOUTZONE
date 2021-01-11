@@ -33,10 +33,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
+import { ReportComponent } from './report/report.component';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -56,6 +58,7 @@ import { DatePipe } from '@angular/common';
     CreateShoutComponent,
     ShoutComponent,
     CommentsComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,8 +80,8 @@ import { DatePipe } from '@angular/common';
     MatToolbarModule,
     MatDialogModule,
     MatTabsModule,
+    MatSelectModule,
     MatSnackBarModule,
-
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

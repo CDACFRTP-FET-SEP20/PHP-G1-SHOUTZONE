@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   user_id: any;
   value: any;
 
+
   session: any;
   mediaPath: any = 'http://127.0.0.1:8000';
 
