@@ -76,4 +76,10 @@ class ShoutsController extends Controller
         $shoutsUpload->delete();
         return redirect('list');
     }
+    public function deleteownshout($id)
+    {
+        $shoutsUpload = Shout::find($id);
+        $shoutsUpload->delete();
+      
+    }
 }

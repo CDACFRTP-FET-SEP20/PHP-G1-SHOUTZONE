@@ -40,7 +40,7 @@ Route::post("shouts/add", [ShoutsController::class, 'uploadmedia']);
 Route::get("/shouts/allshouts", [ShoutsController::class, 'list']);
 Route::get("/shouts/friendsshouts/{id}", [ShoutsController::class, 'friendsShout']);
 Route::get('/shouts/show/{id}', [ShoutsController::class, 'shoutById']);
-Route::get('/shouts/destroy/{id}', [ShoutsController::class, 'deleteshout']);
+Route::get('/shouts/destroy/{id}', [ShoutsController::class, 'deleteownshout']);
 
 
 Route::post("comment", [CommentController::class, 'store']);
