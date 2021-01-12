@@ -14,7 +14,8 @@
 <style>
     a:link {
   color:white;
-
+  background-color: transparent;
+  text-decoration: none;
 }
 .card{
     padding: 3%;
@@ -42,9 +43,9 @@
             <tr >
 
                 <td>
-                  @if ($shout->shoutType==='text')
+
                      {{$shout->shoutText == 'null' || $shout->shoutText == 'undefined' ? ' ' : $shout->shoutText}}
-                     @endif
+
                 </td>
                 <td>
                     @if ($shout->shoutType==='image')
