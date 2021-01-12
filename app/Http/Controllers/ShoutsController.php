@@ -11,19 +11,20 @@ class ShoutsController extends Controller
 {
     public function uploadmedia(Request $req)
     {
-        $shoutsUpload = new Shout($req->input());
+        $shoutsUpload = new Shout();
+        // dd($shoutsUpload);
         $shoutsUpload->user_id = $req->user_id;
-
-
         $shoutsUpload->shoutType = $req->shoutType;
         $shoutsUpload->shoutText = $req->shoutText;
         if ($file = $req->hasFile('shoutMedia')) {
             $file = $req->file('shoutMedia');
-            $fileName = $file->getClientOriginalName();
+            // dd($file);
+            $fileName = 'Shout_'.$req->user_id.time().".".$req->file('shoutMedia')->getClientOriginalExtension();
             $destinationPath = public_path() . '/Shouts/';
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
         }
+
         $shoutsUpload->save();
         return response()->json(['message' => 'media Uploaded Successfully']);
     }
@@ -75,5 +76,11 @@ class ShoutsController extends Controller
         $shoutsUpload = Shout::find($id);
         $shoutsUpload->delete();
         return redirect('list');
+    }
+    public function deleteownshout($id)
+    {
+        $shoutsUpload = Shout::find($id);
+        $shoutsUpload->delete();
+
     }
 }
