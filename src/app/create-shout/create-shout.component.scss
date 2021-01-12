@@ -59,6 +59,11 @@ mat-card {
   }
 }
 
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
 .shout {
   margin-left: auto;
   background: linear-gradient(-45deg);

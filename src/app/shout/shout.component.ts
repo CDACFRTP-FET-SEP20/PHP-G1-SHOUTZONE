@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentsComponent } from '../comments/comments.component';
 import { ReportComponent } from '../report/report.component';
+import { ShoutsService } from '../services/shouts.service';
 
 @Component({
   selector: 'app-shout',
@@ -10,6 +11,7 @@ import { ReportComponent } from '../report/report.component';
 })
 export class ShoutComponent implements OnInit {
   @Input() postId: number;
+  comments: any;
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}

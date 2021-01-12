@@ -2,81 +2,167 @@
   <mat-icon>supervised_user_circle</mat-icon>
   <h3 class="mat-typography">Register</h3>
   <div class="d-flex flex-column" [formGroup]="registerForm">
-
-    <mat-error *ngIf="registerForm.controls.name?.invalid  && registerForm.controls.name?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.name?.invalid &&
+        registerForm.controls.name?.touched
+      "
+    >
       Please enter valid name
     </mat-error>
     <mat-form-field appearance="fill">
       <mat-label>Enter your name</mat-label>
-      <input matInput placeholder="John Doe" [(ngModel)]="user.name" name="name" formControlName="name" required />
+      <input
+        matInput
+        placeholder="John Doe"
+        [(ngModel)]="user.name"
+        name="name"
+        formControlName="name"
+        required
+      />
     </mat-form-field>
 
-
-    <mat-error *ngIf="registerForm.controls.username?.invalid  && registerForm.controls.username?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.username?.invalid &&
+        registerForm.controls.username?.touched
+      "
+    >
       Please enter valid username
     </mat-error>
     <mat-form-field appearance="fill">
       <mat-label>Enter your username</mat-label>
-      <input matInput placeholder="johnyd" [(ngModel)]="user.username" name="username" formControlName="username"
-        required />
+      <input
+        matInput
+        placeholder="johnyd"
+        [(ngModel)]="user.username"
+        name="username"
+        formControlName="username"
+        required
+      />
     </mat-form-field>
 
-    <mat-error *ngIf="registerForm.controls.email?.invalid  && registerForm.controls.email?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.email?.invalid &&
+        registerForm.controls.email?.touched
+      "
+    >
       Please enter valid email
     </mat-error>
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" name="email" formControlName="email"
-        required />
+      <input
+        matInput
+        placeholder="pat@example.com"
+        [(ngModel)]="user.email"
+        name="email"
+        formControlName="email"
+        required
+      />
     </mat-form-field>
 
-
-    <mat-error *ngIf="registerForm.controls.password?.invalid  && registerForm.controls.password?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.password?.invalid &&
+        registerForm.controls.password?.touched
+      "
+    >
       PLease Enter Password With Min 7 Characters
     </mat-error>
     <mat-form-field appearance="fill">
       <mat-label>Enter your password with min 7 Chaacters</mat-label>
-      <input matInput placeholder="Password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'"
-        name="password" formControlName="password">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input
+        matInput
+        placeholder="Password"
+        [(ngModel)]="user.password"
+        [type]="hide ? 'password' : 'text'"
+        name="password"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
     </mat-form-field>
 
-    <mat-form-field *ngIf="registerForm.controls['password'].valid">
-      <input matInput type="password" placeholder="Confirm your password" formControlName="cpassword">
+    <mat-form-field
+      *ngIf="registerForm.controls['password'].valid"
+      appearance="fill"
+    >
+      <mat-label>Confirm Password</mat-label>
+
+      <input
+        matInput
+        type="password"
+        placeholder="Confirm your password"
+        formControlName="cpassword"
+      />
       <mat-error
-        *ngIf="registerForm.controls['cpassword'].pristine || registerForm.controls['cpassword'].errors?.MatchPassword">
-        Password does not match</mat-error>
+        *ngIf="
+          registerForm.controls['cpassword'].pristine ||
+          registerForm.controls['cpassword'].errors?.MatchPassword
+        "
+      >
+        Password does not match</mat-error
+      >
     </mat-form-field>
 
-    <mat-error *ngIf="registerForm.controls.gender?.invalid && registerForm.controls.gender?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.gender?.invalid &&
+        registerForm.controls.gender?.touched
+      "
+    >
       Please Select Gender
     </mat-error>
     <div class="d-flex align-items-start">
       <span>Gender: </span>
-      <mat-radio-group aria-label="Select an option" [(ngModel)]="user.gender" name="gender" formControlName="gender">
+      <mat-radio-group
+        aria-label="Select an option"
+        [(ngModel)]="user.gender"
+        name="gender"
+        formControlName="gender"
+      >
         <mat-radio-button value="male" name="gender">Male</mat-radio-button>
         <mat-radio-button value="female" name="gender">Female</mat-radio-button>
       </mat-radio-group>
-
     </div>
 
-
-    <mat-error *ngIf="registerForm.controls.dob?.invalid && registerForm.controls.dob?.touched">
+    <mat-error
+      *ngIf="
+        registerForm.controls.dob?.invalid && registerForm.controls.dob?.touched
+      "
+    >
       Please Select Date Of Birth
     </mat-error>
     <mat-form-field appearance="fill">
       <mat-label>Date Of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="user.dob" name="dob" formControlName="dob">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="user.dob"
+        name="dob"
+        formControlName="dob"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-
-    <button class="w-100" mat-raised-button color="primary" (click)="userRegister()"
-      [disabled]="!registerForm.valid">Register</button>
+    <button
+      class="w-100"
+      mat-raised-button
+      color="primary"
+      (click)="userRegister()"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
   </div>
   <div>
     <p>Already have a account?</p>
