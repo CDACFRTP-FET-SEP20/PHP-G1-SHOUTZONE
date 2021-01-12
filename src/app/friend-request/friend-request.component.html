@@ -3,7 +3,13 @@
     <form class="row">
       <mat-form-field class="col-9">
         <mat-label>Search Friend...</mat-label>
-        <input matInput placeholder="Enter friends name" type="search" />
+        <input
+          matInput
+          placeholder="Enter friends name"
+          type="search"
+          [(ngModel)]="keyword"
+          [ngModelOptions]="{ standalone: true }"
+        />
       </mat-form-field>
       <div class="col-3">
         <button mat-fab type="submit">
@@ -15,13 +21,16 @@
 </mat-card>
 
 <ng-container *ngIf="requestList[0]?.id; else noRequests">
-  <ng-container *ngFor="let f of requestList">
+  <ng-container *ngFor="let f of requestList | filter: keyword">
     <mat-card class="mb-3">
       <mat-card-header>
         <img mat-card-avatar src="../../assets/avatar.png" alt="" />
         <mat-card-title>
           {{ f.username }}
         </mat-card-title>
+        <mat-card-subtitle>
+          {{ f.email }}
+        </mat-card-subtitle>
         <button
           class="ml-auto"
           color="primary"
