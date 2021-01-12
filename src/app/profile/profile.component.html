@@ -7,7 +7,7 @@
       <h1>{{ user.username | titlecase }}</h1>
     </mat-card-content>
     <mat-card-content class="text-center">
-      <p class="h5">{{ user.shouts }} Shouts | {{ user.friends }} Friends</p>
+      <!-- <p class="h5">{{ user.shouts }} Shouts | {{ user.friends }} Friends</p> -->
     </mat-card-content>
     <mat-card-content>
       This will be user bio details Lorem ipsum dolor sit amet consectetur
@@ -21,7 +21,7 @@
 <mat-tab-group color="accent" mat-align-tabs="center">
   <mat-tab>
     <ng-template mat-tab-label> All </ng-template>
-    <div class="mt-4" *ngFor="let shout of data">
+    <div class="mt-4" *ngFor="let shout of userShout">
       <app-shout postId="{{ shout.id }}">
         <span class="content">{{ shout.content }}</span>
         <span class="media">
@@ -45,7 +45,7 @@
       <mat-icon>message</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout id="" *ngIf="a.shoutType == 'text'">
+      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'text'">
         <span class="content"
           >{{
             a.shoutText == "null" || a.shoutText == "undefined"

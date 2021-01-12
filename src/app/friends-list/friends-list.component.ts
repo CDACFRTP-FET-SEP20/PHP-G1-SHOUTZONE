@@ -15,6 +15,7 @@ export class FriendsListComponent implements OnInit {
   user_id: number;
   data: any;
   user: User;
+  searchedKeyword: string;
   constructor(
     private friends: FriendsService,
     private auth: AuthService,
