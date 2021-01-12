@@ -35,8 +35,6 @@
         <button><a href="{{route('deleteshout',['id'=>$shout->id])}}">Delete Shout</a></button>
       </td>
 
-
-
     </tr>
 
 

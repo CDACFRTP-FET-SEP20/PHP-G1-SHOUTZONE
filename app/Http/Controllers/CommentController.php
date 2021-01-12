@@ -55,12 +55,12 @@ class CommentController extends Controller
     {
         $post = Comment::where('shout_id', $id)->get();
         //print_r($post);
-        $friendsArr = [];
+        $commentsArr = [];
         foreach ($post as $key => $value) {
             // print_r($value->user_id);
-            array_push($friendsArr, ['user' => $value->user_id, 'comment' => $value->comment]);
+            array_push($commentsArr, ['user' => $value->user_id, 'comment' => $value->comment]);
         }
-        return response()->json($friendsArr);
+        return response()->json($commentsArr);
     }
 
     /**
