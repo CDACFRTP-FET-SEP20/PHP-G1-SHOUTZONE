@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit {
+  comment: string;
   constructor(
     public dialogRef: MatDialogRef<CommentsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
