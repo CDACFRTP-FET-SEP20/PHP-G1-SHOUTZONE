@@ -19,16 +19,17 @@ mat-card {
     //   }
     // }
   }
-  // button {
-  //   font-size: 15px;
-  //   padding: 0 10px;
-  //   color: white;
-  //   border: 1px solid transparent;
-  //   border-radius: 10px;
-  //   background: linear-gradient(-45deg, #ff005c, #ba316a);
-  //   &:hover {
-  //     border: 1px solid wheat;
-  //     background: none;
-  //   }
-  // }
+  button {
+    font-size: 15px;
+    display: block;
+    padding: 0 10px;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #ff005c, #ba316a);
+    &:hover {
+      border: 1px solid wheat;
+      background: none;
+    }
+  }
 }

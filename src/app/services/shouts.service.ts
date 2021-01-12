@@ -14,7 +14,11 @@ export class ShoutsService {
   }
 
   getComments(shout_id: any): Observable<any> {
-    return this.httpClient.get('http://localhost:8000/api/comment/', shout_id);
+    return this.httpClient.get('http://localhost:8000/api/comment/' + shout_id);
+  }
+
+  storeComment(data: any): Observable<any> {
+    return this.httpClient.post('http://localhost:8000/api/postComment', data);
   }
 
   addShout(shout: Shout, id: any) {

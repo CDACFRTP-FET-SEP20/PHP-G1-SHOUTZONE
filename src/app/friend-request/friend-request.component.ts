@@ -12,6 +12,7 @@ import { FriendsService } from '../services/friends.service';
 })
 export class FriendRequestComponent implements OnInit {
   requestList: any;
+  keyword: string;
   user: User;
   data: any;
 
