@@ -36,13 +36,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->shout_id);
         $comment = new Comment;
-        $comment->comment = $request->comment;
-        $comment->user_id = 3;
         $comment->shout_id = $request->shout_id;
+        $comment->user_id = $request->id;
+        $comment->comment = $request->comment;
         $comment->save();
 
-        return [$comment];
+        return $comment;
     }
 
     /**
@@ -53,14 +54,15 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $post = Comment::where('shout_id', $id)->get();
+        $comments = Comment::where('shout_id', $id)->get();
         //print_r($post);
-        $commentsArr = [];
-        foreach ($post as $key => $value) {
+        // $commentsArr = [];
+        foreach ($comments as $key => $value) {
+            $value->user;
             // print_r($value->user_id);
-            array_push($commentsArr, ['user' => $value->user_id, 'comment' => $value->comment]);
+            // array_push($commentsArr, ['username' => $value->user->username, 'comment' => $value->comment]);
         }
-        return response()->json($commentsArr);
+        return response()->json($comments);
     }
 
     /**
