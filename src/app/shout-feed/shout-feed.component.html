@@ -1,8 +1,7 @@
 <!-- <app-create-shout></app-create-shout> -->
 <div class="feed">
-
   <ng-container *ngFor="let a of data | async">
-    <app-shout>
+    <app-shout postId="{{ a.id }}">
       <span class="content">{{
         a.shoutText == "null" || a.shoutText == "undefined" ? " " : a.shoutText
       }}</span>
