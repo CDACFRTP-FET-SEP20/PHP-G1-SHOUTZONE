@@ -10,6 +10,8 @@ import { FriendRequestComponent } from './friend-request/friend-request.componen
 import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
+import { AuthGuardService } from './services/authgaurd.service';
+
 
 const routes: Routes = [
   {
@@ -35,11 +37,11 @@ const routes: Routes = [
   },
   {
     path: 'friend',
-    component: AddFriendComponent,
+    component: AddFriendComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'home',
-    component: LayoutComponent,
+    component: LayoutComponent, canActivate: [AuthGuardService],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'feed' },
       { path: 'feed', component: ShoutFeedComponent },
@@ -54,4 +56,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
