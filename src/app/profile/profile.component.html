@@ -23,8 +23,8 @@
     <ng-template mat-tab-label>
       <mat-icon>message</mat-icon>
     </ng-template>
-    <div class="mt-4"*ngFor="let a of userShout | async">
-      <app-shout >
+    <div class="mt-4" *ngFor="let a of userShout">
+      <app-shout *ngIf="a.shoutType == 'text'">
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}
           <button mat-raised-button color="warn"  (click)='deleteOwnShout(a.id)'>Delete</button>
         </span>
@@ -35,7 +35,7 @@
     <ng-template mat-tab-label>
       <mat-icon>image</mat-icon>
     </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout | async">
+    <div class="mt-4" *ngFor="let a of userShout ">
       <app-shout *ngIf="a.shoutType == 'image'">
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
@@ -50,7 +50,7 @@
     <ng-template mat-tab-label>
       <mat-icon>music_note</mat-icon>
     </ng-template>
-    <div class="mt-4"*ngFor="let a of userShout | async">
+    <div class="mt-4"*ngFor="let a of userShout ">
       <app-shout *ngIf="a.shoutType == 'audio'" controls>
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">
@@ -64,7 +64,7 @@
     <ng-template mat-tab-label>
       <mat-icon>videocam</mat-icon>
     </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout | async">
+    <div class="mt-4" *ngFor="let a of userShout ">
       <app-shout *ngIf="a.shoutType == 'video'" >
         <span class="content">{{a.shoutText == 'null' || a.shoutText == 'undefined' ? ' ' : a.shoutText}}</span>
         <span class="media">

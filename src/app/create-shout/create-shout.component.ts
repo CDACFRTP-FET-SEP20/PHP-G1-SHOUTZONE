@@ -21,11 +21,12 @@ export class CreateShoutComponent implements OnInit {
   constructor(private postservice: ShoutsService) {}
   ngOnInit(): void {
     sessionStorage.setItem('user_id','2');
- 
+
   }
   inputChange(event:any){
     if(event.target.value !== ""){
       this.flag = null;
+      this.shout.shoutType = 'text';
     }
 
   }
@@ -46,7 +47,7 @@ export class CreateShoutComponent implements OnInit {
       // this.flag = true;
       this.shout.shoutType = "audio";
     }
-     else this.shout.shoutType = null;
+
   }
 
   formSubmit(form: NgForm) {

@@ -27,19 +27,19 @@ userShout:any;
 
   constructor(private post: ShoutsService,private activer:ActivatedRoute,private r:Router) {
 
-
   }
 
 
   ngOnInit(): void {
+    this.getShouts();
+  }
 
+  getShouts(){
     sessionStorage.setItem('user_id','2');
     this.session=sessionStorage.getItem('user_id');
     console.log(this.session);
    this.userShout=this.post.getShoutsById(this.session);
     console.log(this.userShout);
-
-
   }
   deleteOwnShout(id:number)
   {
@@ -47,8 +47,8 @@ userShout:any;
       this.post.deleteOwnShout(id).subscribe(data=>{
       console.log("data"+data);
       window.alert('Deleted Successfully');
-       this.ngOnInit();
     });
+    this.getShouts();
   }
 
 }
