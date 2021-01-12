@@ -40,6 +40,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
 import { ReportComponent } from './report/report.component';
 import { DatePipe } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { DatePipe } from '@angular/common';
     MatTabsModule,
     MatSelectModule,
     MatSnackBarModule,
+    Ng2SearchPipeModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

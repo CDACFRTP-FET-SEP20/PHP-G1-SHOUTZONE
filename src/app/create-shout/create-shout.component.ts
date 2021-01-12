@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faImages, faVideo, faMusic } from '@fortawesome/free-solid-svg-icons';
-import {Shout} from './Shout';
-import { NgForm } from "@angular/forms";
-import{ShoutsService} from '../services/shouts.service';
+import { Shout } from './Shout';
+import { NgForm } from '@angular/forms';
+import { ShoutsService } from '../services/shouts.service';
 
 @Component({
   selector: 'app-create-shout',
@@ -10,58 +10,51 @@ import{ShoutsService} from '../services/shouts.service';
   styleUrls: ['./create-shout.component.scss'],
 })
 export class CreateShoutComponent implements OnInit {
-  shout=new Shout();
+  shout = new Shout();
   postedShout: any;
   flag: boolean = true;
   faImages = faImages;
   faVideo = faVideo;
   faMusic = faMusic;
 
-
   constructor(private postservice: ShoutsService) {}
   ngOnInit(): void {
-    sessionStorage.setItem('user_id','2');
- 
+    sessionStorage.setItem('user_id', '2');
   }
-  inputChange(event:any){
-    if(event.target.value !== ""){
+  inputChange(event: any) {
+    if (event.target.value !== '') {
       this.flag = null;
     }
-
   }
-  uploadShout(event:any) {
+  uploadShout(event: any) {
     console.log(this.flag);
     this.flag = null;
     console.log(this.flag);
     this.shout.shoutMedia = event.target.files[0];
     var shoutType = this.shout.shoutMedia.type;
     console.log(shoutType);
-    if (shoutType.includes("image")) {
+    if (shoutType.includes('image')) {
       // this.flag = true;
-      this.shout.shoutType = "image";
-    } else if (shoutType.includes("video")) {
+      this.shout.shoutType = 'image';
+    } else if (shoutType.includes('video')) {
       // this.flag = true;
-      this.shout.shoutType = "video";
-    } else if (shoutType.includes("audio")) {
+      this.shout.shoutType = 'video';
+    } else if (shoutType.includes('audio')) {
       // this.flag = true;
-      this.shout.shoutType = "audio";
-    }
-     else this.shout.shoutType = null;
+      this.shout.shoutType = 'audio';
+    } else this.shout.shoutType = null;
   }
 
   formSubmit(form: NgForm) {
-
-    this.postservice.addShout(this.shout, sessionStorage.getItem('user_id')).subscribe((Response) => {
-      console.log(Response);
-      this.shout.shoutMedia = null;
-    this.shout.shoutType = null;
-    this.shout.shoutText = null;
-
-
-
-    });
+    this.postservice
+      .addShout(this.shout, sessionStorage.getItem('user_id'))
+      .subscribe((Response) => {
+        console.log(Response);
+        this.shout.shoutMedia = null;
+        this.shout.shoutType = null;
+        this.shout.shoutText = null;
+      });
     form.reset();
-    alert("Shout updated successfully!!!");
-}
-
+    alert('Shout updated successfully!!!');
+  }
 }
