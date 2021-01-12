@@ -33,13 +33,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 Route::post("userLogin", [AuthController::class, 'userLogin']);
 Route::post("register", [UserController::class, 'register']);
-// Route::put("update", [UserController::class, 'update']);
-// Route::delete("delete/{id}", [UserController::class, 'delete']);
+Route::put("update", [UserController::class, 'update']);
+Route::delete("delete/{id}", [UserController::class, 'delete']);
 
 Route::post("shouts/add", [ShoutsController::class, 'uploadmedia']);
 Route::get("/shouts/allshouts", [ShoutsController::class, 'list']);
-Route::get('/shouts/show/{id}',[ShoutsController::class, 'shoutById']);
- Route::get('/shouts/destroy/{id}',[ShoutsController::class, 'deleteshout']);
+Route::get('/shouts/show/{id}', [ShoutsController::class, 'shoutById']);
+Route::get('/shouts/destroy/{id}', [ShoutsController::class, 'deleteshout']);
 
 
 Route::post("comment", [CommentController::class, 'store']);
