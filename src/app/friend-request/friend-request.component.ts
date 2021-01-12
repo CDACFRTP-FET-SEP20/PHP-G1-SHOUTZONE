@@ -71,11 +71,12 @@ export class FriendRequestComponent implements OnInit {
   }
 
   requests() {
-    console.log('inside FriendList');
+    console.log('inside requestList');
     this.user = this.auth.getUserDetails();
     this.friends.getRequestList(this.user.id).subscribe((data) => {
+      console.log(data);
+
       this.requestList = data;
-      console.log(this.requestList);
     });
   }
 

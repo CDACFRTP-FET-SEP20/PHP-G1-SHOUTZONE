@@ -64,7 +64,7 @@
       <mat-icon>image</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout *ngIf="a.shoutType == 'image'">
+      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'image'">
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "
@@ -84,7 +84,7 @@
       <mat-icon>music_note</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout *ngIf="a.shoutType == 'audio'" controls>
+      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'audio'" controls>
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "
@@ -108,7 +108,7 @@
       <mat-icon>videocam</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout *ngIf="a.shoutType == 'video'">
+      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'video'">
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "
