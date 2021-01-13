@@ -10,23 +10,39 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   {{-- <link rel="stylesheet" href={{ asset('./js/home.js') }}> --}}
 </head>
 <style>
 .card{
     padding: 3%;
-    }
+}
     </style>
 
 <body>
+
+
      @include("navbar")
 
-    @if(session('success'))
+    {{-- @if(session('success'))
     <div class="text-success">
         {{session('success')}}
+    </div>   @endif --}}
+  @if(session('success'))
+   <div class="toast" data-autohide="false">
+    <div class="toast-header">
+      <strong class="mr-auto text-primary">Toast Header</strong>
+      <small class="text-muted">5 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
     </div>
-    @endif
+ <div class="toast-body">
+  {{session('success')}}
+</div>
+</div>
+   @endif
+
      <div class="card">
-         <h2>List Of Users For Approval</h2>
+         <h2>List Of Users  </h2>
         <table class="table table-bordered">
         <thead class="thead-dark">
          <tr>
@@ -55,17 +71,18 @@
                 </td>
 
                 <td>
-                    <button> <a href="{{ route('adminApproval',['id'=>$user->id]) }}">
-                            @if($user->is_approved ==1)
-                            DeactivateUser
+                     <a href="{{ route('adminApproval',['id'=>$user->id]) }}">
+                            @if($user->is_approved ==0)
+                         <button class="btn btn-success">ActivateUser</button>
                             @else
-                            Activate User
+                           <button class="btn btn-danger">DeactivateUser</button>
+                               {{-- <button class="btn btn-info" >Active User</button> --}}
                             @endif
                         </a>
-                    </button>
+
                 </td>
                 <td>
-                    <button> <a href="{{ route('deleteuser',['id'=>$user->id]) }}">Delete User</a></button>
+                   <a type="button" class="btn btn-danger" href="{{ route('deleteuser',['id'=>$user->id]) }}">Delete User</a>
                 </td>
 
         </tr>

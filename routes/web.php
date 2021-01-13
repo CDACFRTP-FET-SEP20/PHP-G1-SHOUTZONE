@@ -22,5 +22,5 @@ Route::get('/userlist', [AdminController::class, 'userlist']);
 Route::get('/adminApproval/{id}', [AdminController::class, 'adminApproval'])->name('adminApproval');
 Route::get("delete/{id}", [AdminController::class, 'delete'])->name("deleteuser");
 Route::get("logout", [AdminController::class, 'logout'])->name("logout");
-Route::get("list", [ShoutsController::class, 'allShouts']);
+Route::get("list", [ShoutsController::class, 'allShouts'])->name("shoutList");
 Route::get('/destroy/{id}',[ShoutsController::class, 'deleteshout'])->name("deleteshout");
