@@ -4,6 +4,8 @@ import {Shout} from '../create-shout/Shout';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import{ShoutsService} from '../services/shouts.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-profile',
@@ -11,11 +13,7 @@ import{ShoutsService} from '../services/shouts.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user = {
-    username: 'amey khaire',
-    friends: 89,
-    shouts: 78,
-  };
+  user :User
   user_id:any;
   value:any;
 
@@ -25,7 +23,7 @@ session:any;
 userShout:any;
 
 
-  constructor(private post: ShoutsService,private activer:ActivatedRoute,private r:Router) {
+  constructor(private post: ShoutsService, private auth:AuthService,private activer:ActivatedRoute,private r:Router) {
 
   }
 
@@ -35,11 +33,19 @@ userShout:any;
   }
 
   getShouts(){
-    sessionStorage.setItem('user_id','2');
-    this.session=sessionStorage.getItem('user_id');
+    // sessionStorage.setItem('user_id','2');
+    // this.session=sessionStorage.getItem('user_id');
+    this.user=this.auth.getUserDetails();
     console.log(this.session);
-   this.userShout=this.post.getShoutsById(this.session);
-    console.log(this.userShout);
+   this.userShout=this.post.getShoutsById(this.user.id);
+   this.post.getShoutsById(this.user.id).subscribe((data)=>{
+    console.log(data);
+    this.userShout=data;
+   }
+
+
+   );
+
   }
   deleteOwnShout(id:number)
   {
