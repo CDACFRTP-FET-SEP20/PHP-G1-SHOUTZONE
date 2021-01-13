@@ -43,8 +43,11 @@ class FriendsController extends Controller
 
     public function getUserList($id)
     {
-        $users = User::all();
+        $users = User::all()->where('role', 'user');
         $userList = $users->except($id);
+
+
+
         $friends = Friends::where('sender', $id)->orWhere('reciever', $id)->get();
         //dd($friends);
         $friendsArr = [];

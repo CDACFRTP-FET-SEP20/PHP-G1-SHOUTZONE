@@ -43,7 +43,7 @@ Route::get('/shouts/show/{id}', [ShoutsController::class, 'shoutById']);
 Route::get('/shouts/destroy/{id}', [ShoutsController::class, 'deleteownshout']);
 
 
-Route::post("comment", [CommentController::class, 'store']);
+Route::post("postComment", [CommentController::class, 'store']);
 Route::post("editComment", [CommentController::class, 'update']);
 Route::get("comment/{id}", [CommentController::class, 'show']);
 Route::get("commentRemove/{id}", [CommentController::class, 'destroy']);
