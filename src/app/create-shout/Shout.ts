@@ -1,6 +1,6 @@
-export class Shout
- {
-  shoutText!: any;
-  shoutMedia!: any;
-  shoutType!: any;
+export class Shout {
+  id: number;
+  shoutText: string;
+  shoutMedia: any;
+  shoutType: string;
 }

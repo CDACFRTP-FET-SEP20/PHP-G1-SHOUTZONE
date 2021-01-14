@@ -13,7 +13,7 @@ import { User } from '../model/user';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: User;
+  user: any;
   user_id: any;
   value: any;
 

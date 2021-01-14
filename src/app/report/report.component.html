@@ -1,16 +1,32 @@
 <h1 mat-dialog-title>Hi {{ data.name }}</h1>
-<div mat-dialog-content>
+<div mat-dialog-content class="d-flex flex-column">
   <p>Type of report?</p>
   <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
-    <mat-select matFormField>
+    <mat-label>Select category</mat-label>
+    <mat-select matFormField [(ngModel)]="report.category">
       <ng-container *ngFor="let option of reportType">
         <mat-option matFormField value="{{ option }}">{{ option }}</mat-option>
       </ng-container>
     </mat-select>
   </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No Thanks</button>
-  <button mat-button mat-dialog-close (click)="onClickAction()">Report</button>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      name="description"
+      id=""
+      cols="50"
+      rows="3"
+      #description="ngModel"
+      [(ngModel)]="report.description"
+      placeholder="Description (Optional)"
+    ></textarea>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>No Thanks</button>
+    <button mat-button mat-dialog-close (click)="onClickAction()">
+      Report
+    </button>
+  </div>
 </div>
