@@ -3,6 +3,7 @@ import { Shout } from './Shout';
 import { NgForm } from '@angular/forms';
 import { ShoutsService } from '../services/shouts.service';
 import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-create-shout',
