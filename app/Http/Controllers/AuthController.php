@@ -49,14 +49,15 @@ class AuthController extends Controller
                     'message' => 'Unauthorized'
                 ]);
             }
+            auth()->user()->bio;
+
             $user = auth()->user();
-            $bio = auth()->user()->bio;
 
             //$tokenResult = $user->createToken('authToken')->plainTextToken;
 
             return response()->json([
                 "user" => $user,
-                //"bio" =>$bio,
+                // "bio" => $bio,
                 'status_code' => 200,
                 //'access_token' => $tokenResult,
                 'token_type' => 'Bearer',

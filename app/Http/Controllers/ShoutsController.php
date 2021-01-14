@@ -19,7 +19,7 @@ class ShoutsController extends Controller
         if ($file = $req->hasFile('shoutMedia')) {
             $file = $req->file('shoutMedia');
             // dd($file);
-            $fileName = 'Shout_'.$req->user_id.time().".".$req->file('shoutMedia')->getClientOriginalExtension();
+            $fileName = 'Shout_' . $req->user_id . time() . "." . $req->file('shoutMedia')->getClientOriginalExtension();
             $destinationPath = public_path() . '/Shouts/';
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
@@ -68,6 +68,12 @@ class ShoutsController extends Controller
         }
         $flatten = array_merge(...$friendsArr);
         $shout = Shout::whereIn('user_id', $flatten)->latest()->get();
+        foreach ($shout as $key => $value) {
+            $value->user;
+            $value->likes;
+            $value->report;
+            $value->comments;
+        }
         return response()->json($shout);
     }
 
@@ -81,6 +87,5 @@ class ShoutsController extends Controller
     {
         $shoutsUpload = Shout::find($id);
         $shoutsUpload->delete();
-
     }
 }

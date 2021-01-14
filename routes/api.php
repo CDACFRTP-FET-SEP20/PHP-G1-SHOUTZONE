@@ -8,8 +8,7 @@ use App\http\controllers\ShoutsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ReportShoutController;
-
-
+use App\Http\Controllers\ShoutLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +62,5 @@ Route::get('report', [ReportShoutController::class, 'list']);
 Route::get('report/shouts/{id}', [ReportShoutController::class, 'show']);
 Route::delete('report/{id}', [ReportShoutController::class, 'destroy']);
 
-Route::post('/shouts/likes', [ShoutLikeController::class, 'store']);
-Route::delete('/shouts/likes', [ShoutLikeController::class, 'destroy']);
+Route::post('/shouts/like', [ShoutLikeController::class, 'store']);
+Route::delete('/shouts/like', [ShoutLikeController::class, 'destroy']);
