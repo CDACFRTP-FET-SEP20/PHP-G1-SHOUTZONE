@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthGuardService } from './authgaurd.service';
+import { ReportService } from './report.service';
 
-describe('AuthgaurdService', () => {
-  let service: AuthGuardService;
+describe('ReportService', () => {
+  let service: ReportService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthGuardService);
+    service = TestBed.inject(ReportService);
   });
 
   it('should be created', () => {

@@ -1,17 +1,16 @@
 <h2 mat-dialog-title>Comments</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography bg-light">
   <ng-container *ngFor="let c of comments">
-    <mat-card>
+    <mat-card class="mb-2">
+      <mat-card-header>
+        <img matCardAvatar src="../../assets/avatar.png" alt="" />
+
+        <mat-card-title>{{ c.user.username }}</mat-card-title>
+        <mat-card-subtitle>{{
+          c.updated_at | date: "short"
+        }}</mat-card-subtitle>
+      </mat-card-header>
       <mat-card-content>
-        <div>
-          <img src="../../assets/avatar.png" alt="" />
-          <div>
-            <mat-card-title>{{ c.user.username }}</mat-card-title>
-            <mat-card-subtitle>{{
-              c.updated_at | date: "short"
-            }}</mat-card-subtitle>
-          </div>
-        </div>
         <span>{{ c.comment }}</span>
       </mat-card-content>
     </mat-card>

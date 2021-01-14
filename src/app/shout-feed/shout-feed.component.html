@@ -1,29 +1,18 @@
 <!-- <app-create-shout></app-create-shout> -->
 <div class="feed">
-
-  <ng-container *ngFor="let a of data | async">
-    <app-shout>
-      <span class="content">{{
-        a.shoutText == "null" || a.shoutText == "undefined" ? " " : a.shoutText
-      }}</span>
+  <ng-container *ngFor="let shout of shoutData">
+    <app-shout [shout]="shout">
+      <span class="content" *ngIf="shout.shoutText">{{ shout.shoutText }}</span>
       <span class="media">
-        <ng-container [ngSwitch]="a.shoutType">
+        <ng-container [ngSwitch]="shout.shoutType">
           <ng-container *ngSwitchCase="'audio'">
-            <audio
-              src="{{ mediaPath }}{{ a.shoutMedia }}"
-              type="audio/ogg"
-              controls
-            ></audio>
+            <audio src="{{ shout.shoutMedia }}" controls></audio>
           </ng-container>
           <ng-container *ngSwitchCase="'video'">
-            <video
-              src="{{ mediaPath }}{{ a.shoutMedia }}"
-              type="video/mp4"
-              controls
-            ></video>
+            <video class="video" src="{{ shout.shoutMedia }}" controls></video>
           </ng-container>
           <ng-container *ngSwitchCase="'image'">
-            <img class="image" src="{{ mediaPath }}{{ a.shoutMedia }}" />
+            <img class="image" src="{{ shout.shoutMedia }}" />
           </ng-container>
         </ng-container>
       </span>

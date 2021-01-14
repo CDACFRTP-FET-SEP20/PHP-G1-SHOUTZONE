@@ -6,6 +6,8 @@ mat-card {
   font-size: 15px;
 }
 
-.image {
-  width: 90%;
+.image,
+.video {
+  width: 100%;
+  margin-bottom: 10px;
 }

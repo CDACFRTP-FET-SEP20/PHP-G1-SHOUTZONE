@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faImages, faVideo, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Shout } from './Shout';
 import { NgForm } from '@angular/forms';
 import { ShoutsService } from '../services/shouts.service';
@@ -15,12 +14,14 @@ export class CreateShoutComponent implements OnInit {
   shout = new Shout();
   postedShout: any;
   flag: boolean = true;
-  faImages = faImages;
-  faVideo = faVideo;
-  faMusic = faMusic;
-  user: User;
+  userId: number;
 
-  constructor(private postservice: ShoutsService, private auth: AuthService) {}
+  constructor(
+    private postservice: ShoutsService,
+    private authService: AuthService
+  ) {
+    this.userId = this.authService.getUserDetails().id;
+  }
   ngOnInit(): void {}
   inputChange(event: any) {
     if (event.target.value !== '') {
@@ -47,15 +48,12 @@ export class CreateShoutComponent implements OnInit {
   }
 
   formSubmit(form: NgForm) {
-    this.user = this.auth.getUserDetails();
-    this.postservice
-      .addShout(this.shout, this.user.id)
-      .subscribe((Response) => {
-        console.log(Response);
-        this.shout.shoutMedia = null;
-        this.shout.shoutType = null;
-        this.shout.shoutText = null;
-      });
+    this.postservice.addShout(this.shout, this.userId).subscribe((Response) => {
+      console.log(Response);
+      this.shout.shoutMedia = null;
+      this.shout.shoutType = null;
+      this.shout.shoutText = null;
+    });
     form.reset();
     alert('Shout updated successfully!!!');
   }

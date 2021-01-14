@@ -4,20 +4,13 @@
   </div>
   <div class="col-md-8 col-sm-12">
     <mat-card-content class="text-center">
-      <h1>{{ user.username | titlecase }}</h1>
+      <h1>{{ user.bio.name | titlecase }}</h1>
+      <h5>{{ user.email }}</h5>
     </mat-card-content>
     <mat-card-content class="text-center">
-
       <!-- <p class="h5">{{ user.shouts }} Shouts | {{ user.friends }} Friends</p> -->
 
       <p class="h5">{{ 89 }} Shouts | {{ 75 }} Friends</p>
-
-    </mat-card-content>
-    <mat-card-content>
-      This will be user bio details Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Vel ipsum fuga quasi, expedita iure debitis quod quidem
-      veritatis quae fugit iusto. Fuga culpa accusantium molestiae dolores
-      quasi, praesentium sit quibusdam.
     </mat-card-content>
   </div>
 </mat-card>
@@ -26,7 +19,7 @@
   <mat-tab>
     <ng-template mat-tab-label> All </ng-template>
     <div class="mt-4" *ngFor="let shout of userShout">
-      <app-shout postId="{{ shout.id }}">
+      <app-shout [shout]="shout">
         <span class="content">{{ shout.content }}</span>
         <span class="media">
           <ng-container [ngSwitch]="shout.type">
@@ -49,7 +42,7 @@
       <mat-icon>message</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'text'">
+      <app-shout [shout]="a" *ngIf="a.shoutType == 'text'">
         <span class="content"
           >{{
             a.shoutText == "null" || a.shoutText == "undefined"
@@ -68,7 +61,7 @@
       <mat-icon>image</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'image'">
+      <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "
@@ -88,7 +81,7 @@
       <mat-icon>music_note</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'audio'" controls>
+      <app-shout [shout]="a" *ngIf="a.shoutType == 'audio'" controls>
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "
@@ -112,7 +105,7 @@
       <mat-icon>videocam</mat-icon>
     </ng-template>
     <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout postId="{{ a.id }}" *ngIf="a.shoutType == 'video'">
+      <app-shout [shout]="a" *ngIf="a.shoutType == 'video'">
         <span class="content">{{
           a.shoutText == "null" || a.shoutText == "undefined"
             ? " "

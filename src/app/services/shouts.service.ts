@@ -51,4 +51,24 @@ export class ShoutsService {
       'http://127.0.0.1:8000/api/shouts/destroy/' + id
     );
   }
+
+  getFriendsShout(user_id: number): Observable<any> {
+    return this.httpClient.get(
+      'http://localhost:8000/api/shouts/friendsshouts/' + user_id
+    );
+  }
+
+  likeShout(like: any): Observable<any> {
+    console.log('This is Like serive bitch');
+
+    return this.httpClient.post('http://localhost:8000/api/shouts/like', like);
+  }
+
+  disLikeShout(like: any): Observable<any> {
+    console.log('This is disLike serive bitch');
+    return this.httpClient.delete(
+      'http://localhost:8000/api/shouts/like',
+      like
+    );
+  }
 }
