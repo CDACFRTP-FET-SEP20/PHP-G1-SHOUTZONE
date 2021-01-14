@@ -39,11 +39,12 @@ class ReportShoutController extends Controller
     {
         $report = new Report();
         $report->description = $request->description;
-        $report->user_id = $request->user_id;
-        $report->shout_id = $request->shout_id;
+        $report->category = $request->category;
+        $report->user_id = $request->userId;
+        $report->shout_id = $request->shoutId;
         // dd($report);
         $report->save();
-        return ['success' => true, 'data' => 'Shout Reported'];
+        return ['success' => true, 'message' => 'Shout Reported'];
     }
 
     /**
