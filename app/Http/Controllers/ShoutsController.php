@@ -28,7 +28,7 @@ class ShoutsController extends Controller
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
         }
-
+        $shoutsUpload->save() ;
         return response()->json(['message' => 'media Uploaded Successfully']);
     }
 
