@@ -7,12 +7,16 @@ use App\Models\Shout;
 use App\Models\User;
 use App\Models\Friends;
 
+
+
+
 class ShoutsController extends Controller
 {
     public function uploadmedia(Request $req)
     {
+
         $shoutsUpload = new Shout();
-        // dd($shoutsUpload);
+
         $shoutsUpload->user_id = $req->user_id;
         $shoutsUpload->shoutType = $req->shoutType;
         $shoutsUpload->shoutText = $req->shoutText;
@@ -24,19 +28,23 @@ class ShoutsController extends Controller
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
         }
-
-        $shoutsUpload->save();
+        $shoutsUpload->save() ;
         return response()->json(['message' => 'media Uploaded Successfully']);
     }
 
     public function list()
     {
+
         return  Shout::all();
     }
     public function allShouts()
     {
-
-        $allShouts = Shout::all();
+        $users = User::all()->where('role', 'user');
+        $userIds = $users->modelKeys();
+        // dd($users);
+        $allShouts = Shout::whereIn('user_id', $userIds)->get();
+        // $allShouts = Shout::all();
+        // dd($allShouts);
         return view('shouts', ['shouts' => $allShouts]);
     }
     public function shoutById($id)

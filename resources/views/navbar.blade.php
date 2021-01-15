@@ -25,7 +25,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="{{ route('userlist') }}">Home</a></li>
         <li><a href="{{ route('shoutList') }}">All Shouts</a></li>
         <li><a href="#">Page 3</a></li>
       </ul>
