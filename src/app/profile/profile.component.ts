@@ -33,7 +33,9 @@ export class ProfileComponent implements OnInit {
     //sessionStorage.setItem('user_id', '12');
     //this.session = sessionStorage.getItem('user_id');
     this.user = this.auth.getUserDetails();
-    this.userShout = this.post.getShoutsById(this.user.id);
+    console.log(this.user.id);
+
+    // this.userShout = this.post.getShoutsById(this.user.id);
     this.post.getShoutsById(this.user.id).subscribe(
       (data) => {
         console.log(data);

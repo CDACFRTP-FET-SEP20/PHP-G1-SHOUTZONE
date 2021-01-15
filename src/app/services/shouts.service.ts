@@ -21,6 +21,12 @@ export class ShoutsService {
     return this.httpClient.post('http://localhost:8000/api/postComment', data);
   }
 
+  deleteComment(comment_id: any): Observable<any> {
+    return this.httpClient.get(
+      'http://localhost:8000/api/commentRemove/' + comment_id
+    );
+  }
+
   addShout(shout: Shout, id: any) {
     const formData = new FormData();
     formData.append('shoutMedia', shout.shoutMedia);
