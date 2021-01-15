@@ -9,13 +9,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous"></script>
+
+
 </head>
 <style>
 
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
 
 html,
 body {
@@ -39,6 +38,7 @@ body {
   padding: 1em;
   text-align: center;
   vertical-align: middle;
+
 }
 .fostrap-logo {
   width: 100px;
@@ -81,7 +81,7 @@ h1.heading {
 }
 .img-card {
   width: 100%;
-  height:200px;
+  height:100%;
   border-top-left-radius:2px;
   border-top-right-radius:2px;
   display:block;
@@ -89,7 +89,7 @@ h1.heading {
 }
 .img-card img{
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit:cover;
   transition: all .25s ease;
 }
@@ -120,33 +120,38 @@ h1.heading {
   margin:0 auto;
   height:auto;
 }
-
-
+.widthBroad
+{
+    width:2000px;
+}
     </style>
 
-<body>
+<body widthBroad>
     @include("navbar")
 
-
     <section class="wrapper  ">
-        <div class="container-fostrap ">
 
-            <div class="content">
-                <div class="container">
-                    @foreach($shouts as $shout)
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 centerCard">
+        <div class="container-fostrap  ">
 
-                            <div class="card "> <div class="card-content">
-                                <h4 class="card-title">
-                                    {{ $shout->user->username}}
+            <div class="content ">
+                <div class="container ">
+
+                        @foreach($shouts as $shout)
+                        <div class="w-100">
+                            <div class="">
+
+                                <div class="card "> <div class="card-content">
+                                    <h4 class="card-title">
+                                        {{ $shout->user->username}}
                                 </h4>
 
                             </div>
                                 <a class="img-card" >
                                     @if($shout->shoutType==='text')
-                                    {{$shout->shoutText == 'null' || $shout->shoutText == 'undefined' ? ' ' : $shout->shoutText}}
-                                    @elseif ($shout->shoutType==='image')
+                                   <h3> {{$shout->shoutText == 'null' || $shout->shoutText == 'undefined' ? ' ' : $shout->shoutText}}</h3>
+                                    @endif
+
+                                    @if ($shout->shoutType==='image')
                                     <img   class="card-img-top" with
                                     src="{{ asset($shout->shoutMedia)}}"
                                   />
@@ -175,7 +180,8 @@ h1.heading {
 
                     </div>
                     @endforeach
-                </div>
+            </div>
+
             </div>
         </div>
     </section>
