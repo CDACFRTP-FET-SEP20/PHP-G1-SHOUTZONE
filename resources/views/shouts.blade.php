@@ -25,8 +25,6 @@
 <body>
      @include("navbar")
 
-
-
      <div class="card">
          <h2>List Of All user Shouts</h2>
         <table class="table table-bordered">
@@ -35,12 +33,14 @@
                 <th scope="col">Text</th>
                 <th scope="col"> Shouts</th>
 
+
                 <th scope="col">Delete Shouts </th>
 
         </thead>
         <tbody>
             @foreach($shouts as $shout)
             <tr >
+                <td> {{$shout->username}}</td>
 
                 <td>
 
