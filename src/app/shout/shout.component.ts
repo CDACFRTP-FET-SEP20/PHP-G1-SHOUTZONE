@@ -28,7 +28,7 @@ export class ShoutComponent implements OnInit {
     this.loggedInUserId = this.authService.getUserDetails().id;
     this.likedByMe();
     this.reportedByMe();
-    console.log(this.shout);
+    console.log('In shout Compo', this.shout);
   }
 
   reportedByMe(): void {
@@ -111,7 +111,7 @@ export class ShoutComponent implements OnInit {
 
   openCommentsDialog(): void {
     const dialogRef = this.dialog.open(CommentsComponent, {
-      data: { postId: this.shout.id },
+      data: { shout: this.shout, user_id: this.shout.user_id },
     });
   }
   openReportDialog(): void {

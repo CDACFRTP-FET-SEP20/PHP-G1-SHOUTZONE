@@ -9,6 +9,15 @@
         <mat-card-subtitle>{{
           c.updated_at | date: "short"
         }}</mat-card-subtitle>
+        <button
+          *ngIf="c.delete"
+          mat-icon-button
+          class="ml-auto"
+          color="warn"
+          (click)="deleteComment(c.id)"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
       </mat-card-header>
       <mat-card-content>
         <span>{{ c.comment }}</span>

@@ -25,10 +25,10 @@ mat-card {
     color: white;
     border: 1px solid transparent;
     border-radius: 10px;
-    background: linear-gradient(-45deg, #ff005c, #ba316a);
+    background: linear-gradient(-45deg, #c62dd4, #ba316a); //#ff005c
     &:hover {
       border: 1px solid wheat;
-      background: green;
+      background: rgb(51, 221, 164);
       color: black;
     }
   }

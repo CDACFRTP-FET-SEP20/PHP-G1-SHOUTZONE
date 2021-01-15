@@ -1,7 +1,7 @@
 <mat-card class="mb-3">
   <mat-card-content>
     <form class="row">
-      <mat-form-field class="col-9">
+      <mat-form-field class="col">
         <mat-label>Search Friend...</mat-label>
         <input
           matInput
@@ -11,16 +11,11 @@
           [ngModelOptions]="{ standalone: true }"
         />
       </mat-form-field>
-      <div class="col-3">
-        <button mat-fab type="submit">
-          <mat-icon>search</mat-icon>
-        </button>
-      </div>
     </form>
   </mat-card-content>
 </mat-card>
 
-<ng-container *ngIf="friendlist[0]?.id; else noFriends">
+<ng-container *ngIf="friendlist; else noFriends">
   <ng-container *ngFor="let f of friendlist | filter: keyword">
     <mat-card class="mb-3">
       <mat-card-header>
@@ -38,6 +33,6 @@
 
 <ng-template #noFriends>
   <mat-card class="mb-3">
-    <mat-card-content> Nothing to Show </mat-card-content>
+    <mat-card-content> Nothing To Show </mat-card-content>
   </mat-card>
 </ng-template>
