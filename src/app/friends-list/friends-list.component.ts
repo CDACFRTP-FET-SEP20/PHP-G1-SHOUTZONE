@@ -11,16 +11,19 @@ import { FriendsService } from '../services/friends.service';
   styleUrls: ['./friends-list.component.scss'],
 })
 export class FriendsListComponent implements OnInit {
-  friendlist: any;
+  friendlist: any[];
   user_id: number;
   data: any;
   user: User;
   keyword: string;
+
   constructor(
     private friends: FriendsService,
     private auth: AuthService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.friendlist;
+  }
 
   removeFriend(id) {
     this.user = this.auth.getUserDetails(); //current logged in user
@@ -33,15 +36,17 @@ export class FriendsListComponent implements OnInit {
     };
     this.friends.removeFriend(this.data).subscribe(
       () => {
-        console.log('Friend Removed');
-        this._snackBar.open(
-          ` ${this.friendlist[index].username} has been removed from Friends !!!`,
-          'Dismiss',
-          {
-            duration: 2000,
-          }
-        );
-        this.listFriends();
+        {
+          console.log('Friend Removed');
+          this._snackBar.open(
+            ` ${this.friendlist[index].username} has been removed from Friends !!!`,
+            'Dismiss',
+            {
+              duration: 2000,
+            }
+          );
+          this.listFriends();
+        }
       },
       (error) => {
         console.log(error);
@@ -53,9 +58,17 @@ export class FriendsListComponent implements OnInit {
     console.log('inside FriendList');
     this.user = this.auth.getUserDetails(); //current logged in user
     this.friends.friendList(this.user.id).subscribe((data) => {
-      this.friendlist = data;
-      console.log(this.friendlist);
-    });
+      console.log(data);
+      if (data.length > 0) {
+        this.friendlist = data;
+        console.log(this.friendlist);
+      } else {
+        this.friendlist = null;
+      }
+    }),
+      (error) => {
+        console.log(error);
+      };
   }
 
   ngOnInit(): void {

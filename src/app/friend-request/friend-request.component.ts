@@ -71,12 +71,16 @@ export class FriendRequestComponent implements OnInit {
   }
 
   requests() {
+    this.requestList;
     console.log('inside requestList');
     this.user = this.auth.getUserDetails();
     this.friends.getRequestList(this.user.id).subscribe((data) => {
-      console.log(data);
-
-      this.requestList = data;
+      if (data.length > 0) {
+        this.requestList = data;
+        console.log(this.requestList);
+      } else {
+        this.requestList = null;
+      }
     });
   }
 
