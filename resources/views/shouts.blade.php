@@ -137,7 +137,7 @@ h1.heading {
                 <div class="container ">
 
                         @foreach($shouts as $shout)
-                        <div class="w-100">
+                        <div class="w-75">
                             <div class="">
 
                                 <div class="card "> <div class="card-content">
