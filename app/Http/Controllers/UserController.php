@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bio;
+use App\Models\Friends;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Mockery\Exception;
@@ -81,5 +82,18 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
+    }
+
+    public function getUserDetails($id)
+    {
+        $user = User::find($id);
+        $user->bio;
+        $friends = Friends::where('approved', 1)
+            ->where('sender', $id)
+            ->orWhere('reciever', $id);
+
+        $res = ['user' => $user, 'shouts' => $user->shout->count(), 'friends' => $friends->count()];
+        // dd($res);
+        return response()->json($res);
     }
 }

@@ -28,7 +28,7 @@ class ShoutsController extends Controller
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
         }
-
+        $shoutsUpload->save() ;
         return response()->json(['message' => 'media Uploaded Successfully']);
     }
 
@@ -39,14 +39,24 @@ class ShoutsController extends Controller
     }
     public function allShouts()
     {
-
-        $allShouts = Shout::all();
+        $users = User::all()->where('role', 'user');
+        $userIds = $users->modelKeys();
+        // dd($users);
+        $allShouts = Shout::whereIn('user_id', $userIds)->get();
+        // $allShouts = Shout::all();
+        // dd($allShouts);
         return view('shouts', ['shouts' => $allShouts]);
     }
     public function shoutById($id)
     {
         $user = User::find($id);
         $shoutsUpload = $user->shout;
+        foreach ($shoutsUpload as $key => $value) {
+            $value->user;
+            $value->likes;
+            $value->report;
+            $value->comments;
+        }
         return $shoutsUpload;
     }
 

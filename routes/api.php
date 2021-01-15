@@ -34,6 +34,7 @@ Route::post("userLogin", [AuthController::class, 'userLogin']);
 Route::post("register", [UserController::class, 'register']);
 Route::post("update/{id}", [UserController::class, 'update']);
 Route::delete("delete/{id}", [UserController::class, 'delete']);
+Route::get("user/details/{id}", [UserController::class, 'getUserDetails']);
 Route::get('userInfoById/{id}', [UserController::class, 'userInfoById']);
 
 
