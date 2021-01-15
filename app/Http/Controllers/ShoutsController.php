@@ -43,6 +43,12 @@ class ShoutsController extends Controller
     {
         $user = User::find($id);
         $shoutsUpload = $user->shout;
+        foreach ($shoutsUpload as $key => $value) {
+            $value->user;
+            $value->likes;
+            $value->report;
+            $value->comments;
+        }
         return $shoutsUpload;
     }
 
