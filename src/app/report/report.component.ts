@@ -20,14 +20,17 @@ export class ReportComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private authService: AuthService,
     private reportService: ReportService
-  ) {}
+  ) {
+    // this.dialogRef.beforeClosed().subscribe(() => this.reportShout());
+  }
 
   ngOnInit(): void {
     console.log(this.data.postId);
   }
 
-  onClickAction(): void {
+  reportShout(): void {
     this.report.userId = this.authService.getUserDetails().id;
+    this.data.isReported = true;
     this.report.shoutId = this.data.postId;
     if (this.report.category === null) {
       this.openSnackbar('Please Select a categorty');
@@ -42,14 +45,20 @@ export class ReportComponent implements OnInit {
         }
       },
       (err) => {
+        this.data.isReported = false;
         this.openSnackbar('Error Occoured');
       }
     );
+    this.dialogRef.close(this.data.isReported);
   }
 
   openSnackbar(message: string): void {
     this._snackBar.open(message, 'Dismiss', {
       duration: 3000,
     });
+  }
+
+  noAction(): void {
+    this.dialogRef.close();
   }
 }

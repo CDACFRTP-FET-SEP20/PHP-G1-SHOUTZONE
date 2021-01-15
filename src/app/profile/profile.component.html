@@ -4,126 +4,113 @@
   </div>
   <div class="col-md-8 col-sm-12">
     <mat-card-content class="text-center">
-      <h1>{{ user.bio.name | titlecase }}</h1>
-      <h5>{{ user.email }}</h5>
+      <h1>{{ user?.bio.name }}</h1>
+      <h5>{{ user?.email }}</h5>
     </mat-card-content>
     <mat-card-content class="text-center">
-      <!-- <p class="h5">{{ user.shouts }} Shouts | {{ user.friends }} Friends</p> -->
+      <p class="h5">{{ shouts }} Shouts | {{ friends }} Friends</p>
 
-      <p class="h5">{{ 89 }} Shouts | {{ 75 }} Friends</p>
+      <!-- <p class="h5">{{ user. }} Shouts | {{ 75 }} Friends</p> -->
     </mat-card-content>
   </div>
 </mat-card>
 
 <mat-tab-group color="accent" mat-align-tabs="center">
-  <mat-tab>
-    <ng-template mat-tab-label> All </ng-template>
-    <div class="mt-4" *ngFor="let shout of userShout">
-      <app-shout [shout]="shout">
-        <span class="content">{{ shout.content }}</span>
-        <span class="media">
-          <ng-container [ngSwitch]="shout.type">
-            <ng-container *ngSwitchCase="'audio'">
-              <audio src="{{ shout.media }}" controls></audio>
+  <ng-container *ngIf="userShout">
+    <mat-tab>
+      <ng-template mat-tab-label> All </ng-template>
+      <div class="mt-4" *ngFor="let shout of userShout">
+        <app-shout [shout]="shout">
+          <span class="content" *ngIf="shout.shoutText">{{
+            shout.shoutText
+          }}</span>
+          <span class="media">
+            <ng-container [ngSwitch]="shout.shoutType">
+              <ng-container *ngSwitchCase="'audio'">
+                <audio src="{{ shout.shoutMedia }}" controls></audio>
+              </ng-container>
+              <ng-container *ngSwitchCase="'video'">
+                <video
+                  class="video"
+                  src="{{ shout.shoutMedia }}"
+                  controls
+                ></video>
+              </ng-container>
+              <ng-container *ngSwitchCase="'image'">
+                <img class="image" src="{{ shout.shoutMedia }}" />
+              </ng-container>
             </ng-container>
-            <ng-container *ngSwitchCase="'video'">
-              <video class="video" src="{{ shout.media }}" controls></video>
-            </ng-container>
-            <ng-container *ngSwitchCase="'image'">
-              <img class="image" src="{{ shout.media }}" />
-            </ng-container>
-          </ng-container>
-        </span>
-      </app-shout>
-    </div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>message</mat-icon>
-    </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout [shout]="a" *ngIf="a.shoutType == 'text'">
-        <span class="content"
-          >{{
+          </span>
+        </app-shout>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>message</mat-icon>
+      </ng-template>
+      <div class="mt-4" *ngFor="let a of userShout">
+        <app-shout [shout]="a" *ngIf="a.shoutType == 'text'">
+          <span class="content">{{ a.shoutText }} </span>
+        </app-shout>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>image</mat-icon>
+      </ng-template>
+      <div class="mt-4" *ngFor="let a of userShout">
+        <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
+          <span class="content">{{ a.shoutText }}</span>
+          <span class="media">
+            <img class="image" src="{{ mediaPath }}{{ a.shoutMedia }}" />
+          </span>
+        </app-shout>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>music_note</mat-icon>
+      </ng-template>
+      <div class="mt-4" *ngFor="let a of userShout">
+        <app-shout [shout]="a" *ngIf="a.shoutType == 'audio'" controls>
+          <span class="content">{{
             a.shoutText == "null" || a.shoutText == "undefined"
               ? " "
               : a.shoutText
-          }}
-          <button mat-raised-button color="warn" (click)="deleteOwnShout(a.id)">
-            Delete
-          </button>
-        </span>
-      </app-shout>
-    </div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>image</mat-icon>
-    </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
-        <span class="content">{{
-          a.shoutText == "null" || a.shoutText == "undefined"
-            ? " "
-            : a.shoutText
-        }}</span>
-        <span class="media">
-          <img class="image" src="{{ mediaPath }}{{ a.shoutMedia }}" />
-          <button mat-raised-button color="warn" (click)="deleteOwnShout(a.id)">
-            Delete
-          </button>
-        </span>
-      </app-shout>
-    </div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>music_note</mat-icon>
-    </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout [shout]="a" *ngIf="a.shoutType == 'audio'" controls>
-        <span class="content">{{
-          a.shoutText == "null" || a.shoutText == "undefined"
-            ? " "
-            : a.shoutText
-        }}</span>
-        <span class="media">
-          <audio
-            class="audio"
-            src="{{ mediaPath }}{{ a.shoutMedia }}"
-            controls
-          ></audio>
-          <button mat-raised-button color="warn" (click)="deleteOwnShout(a.id)">
-            Delete
-          </button>
-        </span>
-      </app-shout>
-    </div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>videocam</mat-icon>
-    </ng-template>
-    <div class="mt-4" *ngFor="let a of userShout">
-      <app-shout [shout]="a" *ngIf="a.shoutType == 'video'">
-        <span class="content">{{
-          a.shoutText == "null" || a.shoutText == "undefined"
-            ? " "
-            : a.shoutText
-        }}</span>
-        <span class="media">
-          <video
-            class="video"
-            src="{{ mediaPath }}{{ a.shoutMedia }}"
-            controls
-          ></video>
-          <button mat-raised-button color="warn" (click)="deleteOwnShout(a.id)">
-            Delete
-          </button>
-        </span>
-      </app-shout>
-    </div>
-  </mat-tab>
+          }}</span>
+          <span class="media">
+            <audio
+              class="audio"
+              src="{{ mediaPath }}{{ a.shoutMedia }}"
+              controls
+            ></audio>
+          </span>
+        </app-shout>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>videocam</mat-icon>
+      </ng-template>
+      <div class="mt-4" *ngFor="let a of userShout">
+        <app-shout [shout]="a" *ngIf="a.shoutType == 'video'">
+          <span class="content">{{
+            a.shoutText == "null" || a.shoutText == "undefined"
+              ? " "
+              : a.shoutText
+          }}</span>
+          <span class="media">
+            <video
+              class="video"
+              src="{{ mediaPath }}{{ a.shoutMedia }}"
+              controls
+            ></video>
+          </span>
+        </app-shout>
+      </div>
+    </mat-tab>
+  </ng-container>
+
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>info</mat-icon>
