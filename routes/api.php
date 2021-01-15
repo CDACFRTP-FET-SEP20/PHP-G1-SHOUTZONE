@@ -34,6 +34,7 @@ Route::post("userLogin", [AuthController::class, 'userLogin']);
 Route::post("register", [UserController::class, 'register']);
 Route::put("update", [UserController::class, 'update']);
 Route::delete("delete/{id}", [UserController::class, 'delete']);
+Route::get("user/details/{id}", [UserController::class, 'getUserDetails']);
 
 Route::post("shouts/add", [ShoutsController::class, 'uploadmedia']);
 Route::get("/shouts/allshouts", [ShoutsController::class, 'list']);
