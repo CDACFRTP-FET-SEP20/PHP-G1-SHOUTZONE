@@ -33,8 +33,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 Route::post("userLogin", [AuthController::class, 'userLogin']);
 Route::post("register", [UserController::class, 'register']);
-Route::put("update", [UserController::class, 'update']);
+Route::post("update/{id}", [UserController::class, 'update']);
 Route::delete("delete/{id}", [UserController::class, 'delete']);
+Route::get('userInfoById/{id}', [UserController::class, 'userInfoById']);
+
 
 Route::post("shouts/add", [ShoutsController::class, 'uploadmedia']);
 Route::get("/shouts/allshouts", [ShoutsController::class, 'list']);
