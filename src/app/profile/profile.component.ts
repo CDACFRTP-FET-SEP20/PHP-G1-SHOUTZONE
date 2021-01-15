@@ -6,6 +6,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShoutsService } from '../services/shouts.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,22 +20,36 @@ export class ProfileComponent implements OnInit {
 
   session: any;
   mediaPath: any = 'http://127.0.0.1:8000';
+  friends: number;
+  shouts: number;
 
   userShout: any;
 
   constructor(
     private post: ShoutsService,
     private auth: AuthService,
+    private userService: UserService,
     private activer: ActivatedRoute,
     private r: Router
-  ) {}
+  ) {
+    this.user_id = this.auth.getUserDetails().id;
+    // this.getUserDetails();
+    this.userService.getUserDetails(this.user_id).subscribe(
+      (res) => {
+        this.user = res.user;
+        this.friends = res.friends;
+        this.shouts = res.shouts;
+      },
+      (err) => console.log(err),
+      () => console.log(this.user)
+    );
+    console.log(this.user);
+  }
 
   ngOnInit(): void {
     //sessionStorage.setItem('user_id', '12');
     //this.session = sessionStorage.getItem('user_id');
-    this.user = this.auth.getUserDetails();
-    this.userShout = this.post.getShoutsById(this.user.id);
-    this.post.getShoutsById(this.user.id).subscribe(
+    this.post.getShoutsById(this.user_id).subscribe(
       (data) => {
         console.log(data);
         this.userShout = data;
@@ -44,11 +59,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  deleteOwnShout(id: number) {
-    this.post.deleteOwnShout(id).subscribe((data) => {
-      console.log('data' + data);
-      window.alert('Deleted Successfully');
-      this.ngOnInit();
-    });
-  }
+
+  getUserDetails() {}
 }

@@ -101,6 +101,14 @@ export class ShoutComponent implements OnInit {
     }
   }
 
+  deleteOwnShout() {
+    this.shoutService.deleteOwnShout(this.shout.id).subscribe((data) => {
+      console.log('data' + data);
+      window.alert('Deleted Successfully');
+      this.ngOnInit();
+    });
+  }
+
   openCommentsDialog(): void {
     const dialogRef = this.dialog.open(CommentsComponent, {
       data: { postId: this.shout.id },
@@ -108,7 +116,12 @@ export class ShoutComponent implements OnInit {
   }
   openReportDialog(): void {
     const dialogRef = this.dialog.open(ReportComponent, {
-      data: { postId: this.shout.id },
+      data: { postId: this.shout.id, isReported: this.isReported },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.isReported = result;
+      this.reportIcon = 'report_off';
     });
   }
 }

@@ -4,15 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public loginUserFromRemote(user: User): Observable<any> {
-
-    return this.http.post("http://127.0.0.1:8000/api/userLogin", user)
+    return this.http.post('http://127.0.0.1:8000/api/userLogin', user);
   }
 
   public storeUserData(user: User): Observable<any> {
@@ -43,10 +41,7 @@ export class AuthService {
     return false;
   }
 
-
   public registerUserFromRemote(user: User): Observable<any> {
-
-    return this.http.post("http://127.0.0.1:8000/api/register", user)
+    return this.http.post('http://127.0.0.1:8000/api/register', user);
   }
 }
-
