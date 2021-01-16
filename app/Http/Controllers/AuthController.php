@@ -91,7 +91,7 @@ class AuthController extends Controller
             $role = auth()->user()->role;
             if ($role !== "admin") {
                 return Redirect()->back()->withErrors(['msg' => 'Please Fill Credentials Properly For Admin']);
-                return view('/adminLogin');
+                // return view('/adminLogin');
             } else {
                 $users = User::all()->where('role', 'user');
                 return view('home', ['users' => $users]);

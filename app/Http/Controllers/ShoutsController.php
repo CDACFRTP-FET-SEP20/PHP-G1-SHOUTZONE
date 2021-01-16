@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shout;
 use App\Models\User;
 use App\Models\Friends;
-
-
-
+use App\Models\Report;
 
 class ShoutsController extends Controller
 {
@@ -28,7 +26,7 @@ class ShoutsController extends Controller
             $file->move($destinationPath, $fileName);
             $shoutsUpload->shoutMedia = '/Shouts/' . $fileName;
         }
-        $shoutsUpload->save() ;
+        $shoutsUpload->save();
         return response()->json(['message' => 'media Uploaded Successfully']);
     }
 
@@ -101,5 +99,11 @@ class ShoutsController extends Controller
     {
         $shoutsUpload = Shout::find($id);
         $shoutsUpload->delete();
+    }
+    public function reportedShout()
+    {
+        $reported = Report::all()->groupBy('category');
+        // dd($reported['Harassment'][0]->user);
+        return view('reports', ['reports' => $reported]);
     }
 }

@@ -23,4 +23,5 @@ Route::get('/adminApproval/{id}', [AdminController::class, 'adminApproval'])->na
 Route::get("delete/{id}", [AdminController::class, 'delete'])->name("deleteuser");
 Route::get("logout", [AdminController::class, 'logout'])->name("logout");
 Route::get("list", [ShoutsController::class, 'allShouts'])->name("shoutList");
-Route::get('/destroy/{id}',[ShoutsController::class, 'deleteshout'])->name("deleteshout");
+Route::get("/reported-shout", [ShoutsController::class, 'reportedShout'])->name("report");
+Route::get('/destroy/{id}', [ShoutsController::class, 'deleteshout'])->name("deleteshout");

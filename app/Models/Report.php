@@ -17,4 +17,9 @@ class Report extends Model
     {
         return $this->belongsTo('App\Models\Shout');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
