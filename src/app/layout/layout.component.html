@@ -9,9 +9,14 @@
       alt=""
     />
   </a>
-  <button mat-icon-button class="ml-auto">
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="ml-auto">
     <mat-icon>more_vert</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Update Profile</button>
+    <button mat-menu-item>Search Friend</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
 </mat-toolbar>
 <mat-drawer-container hasBackdrop>
   <mat-drawer #drawer mode="side"><app-navbar></app-navbar></mat-drawer>

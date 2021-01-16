@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateShoutComponent } from '../create-shout/create-shout.component';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -8,7 +10,11 @@ import { CreateShoutComponent } from '../create-shout/create-shout.component';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -17,5 +23,10 @@ export class LayoutComponent implements OnInit {
       width: '70vw',
       data: { type: 'create-shout' },
     });
+  }
+
+  logout() {
+    this.auth.logoutUser();
+    this.router.navigate(['/login']);
   }
 }

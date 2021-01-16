@@ -59,6 +59,4 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  getUserDetails() {}
 }

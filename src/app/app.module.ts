@@ -35,12 +35,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
 import { ReportComponent } from './report/report.component';
 import { DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BioComponent } from './bio/bio.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ShoutComponent,
     CommentsComponent,
     ReportComponent,
+    BioComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +89,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatSelectModule,
     MatSnackBarModule,
     Ng2SearchPipeModule,
+    MatMenuModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

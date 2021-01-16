@@ -16,9 +16,15 @@
 </mat-card>
 
 <mat-tab-group color="accent" mat-align-tabs="center">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>info</mat-icon>
+    </ng-template>
+    <app-bio *ngIf="user" [user]="user"></app-bio>
+  </mat-tab>
   <ng-container *ngIf="userShout">
     <mat-tab>
-      <ng-template mat-tab-label> All </ng-template>
+      <ng-template mat-tab-label><mat-icon>grid_on</mat-icon></ng-template>
       <div class="mt-4" *ngFor="let shout of userShout">
         <app-shout [shout]="shout">
           <span class="content" *ngIf="shout.shoutText">{{
@@ -49,7 +55,7 @@
         <mat-icon>message</mat-icon>
       </ng-template>
       <div class="mt-4" *ngFor="let a of userShout">
-        <app-shout [shout]="a" *ngIf="a.shoutType == 'text'">
+        <app-shout [shout]="a" *ngIf="a.shoutType === 'text'">
           <span class="content">{{ a.shoutText }} </span>
         </app-shout>
       </div>
@@ -110,11 +116,4 @@
       </div>
     </mat-tab>
   </ng-container>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>info</mat-icon>
-    </ng-template>
-    This is the profile
-  </mat-tab>
 </mat-tab-group>
