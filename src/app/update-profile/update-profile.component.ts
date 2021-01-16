@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -6,10 +9,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  user_id: any;
+  user: any;
+  data: any;
 
-  constructor() { }
+  constructor(private userService: UserService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.user_id = this.auth.getUserDetails().id;
+    this.getData()
+  }
+
+  getData() {
+    this.userService.getUserInfoById(this.user_id).subscribe(
+      (data) => {
+        this.data = data;
+        this.user = this.data;
+      },
+      (err) => { console.log('error in processing request', err) },
+      () => { }
+    )
+  }
+
+  userUpdate(form: NgForm) {
+
+    console.log(form);
+    this.userService.updateData(form, this.user_id).subscribe(
+      (data) => { this.user = data },
+      (err) => { console.log('error in processing request', err) },
+      () => { console.log(this.user) }
+    )
+
   }
 
 }
