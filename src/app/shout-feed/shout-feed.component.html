@@ -1,5 +1,5 @@
 <!-- <app-create-shout></app-create-shout> -->
-<div class="feed">
+<div class="feed" *ngIf="shoutData === []; else noShout">
   <ng-container *ngFor="let shout of shoutData">
     <app-shout [shout]="shout">
       <span class="content" *ngIf="shout.shoutText">{{ shout.shoutText }}</span>
@@ -19,3 +19,12 @@
     </app-shout>
   </ng-container>
 </div>
+
+<ng-template #noShout>
+  <div class="container" style="height: 100%">
+    <h3 class="p-5 bg-light rounded">
+      Make some new friends and then you will be able to see there shouts. Click
+      on <mat-icon>more_vert</mat-icon> icon and then on Search Friend.
+    </h3>
+  </div>
+</ng-template>
