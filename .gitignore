@@ -46,3 +46,7 @@ debug.log
 .DS_Store
 Thumbs.db
 node_modules
+
+#Sonar Scanner Files
+sonar-project.properties
+.sonar/
