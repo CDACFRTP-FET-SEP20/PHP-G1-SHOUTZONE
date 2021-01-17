@@ -12,8 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddFriendComponent implements OnInit {
   people: any;
   user: User;
-  p: any;
   data: any;
+  toShow: any;
 
   constructor(
     private friends: FriendsService,
@@ -59,6 +59,7 @@ export class AddFriendComponent implements OnInit {
     //this.people = this.friends.getSuggestionList(this.user_id);
     this.friends.getSuggestionList(this.user.id).subscribe((data) => {
       this.people = data;
+      this.toShow = data.length;
 
       Object.keys(this.people).map(
         (ele) => (this.people[ele] = { ...this.people[ele], found: true })

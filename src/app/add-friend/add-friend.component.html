@@ -1,19 +1,27 @@
-<mat-card class="mb-3 p-0 pt-3 pl-3" *ngFor="let p of people">
-  <mat-card-header class="align-items-start">
-    <img mat-card-avatar src="../../assets/avatar.png" alt="" />
-    <mat-card-title>{{ p.username }}</mat-card-title>
-    <mat-card-subtitle>
-      <button
-        *ngIf="p.found"
-        (click)="addFriend(p.id)"
-        mat-raised-button
-        color="primary"
-      >
-        Add Friend
-      </button>
-      <button *ngIf="!p.found" mat-raised-button color="primary">
-        Request Sent
-      </button>
-    </mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
+<ng-container *ngIf="toShow; else noFriend">
+  <mat-card class="mb-3 p-0 pt-3 pl-3" *ngFor="let p of people">
+    <mat-card-header class="align-items-start">
+      <img mat-card-avatar src="../../assets/avatar.png" alt="" />
+      <mat-card-title>{{ p.username }}</mat-card-title>
+      <mat-card-subtitle>
+        <button
+          *ngIf="p.found"
+          (click)="addFriend(p.id)"
+          mat-raised-button
+          color="primary"
+        >
+          Add Friend
+        </button>
+        <button *ngIf="!p.found" mat-raised-button color="primary">
+          Request Sent
+        </button>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-container>
+
+<ng-template #noFriend>
+  <mat-card>
+    <mat-card-content> No new people to show </mat-card-content>
+  </mat-card>
+</ng-template>
