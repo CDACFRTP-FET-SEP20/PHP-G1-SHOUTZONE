@@ -1,29 +1,40 @@
 <mat-card *ngIf="user">
-  <form #form="ngForm" (ngSubmit)="userUpdate(form)">
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput name="name" [(ngModel)]="user?.bio.name">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Username</mat-label>
-      <input matInput name="username" [(ngModel)]="user.username">
-    </mat-form-field>
-    <br>
+  <mat-card-content class="p-4">
+    <form #form="ngForm" (ngSubmit)="userUpdate(form)">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" [(ngModel)]="user?.bio.name" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput name="username" [(ngModel)]="user.username" />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field appearance="fill">
-      <mat-label> Email address</mat-label>
-      <input matInput type="email" placeholder="Ex. pat@example.com" name="email" [(ngModel)]="user.email">
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> Email address</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Ex. pat@example.com"
+          name="email"
+          [(ngModel)]="user.email"
+        />
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea matInput name="description" [(ngModel)]="user?.bio.description"></textarea>
-    </mat-form-field>
-    <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          name="description"
+          [(ngModel)]="user?.bio.description"
+        ></textarea>
+      </mat-form-field>
+      <br />
 
-    <br>
-    <button type="submit" mat-raised-button color="primary">Update</button>
-  </form>
+      <br />
+      <button type="submit" mat-raised-button color="primary">Update</button>
+    </form>
+  </mat-card-content>
 </mat-card>
-
