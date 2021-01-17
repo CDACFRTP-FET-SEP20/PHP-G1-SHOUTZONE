@@ -30,7 +30,10 @@ class AuthController extends Controller
 
             $user = User::where('username', $request->username)->first();
             if (!Hash::check($request->password, $user->password, [])) {
-                throw new \ErrorException('Error in Login');
+                return response()->json([
+                    'status_code' => 401,
+                    'message' => 'Invalid Credentials'
+                ]);
             }
             $approval = auth()->user()->is_approved;
             if (!$approval) {
@@ -86,7 +89,10 @@ class AuthController extends Controller
 
             $user = User::where('username', $request->username)->first();
             if (!Hash::check($request->password, $user->password, [])) {
-                throw new \ErrorException('Please Fill Credentials Properly1');
+                return response()->json([
+                    'status_code' => 401,
+                    'message' => 'Invalid Credentials'
+                ]);
             }
             $role = auth()->user()->role;
             if ($role !== "admin") {
