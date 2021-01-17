@@ -22,14 +22,15 @@
     </p>
   </mat-card-content>
   <mat-card-content>
-    {{ shout.likes.length }} Likes | {{ shout.comments.length }} Comments
+    {{ shout.likes.length }} Likes |
+    {{ comments ? comments : shout.comments.length }} Comments
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="likeDislike()">
       <mat-icon>{{ likeBtnIcon }}</mat-icon>
     </button>
     <button mat-button (click)="openCommentsDialog()">
-      <mat-icon> comment</mat-icon>
+      <mat-icon>comment</mat-icon>
     </button>
     <button mat-button (click)="openReportDialog()" [disabled]="isReported">
       <mat-icon>{{ reportIcon }}</mat-icon>
