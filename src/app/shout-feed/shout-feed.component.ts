@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { HttpClientModule } from '@angular/common/http';
-import { Shout } from '../create-shout/Shout';
-import { Observable } from 'rxjs';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShoutsService } from '../services/shouts.service';
 import { AuthService } from '../services/auth.service';
 

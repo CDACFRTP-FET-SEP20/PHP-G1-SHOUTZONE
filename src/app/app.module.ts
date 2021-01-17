@@ -37,7 +37,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './comments/comments.component';
 import { ReportComponent } from './report/report.component';
 import { DatePipe } from '@angular/common';
@@ -75,7 +74,6 @@ import { SearchFriendComponent } from './search-friend/search-friend.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
