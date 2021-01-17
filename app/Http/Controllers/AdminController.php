@@ -33,12 +33,12 @@ class AdminController extends Controller
             $user->is_approved = true;
             $user->save();
             $message = 'User  ' . $user->bio->name . ' has been approved.';
-            return Redirect::to('/userlist')->with(['success' => $message]);;
+            return Redirect::to('/userlist')->with(['success' => $message]);
         } else {
             $user->is_approved = false;
             $user->save();
             $message = 'User  ' . $user->bio->name . ' has been disapproved.';
-            return Redirect::to('/userlist')->with(['success' => $message]);;
+            return Redirect::to('/userlist')->with(['success' => $message]);
         }
     }
     public function userList()
@@ -105,7 +105,7 @@ class AdminController extends Controller
         $message = 'User ' . $user->bio->name . ' has been deleted.';
 
         $user->delete();
-        return Redirect::to('/userlist')->with(['success' => $message]);;
+        return Redirect::to('/userlist')->with(['success' => $message]);
     }
 
     public function logout(Request $request)
