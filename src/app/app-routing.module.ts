@@ -11,7 +11,8 @@ import { ShoutFeedComponent } from './shout-feed/shout-feed.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { CreateShoutComponent } from './create-shout/create-shout.component';
 import { AuthGuardService } from './services/authgaurd.service';
-
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { SearchFriendComponent } from './search-friend/search-friend.component';
 
 const routes: Routes = [
   {
@@ -37,17 +38,21 @@ const routes: Routes = [
   },
   {
     path: 'friend',
-    component: AddFriendComponent, canActivate: [AuthGuardService]
+    component: AddFriendComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'home',
-    component: LayoutComponent, canActivate: [AuthGuardService],
+    component: LayoutComponent,
+    canActivate: [AuthGuardService],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'feed' },
       { path: 'feed', component: ShoutFeedComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'friends', component: FriendsListComponent },
       { path: 'request', component: FriendRequestComponent },
+      { path: 'edit', component: UpdateProfileComponent },
+      { path: 'search', component: SearchFriendComponent },
     ],
   },
 ];
@@ -56,4 +61,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

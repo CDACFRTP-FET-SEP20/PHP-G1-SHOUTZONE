@@ -23,7 +23,11 @@ export class CommentsComponent implements OnInit {
     private shout: ShoutsService,
     private auth: AuthService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.dialogRef.beforeClosed().subscribe(() => {
+      this.dialogRef.close(this.comments.length);
+    });
+  }
 
   listComments() {
     // this.showDeleteBtn = false;

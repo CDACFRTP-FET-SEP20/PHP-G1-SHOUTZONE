@@ -113,6 +113,10 @@ export class ShoutComponent implements OnInit {
     const dialogRef = this.dialog.open(CommentsComponent, {
       data: { shout: this.shout, user_id: this.shout.user_id },
     });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.comments = result;
+    });
   }
   openReportDialog(): void {
     const dialogRef = this.dialog.open(ReportComponent, {

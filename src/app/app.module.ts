@@ -44,6 +44,7 @@ import { DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BioComponent } from './bio/bio.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { SearchFriendComponent } from './search-friend/search-friend.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     ReportComponent,
     BioComponent,
     UpdateProfileComponent,
+    SearchFriendComponent,
   ],
   imports: [
     BrowserModule,
