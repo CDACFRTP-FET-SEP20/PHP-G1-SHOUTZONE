@@ -29,12 +29,9 @@ export class CreateShoutComponent implements OnInit {
     }
   }
   uploadShout(event: any) {
-    console.log(this.flag);
     this.flag = null;
-    console.log(this.flag);
     this.shout.shoutMedia = event.target.files[0];
     var shoutType = this.shout.shoutMedia.type;
-    console.log(shoutType);
     if (shoutType.includes('image')) {
       // this.flag = true;
       this.shout.shoutType = 'image';
@@ -49,7 +46,6 @@ export class CreateShoutComponent implements OnInit {
 
   formSubmit(form: NgForm) {
     this.postservice.addShout(this.shout, this.userId).subscribe((Response) => {
-      console.log(Response);
       this.shout.shoutMedia = null;
       this.shout.shoutType = null;
       this.shout.shoutText = null;

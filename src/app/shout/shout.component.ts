@@ -28,15 +28,9 @@ export class ShoutComponent implements OnInit {
     this.loggedInUserId = this.authService.getUserDetails().id;
     this.likedByMe();
     this.reportedByMe();
-    console.log('In shout Compo', this.shout);
   }
 
   reportedByMe(): void {
-    console.log(
-      'Report',
-      this.shout.id,
-      this.shout.report.findIndex((ele) => ele.user_id === this.loggedInUserId)
-    );
     if (
       this.shout.report.findIndex(
         (ele) => ele.user_id === this.loggedInUserId
@@ -51,11 +45,6 @@ export class ShoutComponent implements OnInit {
   }
 
   likedByMe(): void {
-    console.log(
-      'liked',
-      this.shout.id,
-      this.shout.likes.findIndex((ele) => ele.user_id === this.loggedInUserId)
-    );
     if (
       this.shout.likes.findIndex((ele) => ele.user_id === this.loggedInUserId) >
       -1
@@ -69,41 +58,27 @@ export class ShoutComponent implements OnInit {
   }
 
   likeDislike(): void {
-    console.log('This is like dislike');
     let like = {
       user_id: this.loggedInUserId,
       shout_id: this.shout.id,
     };
     if (this.isLiked) {
-      console.log('This is Dislike');
-      this.shoutService.disLikeShout(like).subscribe(
-        (data) => {
-          console.log(data);
-          this.isLiked = false;
-          this.likeBtnIcon = 'thumb_up';
-          this.shout.likes.pop();
-        },
-        (err) => console.log(err),
-        () => console.log('Disliked')
-      );
+      this.shoutService.disLikeShout(like).subscribe((data) => {
+        this.isLiked = false;
+        this.likeBtnIcon = 'thumb_up';
+        this.shout.likes.pop();
+      });
     } else {
-      console.log('This is like');
-      this.shoutService.likeShout(like).subscribe(
-        (data) => {
-          console.log(data);
-          this.isLiked = true;
-          this.likeBtnIcon = 'thumb_down';
-          this.shout.likes.push({ like });
-        },
-        (err) => console.log(err),
-        () => console.log('Disliked')
-      );
+      this.shoutService.likeShout(like).subscribe((data) => {
+        this.isLiked = true;
+        this.likeBtnIcon = 'thumb_down';
+        this.shout.likes.push({ like });
+      });
     }
   }
 
   deleteOwnShout() {
     this.shoutService.deleteOwnShout(this.shout.id).subscribe((data) => {
-      console.log('data' + data);
       window.alert('Deleted Successfully');
       this.ngOnInit();
     });

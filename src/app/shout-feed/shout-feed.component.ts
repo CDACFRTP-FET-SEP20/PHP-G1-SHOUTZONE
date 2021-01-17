@@ -38,14 +38,9 @@ export class ShoutFeedComponent implements OnInit {
         Object.values(this.shoutData).map((ele) => {
           ele.shoutMedia = `${this.mediaPath}${ele.shoutMedia}`;
         });
-        console.log(this.shoutData);
       },
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        console.log('Got all the shout or there might be error');
-      }
+      (err) => {},
+      () => {}
     );
   }
 }

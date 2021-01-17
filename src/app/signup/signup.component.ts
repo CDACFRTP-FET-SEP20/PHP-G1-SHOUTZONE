@@ -30,23 +30,27 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private datePipe: DatePipe
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(7),
-      ]),
-      cpassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
-      gender: new FormControl('', [Validators.required]),
-      dob: new FormControl('', [Validators.required]),
-    },
+    this.registerForm = new FormGroup(
       {
-        validators: this.MatchPassword
+        name: new FormControl('', [Validators.required]),
+        username: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7),
+        ]),
+        cpassword: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7),
+        ]),
+        gender: new FormControl('', [Validators.required]),
+        dob: new FormControl('', [Validators.required]),
+      },
+      {
+        validators: this.MatchPassword,
       }
     );
   }
@@ -57,18 +61,16 @@ export class SignupComponent implements OnInit {
 
   userRegister() {
     this.submitted = true;
-    this.myDate = this.datePipe.transform(this.user.dob, "yyyy-MM-dd");
+    this.myDate = this.datePipe.transform(this.user.dob, 'yyyy-MM-dd');
     this.user.dob = this.myDate;
-    this.service.registerUserFromRemote(this.user).subscribe(
-      (data) => {
-        if (data.status_code === 200) {
-          alert("You are Successfully Registerd...You Will be Verified within 24 Hours!!");
-          this.router.navigateByUrl('/welcome');
-        }
-      },
-      (err) => { console.log('error in processing request', err) },
-      () => { }
-    )
+    this.service.registerUserFromRemote(this.user).subscribe((data) => {
+      if (data.status_code === 200) {
+        alert(
+          'You are Successfully Registerd...You Will be Verified within 24 Hours!!'
+        );
+        this.router.navigateByUrl('/welcome');
+      }
+    });
   }
 
   MatchPassword(AC: AbstractControl) {
@@ -77,9 +79,9 @@ export class SignupComponent implements OnInit {
       let verifyPassword = AC.get('cpassword').value;
 
       if (password != verifyPassword) {
-        AC.get('cpassword').setErrors({ MatchPassword: true })
+        AC.get('cpassword').setErrors({ MatchPassword: true });
       } else {
-        return null
+        return null;
       }
     }
   }

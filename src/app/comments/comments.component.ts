@@ -42,17 +42,13 @@ export class CommentsComponent implements OnInit {
               : this.data.shout.user_id === this.user.id,
         };
       });
-      console.log(this.comments);
     });
   }
 
   deleteComment(id) {
-    console.log('Comment_ID', id);
-
     let index = this.comments.findIndex((ele) => ele.id === id);
     let comment_id = this.comments[index].id;
     this.shout.deleteComment(comment_id).subscribe(() => {
-      console.log('Comment Deleted ', comment_id);
       this._snackBar.open(`Comment Deleted Successfully !!!`, 'Dismiss', {
         duration: 2000,
       });
@@ -62,8 +58,6 @@ export class CommentsComponent implements OnInit {
 
   postComment() {
     if (this.inputComment != null) {
-      console.log('In Store', this.data.shout.id);
-
       let data = {
         shout_id: this.data.shout.id,
         id: this.user.id,
@@ -71,7 +65,6 @@ export class CommentsComponent implements OnInit {
       };
       this.shout.storeComment(data).subscribe((data) => {
         this.inputComment = '';
-        console.log('post done');
 
         this.listComments();
       });
@@ -79,10 +72,7 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.user = this.auth.getUserDetails(); //current logged in user
-
-    console.log(this.data.shout.id);
 
     this.listComments();
   }

@@ -25,7 +25,6 @@ export class SearchFriendComponent implements OnInit {
   ) {}
 
   addFriend(id) {
-    console.log('inside Add', id);
     this.user = this.auth.getUserDetails(); //current logged in user
 
     let index = this.people.findIndex((ele) => ele.id === id);
@@ -37,7 +36,6 @@ export class SearchFriendComponent implements OnInit {
     };
     this.friends.sendFriendRequest(this.data).subscribe(
       () => {
-        console.log('sent Request');
         this._snackBar.open(
           `Friend Request has been sent to ${this.people[index].username} `,
           'Dismiss',
@@ -48,16 +46,12 @@ export class SearchFriendComponent implements OnInit {
 
         this.userList();
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 
   userList() {
     this.user = this.auth.getUserDetails(); //current logged in user
-
-    console.log(this.user.id);
 
     //this.people = this.friends.getSuggestionList(this.user_id);
     this.friends.getSuggestionList(this.user.id).subscribe((data) => {
@@ -67,7 +61,6 @@ export class SearchFriendComponent implements OnInit {
       Object.keys(this.people).map(
         (ele) => (this.people[ele] = { ...this.people[ele], found: true })
       );
-      console.log(this.people);
     });
   }
 

@@ -34,16 +34,11 @@ export class ProfileComponent implements OnInit {
   ) {
     this.user_id = this.auth.getUserDetails().id;
     // this.getUserDetails();
-    this.userService.getUserDetails(this.user_id).subscribe(
-      (res) => {
-        this.user = res.user;
-        this.friends = res.friends;
-        this.shouts = res.shouts;
-      },
-      (err) => console.log(err),
-      () => console.log(this.user)
-    );
-    console.log(this.user);
+    this.userService.getUserDetails(this.user_id).subscribe((res) => {
+      this.user = res.user;
+      this.friends = res.friends;
+      this.shouts = res.shouts;
+    });
   }
 
   ngOnInit(): void {
@@ -51,12 +46,9 @@ export class ProfileComponent implements OnInit {
     //this.session = sessionStorage.getItem('user_id');
     this.post.getShoutsById(this.user_id).subscribe(
       (data) => {
-        console.log(data);
         this.userShout = data;
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 }

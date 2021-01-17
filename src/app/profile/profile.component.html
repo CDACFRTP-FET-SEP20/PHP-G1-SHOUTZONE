@@ -43,7 +43,7 @@
                 ></video>
               </ng-container>
               <ng-container *ngSwitchCase="'image'">
-                <img class="image" src="{{ shout.shoutMedia }}" />
+                <img class="image" alt="" src="{{ shout.shoutMedia }}" />
               </ng-container>
             </ng-container>
           </span>
@@ -68,7 +68,7 @@
         <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
           <span class="content">{{ a.shoutText }}</span>
           <span class="media">
-            <img class="image" src="{{ mediaPath }}{{ a.shoutMedia }}" />
+            <img class="image" alt="" src="{{ mediaPath }}{{ a.shoutMedia }}" />
           </span>
         </app-shout>
       </div>

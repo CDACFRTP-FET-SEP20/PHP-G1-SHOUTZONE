@@ -20,7 +20,6 @@ export class UserService {
     return this.httpClient.get(url);
   }
 
-
   updateData(formData: NgForm, id: any): Observable<any> {
     const form = new FormData();
     form.append('id', id);
@@ -28,9 +27,6 @@ export class UserService {
     form.append('username', formData.value.username);
     form.append('email', formData.value.email);
     form.append('description', formData.value.description);
-
-    console.log(form);
-
     return this.httpClient.post('http://127.0.0.1:8000/api/update/' + id, form);
   }
 
@@ -38,9 +34,9 @@ export class UserService {
     const form = new FormData();
     form.append('id', id);
     form.append('profile_photo', formData.value.profile_photo);
-
-    console.log(form);
-
-    return this.httpClient.post('http://127.0.0.1:8000/api/updateProfile_photo/' + id, form);
+    return this.httpClient.post(
+      'http://127.0.0.1:8000/api/updateProfile_photo/' + id,
+      form
+    );
   }
 }

@@ -24,9 +24,7 @@ export class ReportComponent implements OnInit {
     // this.dialogRef.beforeClosed().subscribe(() => this.reportShout());
   }
 
-  ngOnInit(): void {
-    console.log(this.data.postId);
-  }
+  ngOnInit(): void {}
 
   reportShout(): void {
     this.report.userId = this.authService.getUserDetails().id;

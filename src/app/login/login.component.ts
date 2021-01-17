@@ -4,48 +4,38 @@ import { User } from '../model/user';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   user = new User();
   loginForm: FormGroup;
-  hide = true
+  hide = true;
 
   submitted = false;
 
-  constructor(private service: AuthService, private router: Router) { }
-
-
+  constructor(private service: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(7),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(7),
       ]),
     });
-
-
   }
 
   userLogin() {
-
-
     this.service.loginUserFromRemote(this.user).subscribe(
       (data) => {
-        // console.log(data.status_code);
-        data.status_code != Number
+        data.status_code != Number;
 
         switch (data.status_code) {
           case 500:
-            alert("please fill valid credentials");
-
+            alert('please fill valid credentials');
             break;
           case 405:
             alert(
@@ -56,13 +46,9 @@ export class LoginComponent implements OnInit {
             alert('please fill valid credentials for Users');
             break;
           case 200:
-            console.log(data.user)
             this.service.storeUserData(data.user);
             this.router.navigateByUrl('/home');
-            // this.router.navigate(['/home'])
-
             break;
-
           default:
             break;
         }
@@ -70,13 +56,7 @@ export class LoginComponent implements OnInit {
       (err) => {
         alert(err);
       },
-      () => { }
-    )
+      () => {}
+    );
   }
-
-
-
 }
-
-
-

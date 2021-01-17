@@ -24,7 +24,6 @@ export class FriendRequestComponent implements OnInit {
 
   acceptRequest(id) {
     this.user = this.auth.getUserDetails();
-    console.log('inside Accept', id);
     let index = this.requestList.findIndex((ele) => ele.id === id);
     this.data = {
       user_id: this.user.id, //current logged in user
@@ -32,7 +31,6 @@ export class FriendRequestComponent implements OnInit {
     };
     this.friends.acceptFriendRequest(this.data).subscribe(
       () => {
-        console.log('sent Request');
         this.requests();
         this._snackBar.open(
           `You are now friend with ${this.requestList[index].username} !!!`,
@@ -42,15 +40,12 @@ export class FriendRequestComponent implements OnInit {
           }
         );
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 
   deleteRequest(id) {
     this.user = this.auth.getUserDetails();
-    console.log('inside Delete', id);
     this.data = {
       user_id: this.user.id, //current logged in user
       id: id,
@@ -58,26 +53,21 @@ export class FriendRequestComponent implements OnInit {
 
     this.friends.deleteFriendRequest(this.data).subscribe(
       () => {
-        console.log('Request Removed');
         this._snackBar.open(`Request is Removed !!!`, 'Dismiss', {
           duration: 2000,
         });
         this.requests();
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 
   requests() {
     this.requestList;
-    console.log('inside requestList');
     this.user = this.auth.getUserDetails();
     this.friends.getRequestList(this.user.id).subscribe((data) => {
       if (data.length > 0) {
         this.requestList = data;
-        console.log(this.requestList);
       } else {
         this.requestList = null;
       }

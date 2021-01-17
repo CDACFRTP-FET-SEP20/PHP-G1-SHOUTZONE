@@ -34,8 +34,6 @@ export class ShoutsService {
     formData.append('shoutType', shout.shoutType);
     formData.append('user_id', id);
 
-    console.log(formData);
-
     if (shout.shoutMedia != null)
       return this.httpClient.post(
         'http://127.0.0.1:8000/api/shouts/add',
@@ -65,13 +63,10 @@ export class ShoutsService {
   }
 
   likeShout(like: any): Observable<any> {
-    console.log('This is Like serive bitch');
-
     return this.httpClient.post('http://localhost:8000/api/shouts/like', like);
   }
 
   disLikeShout(like: any): Observable<any> {
-    console.log('This is disLike serive bitch');
     return this.httpClient.delete(
       'http://localhost:8000/api/shouts/like',
       like
