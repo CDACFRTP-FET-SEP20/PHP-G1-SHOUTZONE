@@ -1,21 +1,16 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {{-- <a class="navbar-brand" href="#">ShoutOut</a> --}}
-        </div>
+        <a class="navbar-brand" href="/home">ShoutBox</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('userlist') }}">Home</a></li>
-                <li><a href="{{ route('shoutList') }}">All Shouts</a></li>
-                <li><a href="{{ route('report') }}">Reported Shout</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('userlist') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('shoutList') }}">All Shouts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('report') }}">Reported Shout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Log out</a></li>
             </ul>
         </div>
     </div>

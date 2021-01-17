@@ -92,6 +92,7 @@ class ReportShoutController extends Controller
     {
         $report = Report::find($id);
         $report->delete();
-        return ['Deleted'];
+        return back();
+        // return ['Deleted'];
     }
 }

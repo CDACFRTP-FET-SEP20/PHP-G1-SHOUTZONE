@@ -93,7 +93,7 @@ class ShoutsController extends Controller
     {
         $shoutsUpload = Shout::find($id);
         $shoutsUpload->delete();
-        return redirect('list');
+        return back();
     }
     public function deleteownshout($id)
     {
@@ -103,7 +103,7 @@ class ShoutsController extends Controller
     public function reportedShout()
     {
         $reported = Report::all()->groupBy('category');
-        // dd($reported['Harassment'][0]->user);
+        // dd($reported['Harassment'][0]->shout);
         return view('reports', ['reports' => $reported]);
     }
 }
