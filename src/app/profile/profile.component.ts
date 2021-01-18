@@ -33,9 +33,7 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {
     console.log(this.user_id);
-    // this.getUserDetails();
     this.activedRoute.params.subscribe((data) => {
-      console.log(data);
       this.user_id = data.id;
     });
     this.userService.getUserDetails(this.user_id).subscribe((res) => {
