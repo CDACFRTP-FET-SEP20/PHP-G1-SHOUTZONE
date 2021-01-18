@@ -159,9 +159,9 @@
                                     </h4>
 
                                 </div>
-                                <a class="img-card">
 
-                                    <p> {{$shout->shoutText == 'null' || $shout->shoutText == 'undefined' ? ' ' : $shout->shoutText}}
+
+                                    <p class="img-card"> {{$shout->shoutText == 'null' || $shout->shoutText == 'undefined' ? ' ' : $shout->shoutText}}
                                     </p>
 
                                     @if ($shout->shoutType==='image')
