@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private datePipe: DatePipe
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup(
@@ -64,11 +64,18 @@ export class SignupComponent implements OnInit {
     this.myDate = this.datePipe.transform(this.user.dob, 'yyyy-MM-dd');
     this.user.dob = this.myDate;
     this.service.registerUserFromRemote(this.user).subscribe((data) => {
+      console.log(data.status_code);
+
       if (data.status_code === 200) {
         alert(
-          'You are Successfully Registerd...You Will be Verified within 24 Hours!!'
-        );
+          'You are Successfully Registerd...You Will be Verified within 24 Hours!!');
         this.router.navigateByUrl('/welcome');
+      }
+
+      if (data.status_code === 300) {
+        alert(
+          'Email and Username already exits!!!');
+        window.location.reload();
       }
     });
   }
