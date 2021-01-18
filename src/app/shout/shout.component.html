@@ -5,15 +5,7 @@
     <mat-card-subtitle>{{
       shout.created_at | date: "short"
     }}</mat-card-subtitle>
-    <button
-      class="ml-auto"
-      mat-icon-button
-      *ngIf="shout.user_id === loggedInUserId"
-      color="warn"
-      (click)="deleteOwnShout()"
-    >
-      <mat-icon> delete_forever </mat-icon>
-    </button>
+    <ng-content select=".ml-auto"></ng-content>
   </mat-card-header>
   <ng-content select=".media"></ng-content>
   <mat-card-content>
