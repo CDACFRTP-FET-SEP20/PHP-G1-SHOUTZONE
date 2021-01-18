@@ -8,8 +8,10 @@
       <li><a routerLink="feed">Feed</a></li>
       <li><a routerLink="friends">Friends</a></li>
       <li><a routerLink="request">Requests</a></li>
-      <li><a routerLink="profile">Profile</a></li>
-      <li><button mat-raised-button (click)="logout()" class="bg">Logout</button></li>
+      <li><a routerLink="profile/{{ userId }}">Profile</a></li>
+      <li>
+        <button mat-raised-button (click)="logout()" class="bg">Logout</button>
+      </li>
     </ul>
   </nav>
 </header>

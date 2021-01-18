@@ -3,6 +3,7 @@ import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { FriendsService } from '../services/friends.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-friend',
@@ -18,8 +19,13 @@ export class AddFriendComponent implements OnInit {
   constructor(
     private friends: FriendsService,
     private auth: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
+
+  goToProfile(id) {
+    this.router.navigate([`/home/profile/${id}`]);
+  }
 
   addFriend(id) {
     this.user = this.auth.getUserDetails(); //current logged in user

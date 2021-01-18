@@ -23,7 +23,7 @@
 <ng-container *ngIf="requestList; else noRequests">
   <ng-container *ngFor="let f of requestList | filter: keyword">
     <mat-card class="mb-3">
-      <mat-card-header>
+      <mat-card-header (click)="goToProfile(f.id)">
         <img mat-card-avatar src="../../assets/avatar.png" alt="" />
         <mat-card-title>
           {{ f.username }}

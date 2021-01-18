@@ -4,6 +4,7 @@ import { CommentsComponent } from '../comments/comments.component';
 import { ReportComponent } from '../report/report.component';
 import { ShoutsService } from '../services/shouts.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shout',
@@ -21,8 +22,13 @@ export class ShoutComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private shoutService: ShoutsService
+    private shoutService: ShoutsService,
+    private router: Router
   ) {}
+
+  goToProfile(id) {
+    this.router.navigate([`/home/profile/${id}`]);
+  }
 
   ngOnInit(): void {
     this.loggedInUserId = this.authService.getUserDetails().id;

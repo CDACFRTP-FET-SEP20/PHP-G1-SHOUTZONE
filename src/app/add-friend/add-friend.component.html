@@ -1,6 +1,6 @@
 <ng-container *ngIf="toShow; else noFriend">
   <mat-card class="mb-3 p-0 pt-3 pl-3" *ngFor="let p of people">
-    <mat-card-header class="align-items-start">
+    <mat-card-header class="align-items-start" (click)="goToProfile(p.id)">
       <img mat-card-avatar src="../../assets/avatar.png" alt="" />
       <mat-card-title>{{ p.username }}</mat-card-title>
       <mat-card-subtitle>

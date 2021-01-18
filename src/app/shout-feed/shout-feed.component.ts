@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class ShoutFeedComponent implements OnInit {
   userId: number;
   value: any;
-
+  toShow: boolean = false;
   session: any;
   mediaPath: any = 'http://127.0.0.1:8000';
 
@@ -30,6 +30,10 @@ export class ShoutFeedComponent implements OnInit {
     this.shoutService.getFriendsShout(userId).subscribe(
       (data) => {
         this.shoutData = data;
+        if (this.shoutData.length > 0) {
+          this.toShow = true;
+        }
+
         Object.values(this.shoutData).map((ele) => {
           ele.shoutMedia = `${this.mediaPath}${ele.shoutMedia}`;
         });

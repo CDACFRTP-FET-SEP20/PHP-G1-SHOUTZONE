@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   user_id: any;
   value: any;
-
+  isLoggedInUser: boolean = false;
   session: any;
   mediaPath: any = 'http://127.0.0.1:8000';
   friends: number;
@@ -29,11 +29,15 @@ export class ProfileComponent implements OnInit {
     private post: ShoutsService,
     private auth: AuthService,
     private userService: UserService,
-    private activer: ActivatedRoute,
-    private r: Router
+    private activedRoute: ActivatedRoute,
+    private router: Router
   ) {
-    this.user_id = this.auth.getUserDetails().id;
+    console.log(this.user_id);
     // this.getUserDetails();
+    this.activedRoute.params.subscribe((data) => {
+      console.log(data);
+      this.user_id = data.id;
+    });
     this.userService.getUserDetails(this.user_id).subscribe((res) => {
       this.user = res.user;
       this.friends = res.friends;
@@ -43,6 +47,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserShouts();
+    if (this.auth.getUserDetails().id == this.user_id) {
+      this.isLoggedInUser = true;
+    }
   }
 
   getUserShouts() {
