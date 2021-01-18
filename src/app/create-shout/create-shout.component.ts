@@ -26,6 +26,7 @@ export class CreateShoutComponent implements OnInit {
   inputChange(event: any) {
     if (event.target.value !== '') {
       this.flag = null;
+      this.shout.shoutType = 'text';
     }
   }
   uploadShout(event: any) {

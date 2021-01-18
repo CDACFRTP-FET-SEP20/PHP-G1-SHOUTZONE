@@ -1,5 +1,5 @@
 <mat-card class="mb-4">
-  <mat-card-header>
+  <mat-card-header (click)="goToProfile(shout.user_id)">
     <img mat-card-avatar class="ava" src="../../assets/avatar.png" alt="" />
     <mat-card-title>{{ shout.user.username }}</mat-card-title>
     <mat-card-subtitle>{{

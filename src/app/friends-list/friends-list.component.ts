@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { FriendsService } from '../services/friends.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends-list',
@@ -20,7 +21,8 @@ export class FriendsListComponent implements OnInit {
   constructor(
     private friends: FriendsService,
     private auth: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.friendlist;
   }
@@ -60,6 +62,10 @@ export class FriendsListComponent implements OnInit {
       }
     }),
       (error) => {};
+  }
+
+  goToProfile(id) {
+    this.router.navigate([`/home/profile/${id}`]);
   }
 
   ngOnInit(): void {

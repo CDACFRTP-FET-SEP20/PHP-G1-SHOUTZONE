@@ -20,158 +20,164 @@
     </ng-template>
     <app-bio *ngIf="user" [user]="user"></app-bio>
   </mat-tab>
-  <ng-container *ngIf="userShout?.length > 0">
-    <mat-tab>
-      <ng-template mat-tab-label><mat-icon>grid_on</mat-icon></ng-template>
-      <div class="mt-4" *ngFor="let shout of userShout">
-        <app-shout [shout]="shout">
-          <button
-            class="ml-auto"
-            mat-icon-button
-            color="warn"
-            (click)="deleteOwnShout(shout.id)"
-          >
-            <mat-icon> delete_forever </mat-icon>
-          </button>
-          <span class="content" *ngIf="shout.shoutText">{{
-            shout.shoutText == "null" || shout.shoutText == "undefined"
-              ? " "
-              : shout.shoutText
-          }}</span>
+  <ng-container *ngIf="isLoggedInUser">
+    <ng-container *ngIf="userShout?.length > 0">
+      <mat-tab>
+        <ng-template mat-tab-label><mat-icon>grid_on</mat-icon></ng-template>
+        <div class="mt-4" *ngFor="let shout of userShout">
+          <app-shout [shout]="shout">
+            <button
+              class="ml-auto"
+              mat-icon-button
+              color="warn"
+              (click)="deleteOwnShout(shout.id)"
+            >
+              <mat-icon> delete_forever </mat-icon>
+            </button>
+            <span class="content" *ngIf="shout.shoutText">{{
+              shout.shoutText == "null" || shout.shoutText == "undefined"
+                ? " "
+                : shout.shoutText
+            }}</span>
 
-          <span class="media">
-            <ng-container [ngSwitch]="shout.shoutType">
-              <ng-container *ngSwitchCase="'audio'">
-                <audio
-                  src="{{ mediaPath }}{{ shout.shoutMedia }}"
-                  controls
-                ></audio>
+            <span class="media">
+              <ng-container [ngSwitch]="shout.shoutType">
+                <ng-container *ngSwitchCase="'audio'">
+                  <audio
+                    src="{{ mediaPath }}{{ shout.shoutMedia }}"
+                    controls
+                  ></audio>
+                </ng-container>
+                <ng-container *ngSwitchCase="'video'">
+                  <video
+                    class="video"
+                    src="{{ mediaPath }}{{ shout.shoutMedia }}"
+                    controls
+                  ></video>
+                </ng-container>
+                <ng-container *ngSwitchCase="'image'">
+                  <img
+                    class="image"
+                    alt=""
+                    src="{{ mediaPath }}{{ shout.shoutMedia }}"
+                  />
+                </ng-container>
               </ng-container>
-              <ng-container *ngSwitchCase="'video'">
-                <video
-                  class="video"
-                  src="{{ mediaPath }}{{ shout.shoutMedia }}"
-                  controls
-                ></video>
-              </ng-container>
-              <ng-container *ngSwitchCase="'image'">
-                <img
-                  class="image"
-                  alt=""
-                  src="{{ mediaPath }}{{ shout.shoutMedia }}"
-                />
-              </ng-container>
-            </ng-container>
-          </span>
-        </app-shout>
-      </div>
-    </mat-tab>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon>message</mat-icon>
-      </ng-template>
-      <div class="mt-4" *ngFor="let a of userShout">
-        <app-shout [shout]="a" *ngIf="a.shoutType === 'text'">
-          <button
-            class="ml-auto"
-            mat-icon-button
-            color="warn"
-            (click)="deleteOwnShout(a.id)"
-          >
-            <mat-icon> delete_forever </mat-icon>
-          </button>
-          <span class="content"
-            >{{
+            </span>
+          </app-shout>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>message</mat-icon>
+        </ng-template>
+        <div class="mt-4" *ngFor="let a of userShout">
+          <app-shout [shout]="a" *ngIf="a.shoutType === 'text'">
+            <button
+              class="ml-auto"
+              mat-icon-button
+              color="warn"
+              (click)="deleteOwnShout(a.id)"
+            >
+              <mat-icon> delete_forever </mat-icon>
+            </button>
+            <span class="content"
+              >{{
+                a.shoutText == "null" || a.shoutText == "undefined"
+                  ? " "
+                  : a.shoutText
+              }}
+            </span>
+          </app-shout>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>image</mat-icon>
+        </ng-template>
+        <div class="mt-4" *ngFor="let a of userShout">
+          <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
+            <button
+              class="ml-auto"
+              mat-icon-button
+              color="warn"
+              (click)="deleteOwnShout(a.id)"
+            >
+              <mat-icon> delete_forever </mat-icon>
+            </button>
+            <span class="content">{{
               a.shoutText == "null" || a.shoutText == "undefined"
                 ? " "
                 : a.shoutText
-            }}
-          </span>
-        </app-shout>
-      </div>
-    </mat-tab>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon>image</mat-icon>
-      </ng-template>
-      <div class="mt-4" *ngFor="let a of userShout">
-        <app-shout [shout]="a" *ngIf="a.shoutType == 'image'">
-          <button
-            class="ml-auto"
-            mat-icon-button
-            color="warn"
-            (click)="deleteOwnShout(a.id)"
-          >
-            <mat-icon> delete_forever </mat-icon>
-          </button>
-          <span class="content">{{
-            a.shoutText == "null" || a.shoutText == "undefined"
-              ? " "
-              : a.shoutText
-          }}</span>
-          <span class="media">
-            <img class="image" alt="" src="{{ mediaPath }}{{ a.shoutMedia }}" />
-          </span>
-        </app-shout>
-      </div>
-    </mat-tab>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon>music_note</mat-icon>
-      </ng-template>
-      <div class="mt-4" *ngFor="let a of userShout">
-        <app-shout [shout]="a" *ngIf="a.shoutType == 'audio'" controls>
-          <button
-            class="ml-auto"
-            mat-icon-button
-            color="warn"
-            (click)="deleteOwnShout(a.id)"
-          >
-            <mat-icon> delete_forever </mat-icon>
-          </button>
-          <span class="content">{{
-            a.shoutText == "null" || a.shoutText == "undefined"
-              ? " "
-              : a.shoutText
-          }}</span>
-          <span class="media">
-            <audio
-              class="audio"
-              src="{{ mediaPath }}{{ a.shoutMedia }}"
-              controls
-            ></audio>
-          </span>
-        </app-shout>
-      </div>
-    </mat-tab>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon>videocam</mat-icon>
-      </ng-template>
-      <div class="mt-4" *ngFor="let a of userShout">
-        <app-shout [shout]="a" *ngIf="a.shoutType == 'video'">
-          <button
-            class="ml-auto"
-            mat-icon-button
-            color="warn"
-            (click)="deleteOwnShout(a.id)"
-          >
-            <mat-icon> delete_forever </mat-icon>
-          </button>
-          <span class="content">{{
-            a.shoutText == "null" || a.shoutText == "undefined"
-              ? " "
-              : a.shoutText
-          }}</span>
-          <span class="media">
-            <video
-              class="video"
-              src="{{ mediaPath }}{{ a.shoutMedia }}"
-              controls
-            ></video>
-          </span>
-        </app-shout>
-      </div>
-    </mat-tab>
+            }}</span>
+            <span class="media">
+              <img
+                class="image"
+                alt=""
+                src="{{ mediaPath }}{{ a.shoutMedia }}"
+              />
+            </span>
+          </app-shout>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>music_note</mat-icon>
+        </ng-template>
+        <div class="mt-4" *ngFor="let a of userShout">
+          <app-shout [shout]="a" *ngIf="a.shoutType == 'audio'" controls>
+            <button
+              class="ml-auto"
+              mat-icon-button
+              color="warn"
+              (click)="deleteOwnShout(a.id)"
+            >
+              <mat-icon> delete_forever </mat-icon>
+            </button>
+            <span class="content">{{
+              a.shoutText == "null" || a.shoutText == "undefined"
+                ? " "
+                : a.shoutText
+            }}</span>
+            <span class="media">
+              <audio
+                class="audio"
+                src="{{ mediaPath }}{{ a.shoutMedia }}"
+                controls
+              ></audio>
+            </span>
+          </app-shout>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>videocam</mat-icon>
+        </ng-template>
+        <div class="mt-4" *ngFor="let a of userShout">
+          <app-shout [shout]="a" *ngIf="a.shoutType == 'video'">
+            <button
+              class="ml-auto"
+              mat-icon-button
+              color="warn"
+              (click)="deleteOwnShout(a.id)"
+            >
+              <mat-icon> delete_forever </mat-icon>
+            </button>
+            <span class="content">{{
+              a.shoutText == "null" || a.shoutText == "undefined"
+                ? " "
+                : a.shoutText
+            }}</span>
+            <span class="media">
+              <video
+                class="video"
+                src="{{ mediaPath }}{{ a.shoutMedia }}"
+                controls
+              ></video>
+            </span>
+          </app-shout>
+        </div>
+      </mat-tab>
+    </ng-container>
   </ng-container>
 </mat-tab-group>

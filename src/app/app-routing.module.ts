@@ -48,7 +48,7 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'feed' },
       { path: 'feed', component: ShoutFeedComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent },
       { path: 'friends', component: FriendsListComponent },
       { path: 'request', component: FriendRequestComponent },
       { path: 'edit', component: UpdateProfileComponent },
