@@ -77,13 +77,6 @@ export class ShoutComponent implements OnInit {
     }
   }
 
-  deleteOwnShout() {
-    this.shoutService.deleteOwnShout(this.shout.id).subscribe((data) => {
-      window.alert('Deleted Successfully');
-      this.ngOnInit();
-    });
-  }
-
   openCommentsDialog(): void {
     const dialogRef = this.dialog.open(CommentsComponent, {
       data: { shout: this.shout, user_id: this.shout.user_id },

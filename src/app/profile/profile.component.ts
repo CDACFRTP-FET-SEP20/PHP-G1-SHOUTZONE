@@ -42,13 +42,22 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //sessionStorage.setItem('user_id', '12');
-    //this.session = sessionStorage.getItem('user_id');
+    this.getUserShouts();
+  }
+
+  getUserShouts() {
     this.post.getShoutsById(this.user_id).subscribe(
       (data) => {
         this.userShout = data;
       },
       (error) => {}
     );
+  }
+
+  deleteOwnShout(id: number): void {
+    this.post.deleteOwnShout(id).subscribe((data) => {
+      window.alert('Deleted Successfully');
+      this.getUserShouts();
+    });
   }
 }
