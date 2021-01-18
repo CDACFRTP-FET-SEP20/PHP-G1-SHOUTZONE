@@ -13,45 +13,44 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        try {
-
-            $request->validate([
-
-                'username' => 'required',
-                'email' => 'email|required',
-                'password' => 'required',
-                'name' => 'required',
-                'gender' => 'required',
-                'dob' => 'required'
-
-            ]);
-
-            $user = new User;
-            $user->username = $request->username;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password); //password
-            $user->save();
-            $bio = new Bio;
-            $bio->name = $request->name;
-            $bio->gender = $request->gender;
-            $bio->dob = $request->dob;
-            $bio->profile_photo = $request->profile_photo;
-            $user->bio()->save($bio);
-
-            // $tokenResult = $user->createToken('authToken')->plainTextToken;
+        $user = User::where('username', $request->username)->whereOr('email', $request->email);
+        if ($user->count() > 0) {
             return response()->json([
-                'status_code' => 200,
-                'result' => 'register',
-                // 'access_token' => $tokenResult,
-                //'token_type' => 'Bearer',
-            ]);
-        } catch (Exception $error) {
-            return response()->json([
-                'status_code' => 500,
-                'message' => 'Error in Register',
-                'error' => $error,
+                'status_code' => 300,
+                'result' => 'username or email already exists',
             ]);
         }
+
+        $request->validate([
+
+            'username' => 'required',
+            'email' => 'email|required',
+            'password' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
+            'dob' => 'required'
+
+
+        ]);
+
+        $user = new User;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password); //password
+        $user->save();
+        $bio = new Bio;
+        $bio->name = $request->name;
+        $bio->gender = $request->gender;
+        $bio->dob = $request->dob;
+        $bio->profile_photo = $request->profile_photo;
+        $user->bio()->save($bio);
+        // $tokenResult = $user->createToken('authToken')->plainTextToken;
+        return response()->json([
+            'status_code' => 200,
+            'result' => 'register',
+            // 'access_token' => $tokenResult,
+            //'token_type' => 'Bearer',
+        ]);
     }
 
     function update(Request $request)
