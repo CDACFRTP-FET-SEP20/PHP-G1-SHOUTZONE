@@ -30,7 +30,4 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  navigateTo(path: string): void {
-    this.router.navigateByUrl(`${path}`);
-  }
 }
