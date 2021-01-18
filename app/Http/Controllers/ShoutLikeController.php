@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Shout;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShoutLikeController extends Controller

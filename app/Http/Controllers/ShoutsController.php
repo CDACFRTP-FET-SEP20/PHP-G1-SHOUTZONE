@@ -20,7 +20,6 @@ class ShoutsController extends Controller
         $shoutsUpload->shoutText = $req->shoutText;
         if ($file = $req->hasFile('shoutMedia')) {
             $file = $req->file('shoutMedia');
-            // dd($file);
             $fileName = 'Shout_' . $req->user_id . time() . "." . $req->file('shoutMedia')->getClientOriginalExtension();
             $destinationPath = public_path() . '/Shouts/';
             $file->move($destinationPath, $fileName);
@@ -39,10 +38,8 @@ class ShoutsController extends Controller
     {
         $users = User::all()->where('role', 'user');
         $userIds = $users->modelKeys();
-        // dd($users);
         $allShouts = Shout::whereIn('user_id', $userIds)->get();
-        // $allShouts = Shout::all();
-        // dd($allShouts);
+
         return view('shouts', ['shouts' => $allShouts]);
     }
     public function shoutById($id)
@@ -65,14 +62,11 @@ class ShoutsController extends Controller
             ->where('approved', 1)
             ->orWhere('reciever', $id)
             ->where('approved', 1)->get();
-        //dd($friends);
         $friendsArr = [];
         foreach ($friends as $key => $value) {
             if (($value->user->id) != $id) {
-                // print_r($value->user->username);
                 array_push($friendsArr, [$value->user->id]);
             } elseif (($value->user2->id) != $id) {
-                // print_r($value->user->username);
                 array_push($friendsArr, [$value->user2->id]);
             } else {
                 array_push($friendsArr);
@@ -103,7 +97,6 @@ class ShoutsController extends Controller
     public function reportedShout()
     {
         $reported = Report::all()->groupBy('category');
-        // dd($reported['Harassment'][0]->shout);
         return view('reports', ['reports' => $reported]);
     }
 }

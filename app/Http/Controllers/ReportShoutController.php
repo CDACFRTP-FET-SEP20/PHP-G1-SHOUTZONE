@@ -8,26 +8,8 @@ use Illuminate\Http\Request;
 
 class ReportShoutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function list()
-    {
-        $report = Report::all();
-        return $report;
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -42,7 +24,6 @@ class ReportShoutController extends Controller
         $report->category = $request->category;
         $report->user_id = $request->userId;
         $report->shout_id = $request->shoutId;
-        // dd($report);
         $report->save();
         return ['success' => true, 'message' => 'Shout Reported'];
     }
@@ -59,28 +40,6 @@ class ReportShoutController extends Controller
         return $shout->report;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -93,6 +52,5 @@ class ReportShoutController extends Controller
         $report = Report::find($id);
         $report->delete();
         return back();
-        // return ['Deleted'];
     }
 }

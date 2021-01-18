@@ -38,12 +38,10 @@ class UserController extends Controller
             $bio->profile_photo = $request->profile_photo;
             $user->bio()->save($bio);
 
-            // $tokenResult = $user->createToken('authToken')->plainTextToken;
             return response()->json([
                 'status_code' => 200,
                 'result' => 'register',
-                // 'access_token' => $tokenResult,
-                //'token_type' => 'Bearer',
+
             ]);
         } catch (Exception $error) {
             return response()->json([
@@ -93,7 +91,6 @@ class UserController extends Controller
             ->orWhere('reciever', $id);
 
         $res = ['user' => $user, 'shouts' => $user->shout->count(), 'friends' => $friends->count()];
-        // dd($res);
         return response()->json($res);
     }
 }

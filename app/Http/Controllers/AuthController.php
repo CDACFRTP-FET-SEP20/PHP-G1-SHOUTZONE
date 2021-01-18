@@ -37,7 +37,6 @@ class AuthController extends Controller
             }
             $approval = auth()->user()->is_approved;
             if (!$approval) {
-                // return 'Wait for Approval';
                 return response()->json([
                     'status_code' => 405,
                     'message' => 'Unauthorized'
@@ -46,7 +45,6 @@ class AuthController extends Controller
 
             $role = auth()->user()->role;
             if ($role !== "user") {
-                //return ' Please check your credentials';
                 return response()->json([
                     'status_code' => 300,
                     'message' => 'Unauthorized'
@@ -56,13 +54,10 @@ class AuthController extends Controller
 
             $user = auth()->user();
 
-            //$tokenResult = $user->createToken('authToken')->plainTextToken;
 
             return response()->json([
                 "user" => $user,
-                // "bio" => $bio,
                 'status_code' => 200,
-                //'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
             ]);
         } catch (Exception $error) {
@@ -97,13 +92,9 @@ class AuthController extends Controller
             $role = auth()->user()->role;
             if ($role !== "admin") {
                 return Redirect()->back()->withErrors(['msg' => 'Please Fill Credentials Properly For Admin']);
-                // return view('/adminLogin');
             } else {
                 $users = User::all()->where('role', 'user');
                 return view('home', ['users' => $users]);
-                //return view('home', [AdminController::class, 'userList']);
-
-
             }
         } catch (Exception $error) {
             return "Error in Login";
