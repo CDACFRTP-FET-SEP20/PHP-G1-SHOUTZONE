@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function index()
     {
 
-       return view('adminLogin');
+        return view('adminLogin');
     }
 
     /**
@@ -28,68 +28,25 @@ class AdminController extends Controller
     public function adminApproval(Request $request, $id)
     {
         $user = User::find($id);
-        if($user->is_approved == false){
-            $user->is_approved =true;
-        }else{
+        if ($user->is_approved == false) {
+            $user->is_approved = true;
+            $user->save();
+            $message = 'User  ' . $user->bio->name . ' has been approved.';
+            return Redirect::to('/userlist')->with(['success' => $message]);
+        } else {
             $user->is_approved = false;
+            $user->save();
+            $message = 'User  ' . $user->bio->name . ' has been disapproved.';
+            return Redirect::to('/userlist')->with(['success' => $message]);
         }
-
-        $user->save();
-        return Redirect::to('/userlist');
     }
     public function userList()
-    {    $users = User::all()->where('role', 'user');
-        return view('home',['users' => $users]);
-
-
-
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
-        //
+        $users = User::all()->where('role', 'user');
+        return view('home', ['users' => $users]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -97,8 +54,18 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    function delete($id)
     {
-        //
+        $user = User::find($id);
+        $message = 'User ' . $user->bio->name . ' has been deleted.';
+
+        $user->delete();
+        return Redirect::to('/userlist')->with(['success' => $message]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

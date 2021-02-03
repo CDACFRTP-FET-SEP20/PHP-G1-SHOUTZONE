@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'role',
         'password',
+        'is_approved'
     ];
 
     /**
@@ -42,10 +44,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     public function bio(){
-
+    public function bio()
+    {
         return $this->hasOne('App\Models\Bio');
     }
 
+    public function shout()
+    {
+        return $this->hasMany('App\Models\Shout');
+    }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    public function sender() //friends
+    {
+        return $this->hasMany('App\Models\Friends', 'sender'); //user_id_1
+    }
+
+    public function reciever() //friends1
+    {
+        return $this->hasMany('App\Models\Friends', 'reciever'); //user_id_2
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function reportedShout()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
